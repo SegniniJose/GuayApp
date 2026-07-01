@@ -1,75 +1,71 @@
-name: Build and Deploy Web Docs
+name: Build Godot + Deploy to Firebase
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🛠️ Setup Node.js Environment 
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
 
-      - name: 📥 Install npm dependencies
+      - name: Install npm dependencies
         run: npm ci
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x' 
-      
       - name: Install GDScript Formatter
-        run: pip3 install "gdtoolkit"
+        run: pip3 install "gdtoolkit==4.*"
 
-      - name: 🧹 Run Source Formatter Script 
+      - name: Run Source Formatter Check
         run: ./ci/check-format-source.sh
 
-      - name: Download Godot prebuilt
+      - name: Download Godot 4.5
         run: |
-          mkdir -p godot
-          wget https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip
-          unzip Godot_v4.5-stable_linux.x86_64.zip -d godot
-          chmod +x godot/Godot_v4.5-stable_linux.x86_64
+          mkdir -p godot-bin
+          wget -q https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip
+          unzip -q Godot_v4.5-stable_linux.x86_64.zip -d godot-bin
+          chmod +x godot-bin/Godot_v4.5-stable_linux.x86_64
 
-      - name: Download Godot export templates
+      - name: Download Godot Export Templates
         run: |
           mkdir -p ~/.local/share/godot/export_templates/4.5.stable
           cd ~/.local/share/godot/export_templates/4.5.stable
-          wget https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_export_templates.tpz
-          unzip -j Godot_v4.5-stable_export_templates.tpz -d .
-          ls
+          wget -q https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_export_templates.tpz
+          unzip -q -j Godot_v4.5-stable_export_templates.tpz -d .
 
       - name: Export Godot Project to Web
         run: |
           mkdir -p ./docs
-          ./godot/Godot_v4.5-stable_linux.x86_64 --headless --export-debug "Web" ./docs/index.html
+          ./godot-bin/Godot_v4.5-stable_linux.x86_64 --headless --path ./godot --export-debug "Web" ../docs/index.html
+          ls -la ./docs
 
-      - name: Create .nojekyll
+      - name: Copy admin panel to docs
+        run: |
+          cp ./docs/admin.html ./docs/admin.html 2>/dev/null || true
+
+      - name: Create .nojekyll for GitHub Pages fallback
         run: touch ./docs/.nojekyll
 
-      - name: Debug output
-        run: ls -la ./docs
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
 
-      - name: Setup Pages
+      - name: Deploy to Firebase Hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting --project guay-app-social --token "$FIREBASE_TOKEN"
+
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs
@@ -77,3 +73,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write

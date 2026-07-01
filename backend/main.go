@@ -73,6 +73,18 @@ func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"app":     "GuayApp Backend",
+			"status":  "online",
+			"version": "1.0.0",
+			"docs":    "https://guay-app-social.web.app/admin.html",
+		})
+	})
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok"})
+	})
+
 	// --- 1. Rutas de Autenticación ---
 	r.POST("/api/auth/register", handleRegister)
 	r.POST("/api/auth/login", handleLogin)
