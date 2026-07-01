@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GuayApp Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #0a0a0f;
+        --surface: #13131a;
+        --surface2: #1c1c28;
+        --border: #2a2a3d;
+        --accent: #7c3aed;
+        --accent2: #4f46e5;
+        --green: #10b981;
+        --yellow: #f59e0b;
+        --red: #ef4444;
+        --text: #f1f5f9;
+        --text-muted: #94a3b8;
+        --gradient: linear-gradient(135deg, #7c3aed, #4f46e5);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      /* --- AUTH SCREEN --- */
+      #auth-screen {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(ellipse at 50% 0%, #7c3aed22, transparent 70%);
+      }
+
+      .auth-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 48px;
+        width: 380px;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        animation: fadeUp 0.4s ease;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .auth-logo {
+        width: 56px;
+        height: 56px;
+        background: var(--gradient);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin-bottom: 24px;
+      }
+
+      .auth-card h1 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .auth-card p {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-bottom: 32px;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .form-group input {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 16px;
+        color: var(--text);
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
+        transition: border-color 0.2s;
+        outline: none;
+      }
+
+      .form-group input:focus {
+        border-color: var(--accent);
+      }
+
+      .btn-primary {
+        width: 100%;
+        background: var(--gradient);
+        border: none;
+        border-radius: 10px;
+        padding: 14px;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.1s;
+        margin-top: 8px;
+      }
+
+      .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      .auth-error {
+        color: var(--red);
+        font-size: 13px;
+        margin-top: 12px;
+        text-align: center;
+        display: none;
+      }
+
+      /* --- MAIN PANEL --- */
+      #main-panel {
+        display: none;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 240px;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        padding: 24px 16px;
+        z-index: 100;
+      }
+
+      .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px;
+        margin-bottom: 32px;
+      }
+
+      .sidebar-logo-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--gradient);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .sidebar-logo span {
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      .sidebar-logo small {
+        font-size: 10px;
+        color: var(--accent);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: var(--text-muted);
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+        margin-bottom: 4px;
+      }
+
+      .nav-item:hover {
+        background: var(--surface2);
+        color: var(--text);
+      }
+
+      .nav-item.active {
+        background: #7c3aed22;
+        color: var(--accent);
+      }
+
+      .nav-icon {
+        font-size: 18px;
+        width: 22px;
+        text-align: center;
+      }
+
+      .sidebar-footer {
+        position: absolute;
+        bottom: 24px;
+        left: 16px;
+        right: 16px;
+      }
+
+      .admin-badge {
+        background: #7c3aed22;
+        border: 1px solid #7c3aed44;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      .admin-badge .admin-name {
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .admin-badge .admin-role {
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .main-content {
+        margin-left: 240px;
+        padding: 32px;
+        min-height: 100vh;
+      }
+
+      /* --- VIEWS --- */
+      .view {
+        display: none;
+        animation: fadeUp 0.3s ease;
+      }
+
+      .view.active {
+        display: block;
+      }
+
+      .view-header {
+        margin-bottom: 28px;
+      }
+
+      .view-header h2 {
+        font-size: 26px;
+        font-weight: 800;
+      }
+
+      .view-header p {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-top: 4px;
+      }
+
+      /* --- STATS GRID --- */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+        transition: border-color 0.2s, transform 0.2s;
+      }
+
+      .stat-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .stat-icon {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+
+      .stat-value {
+        font-size: 32px;
+        font-weight: 800;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      /* --- DATA TABLE --- */
+      .table-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+
+      .table-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .table-header h3 {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .refresh-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 7px 14px;
+        color: var(--text-muted);
+        font-size: 13px;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .refresh-btn:hover {
+        color: var(--text);
+        border-color: var(--accent);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th {
+        text-align: left;
+        padding: 12px 24px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background: var(--surface2);
+      }
+
+      td {
+        padding: 14px 24px;
+        font-size: 14px;
+        border-top: 1px solid var(--border);
+        vertical-align: middle;
+      }
+
+      tr:hover td {
+        background: var(--surface2);
+      }
+
+      .avatar-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .avatar-img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        object-fit: cover;
+      }
+
+      .badge {
+        display: inline-flex;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .badge-green {
+        background: #10b98122;
+        color: var(--green);
+      }
+
+      .badge-yellow {
+        background: #f59e0b22;
+        color: var(--yellow);
+      }
+
+      .badge-purple {
+        background: #7c3aed22;
+        color: #a78bfa;
+      }
+
+      .badge-red {
+        background: #ef444422;
+        color: var(--red);
+      }
+
+      /* --- MISSION FORM --- */
+      .form-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .form-card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .form-row.full {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card input,
+      .form-card textarea {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 14px;
+        color: var(--text);
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .form-card input:focus,
+      .form-card textarea:focus {
+        border-color: var(--accent);
+      }
+
+      .form-card label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+      }
+
+      .form-card textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .btn-add {
+        background: var(--gradient);
+        border: none;
+        border-radius: 10px;
+        padding: 11px 22px;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .btn-add:hover {
+        opacity: 0.85;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 48px;
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      .loading-row td {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 13px;
+        padding: 32px;
+      }
+
+      .api-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .status-dot.online {
+        background: var(--green);
+      }
+
+      .status-dot.offline {
+        background: var(--red);
+        animation: none;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .toast.success {
+        border-color: var(--green);
+        color: var(--green);
+      }
+
+      .toast.error {
+        border-color: var(--red);
+        color: var(--red);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- AUTH SCREEN -->
+    <div id="auth-screen">
+      <div class="auth-card">
+        <div class="auth-logo">🎮</div>
+        <h1>Panel Admin</h1>
+        <p>Acceso restringido al equipo de GuayApp</p>
+        <div class="form-group">
+          <label>Contraseña de Admin</label>
+          <input
+            type="password"
+            id="admin-password"
+            placeholder="••••••••"
+            onkeydown="if(event.key==='Enter') login()"
+          />
+        </div>
+        <button class="btn-primary" onclick="login()">Ingresar al Panel</button>
+        <p class="auth-error" id="auth-error">Contraseña incorrecta</p>
+      </div>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div id="main-panel">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-icon">🎮</div>
+          <div>
+            <span>GuayApp</span>
+            <small>Admin Panel</small>
+          </div>
+        </div>
+
+        <nav>
+          <div class="nav-item active" onclick="showView('overview')" id="nav-overview">
+            <span class="nav-icon">📊</span> Resumen
+          </div>
+          <div class="nav-item" onclick="showView('users')" id="nav-users">
+            <span class="nav-icon">👤</span> Usuarios
+          </div>
+          <div class="nav-item" onclick="showView('leagues')" id="nav-leagues">
+            <span class="nav-icon">🏆</span> Ligas
+          </div>
+          <div class="nav-item" onclick="showView('missions')" id="nav-missions">
+            <span class="nav-icon">📸</span> Misiones
+          </div>
+          <div class="nav-item" onclick="showView('api')" id="nav-api">
+            <span class="nav-icon">⚡</span> Estado API
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="admin-badge">
+            <div class="admin-role">Administrador</div>
+            <div class="admin-name">GuayApp System</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- OVERVIEW -->
+        <div class="view active" id="view-overview">
+          <div class="view-header">
+            <h2>Resumen General</h2>
+            <p>Estado actual de la plataforma GuayApp</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">👤</div>
+              <div class="stat-value" id="stat-users">—</div>
+              <div class="stat-label">Usuarios registrados</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-value" id="stat-leagues">—</div>
+              <div class="stat-label">Ligas activas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📸</div>
+              <div class="stat-value" id="stat-missions">—</div>
+              <div class="stat-label">Misiones creadas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">✅</div>
+              <div class="stat-value" id="stat-status">
+                <span class="api-status">
+                  <span class="status-dot" id="status-dot"></span>
+                  <span id="status-text">...</span>
+                </span>
+              </div>
+              <div class="stat-label">Backend en Render</div>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h3>🏅 Ranking Global de Jugadores</h3>
+              <button class="refresh-btn" onclick="loadOverview()">↻ Actualizar</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Jugador</th>
+                  <th>Email</th>
+                  <th>Puntos</th>
+                  <th>Liga</th>
+                </tr>
+              </thead>
+              <tbody id="overview-table">
+                <tr class="loading-row">
+                  <td colspan="5">Cargando datos...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- USERS -->
+        <div class="view" id="view-users">
+          <div class="view-header">
+            <h2>Gestión de Usuarios</h2>
+            <p>Todos los usuarios registrados en la plataforma</p>
+          </div>
+          <div class="table-card">
+            <div class="table-header">
+              <h3>👤 Usuarios</h3>
+              <button class="refresh-btn" onclick="loadUsers()">↻ Actualizar</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Email</th>
+                  <th>Puntos</th>
+                  <th>Liga</th>
+                  <th>Visibilidad</th>
+                </tr>
+              </thead>
+              <tbody id="users-table">
+                <tr class="loading-row">
+                  <td colspan="5">Cargando usuarios...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- LEAGUES -->
+        <div class="view" id="view-leagues">
+          <div class="view-header">
+            <h2>Gestión de Ligas</h2>
+            <p>Todas las ligas creadas en la plataforma</p>
+          </div>
+          <div class="table-card">
+            <div class="table-header">
+              <h3>🏆 Ligas</h3>
+              <button class="refresh-btn" onclick="loadLeagues()">↻ Actualizar</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Código</th>
+                  <th>Estado</th>
+                  <th>Visibilidad</th>
+                  <th>Admin ID</th>
+                </tr>
+              </thead>
+              <tbody id="leagues-table">
+                <tr class="loading-row">
+                  <td colspan="5">Cargando ligas...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- MISSIONS -->
+        <div class="view" id="view-missions">
+          <div class="view-header">
+            <h2>Gestión de Misiones</h2>
+            <p>Crea y administra las misiones disponibles en la plataforma</p>
+          </div>
+
+          <div class="form-card">
+            <h3>➕ Agregar Nueva Misión</h3>
+            <div class="form-row">
+              <div>
+                <label>Título</label>
+                <input type="text" id="mission-title" placeholder="ej: Verde" />
+              </div>
+              <div>
+                <label>Puntos</label>
+                <input type="number" id="mission-points" placeholder="ej: 15" min="1" />
+              </div>
+            </div>
+            <div class="form-row full">
+              <div>
+                <label>Descripción</label>
+                <textarea id="mission-desc" placeholder="ej: Toma una foto de algo verde"></textarea>
+              </div>
+            </div>
+            <button class="btn-add" onclick="addMission()">Crear Misión</button>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h3>📸 Misiones Actuales</h3>
+              <button class="refresh-btn" onclick="loadMissions()">↻ Actualizar</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>Puntos</th>
+                </tr>
+              </thead>
+              <tbody id="missions-table">
+                <tr class="loading-row">
+                  <td colspan="4">Cargando misiones...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- API STATUS -->
+        <div class="view" id="view-api">
+          <div class="view-header">
+            <h2>Estado de la API</h2>
+            <p>Verifica que todos los endpoints del backend funcionen correctamente</p>
+          </div>
+          <div id="api-checks" class="table-card">
+            <div class="table-header">
+              <h3>⚡ Endpoints</h3>
+              <button class="refresh-btn" onclick="checkAllEndpoints()">↻ Verificar todos</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Endpoint</th>
+                  <th>Método</th>
+                  <th>Estado</th>
+                  <th>Código</th>
+                </tr>
+              </thead>
+              <tbody id="api-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // =============================================
+      // CONFIGURACIÓN
+      // =============================================
+      const API_BASE = "https://guayapp.onrender.com";
+      // La contraseña del panel de admin (puedes cambiarla)
+      const ADMIN_PASSWORD = "GuayAdmin2025!";
+
+      // =============================================
+      // AUTH
+      // =============================================
+      function login() {
+        const pwd = document.getElementById("admin-password").value;
+        if (pwd === ADMIN_PASSWORD) {
+          document.getElementById("auth-screen").style.display = "none";
+          document.getElementById("main-panel").style.display = "block";
+          loadOverview();
+        } else {
+          document.getElementById("auth-error").style.display = "block";
+          document.getElementById("admin-password").value = "";
+        }
+      }
+
+      // =============================================
+      // NAVIGATION
+      // =============================================
+      function showView(name) {
+        document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
+        document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
+        document.getElementById("view-" + name).classList.add("active");
+        document.getElementById("nav-" + name).classList.add("active");
+
+        if (name === "users") loadUsers();
+        if (name === "leagues") loadLeagues();
+        if (name === "missions") loadMissions();
+        if (name === "api") checkAllEndpoints();
+      }
+
+      // =============================================
+      // API HELPERS
+      // =============================================
+      async function apiFetch(path) {
+        try {
+          const res = await fetch(API_BASE + path);
+          return { ok: res.ok, code: res.status, data: await res.json() };
+        } catch (e) {
+          return { ok: false, code: 0, data: null, error: e.message };
+        }
+      }
+
+      function showToast(msg, type = "success") {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.className = "toast " + type;
+        setTimeout(() => t.classList.add("show"), 10);
+        setTimeout(() => t.classList.remove("show"), 3000);
+      }
+
+      // =============================================
+      // OVERVIEW
+      // =============================================
+      async function loadOverview() {
+        // Check API status
+        const dot = document.getElementById("status-dot");
+        const statusText = document.getElementById("status-text");
+        try {
+          const r = await fetch(API_BASE + "/api/leagues/public");
+          if (r.status === 200 || r.status === 404) {
+            dot.className = "status-dot online";
+            statusText.textContent = "Online";
+          } else {
+            dot.className = "status-dot offline";
+            statusText.textContent = "Error";
+          }
+        } catch {
+          dot.className = "status-dot offline";
+          statusText.textContent = "Offline";
+        }
+
+        // Load leagues
+        const leaguesRes = await apiFetch("/api/leagues/public");
+        const leagues = leaguesRes.ok ? leaguesRes.data : [];
+        document.getElementById("stat-leagues").textContent = Array.isArray(leagues)
+          ? leagues.length
+          : "—";
+
+        // Load missions via dummy league ID
+        const missionsRes = await apiFetch("/api/missions/any?userId=any");
+        const missions = missionsRes.data;
+        document.getElementById("stat-missions").textContent = Array.isArray(missions)
+          ? missions.length
+          : "—";
+
+        document.getElementById("stat-users").textContent = "—";
+
+        const tbody = document.getElementById("overview-table");
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px">Selecciona "Usuarios" para ver el ranking detallado</td></tr>`;
+      }
+
+      // =============================================
+      // USERS
+      // =============================================
+      async function loadUsers() {
+        const tbody = document.getElementById("users-table");
+        tbody.innerHTML = `<tr class="loading-row"><td colspan="5">Cargando usuarios...</td></tr>`;
+
+        const res = await fetch(API_BASE + "/api/admin/users", {
+          headers: { "X-Admin-Key": ADMIN_PASSWORD }
+        });
+        const data = res.ok ? await res.json() : [];
+
+        document.getElementById("stat-users").textContent = Array.isArray(data) ? data.length : "—";
+
+        if (!Array.isArray(data) || data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px">No hay usuarios registrados aún</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = data
+          .map(
+            (u) => `
+          <tr>
+            <td>
+              <div class="avatar-cell">
+                <img src="${u.avatar || ""}" class="avatar-img" onerror="this.style.display='none'" />
+                <strong>${escHtml(u.username)}</strong>
+              </div>
+            </td>
+            <td style="color:var(--text-muted)">${escHtml(u.email || "—")}</td>
+            <td><span class="badge badge-purple">${u.points || 0} pts</span></td>
+            <td style="color:var(--text-muted);font-size:12px">${u.leagueId ? "En liga" : "Sin liga"}</td>
+            <td>${u.isPrivate ? '<span class="badge badge-yellow">Privado</span>' : '<span class="badge badge-green">Público</span>'}</td>
+          </tr>`
+          )
+          .join("");
+      }
+
+      // =============================================
+      // LEAGUES
+      // =============================================
+      async function loadLeagues() {
+        const tbody = document.getElementById("leagues-table");
+        tbody.innerHTML = `<tr class="loading-row"><td colspan="5">Cargando ligas...</td></tr>`;
+
+        const res = await apiFetch("/api/leagues/public");
+        if (!res.ok || !Array.isArray(res.data)) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px">No hay ligas públicas aún</td></tr>`;
+          return;
+        }
+
+        if (res.data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px">No se han creado ligas todavía</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = res.data
+          .map(
+            (l) => `
+          <tr>
+            <td><strong>${escHtml(l.name)}</strong></td>
+            <td><span class="badge badge-purple" style="font-family:monospace;letter-spacing:2px">${escHtml(l.code)}</span></td>
+            <td><span class="badge ${l.status === "active" ? "badge-green" : "badge-red"}">${l.status}</span></td>
+            <td>${l.isPublic ? '<span class="badge badge-green">Pública</span>' : '<span class="badge badge-yellow">Privada</span>'}</td>
+            <td style="color:var(--text-muted);font-size:12px;font-family:monospace">${l.adminId?.substring(0, 12)}...</td>
+          </tr>`
+          )
+          .join("");
+      }
+
+      // =============================================
+      // MISSIONS
+      // =============================================
+      async function loadMissions() {
+        const tbody = document.getElementById("missions-table");
+        tbody.innerHTML = `<tr class="loading-row"><td colspan="4">Cargando misiones...</td></tr>`;
+
+        const res = await apiFetch("/api/missions/any?userId=any");
+        if (!res.ok || !Array.isArray(res.data)) {
+          tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px">Error al cargar misiones</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = res.data
+          .map(
+            (m) => `
+          <tr>
+            <td style="color:var(--text-muted);font-size:12px;font-family:monospace">${m.id}</td>
+            <td><strong>${escHtml(m.title)}</strong></td>
+            <td style="color:var(--text-muted)">${escHtml(m.description)}</td>
+            <td><span class="badge badge-purple">${m.points} pts</span></td>
+          </tr>`
+          )
+          .join("");
+      }
+
+      async function addMission() {
+        const title = document.getElementById("mission-title").value.trim();
+        const desc = document.getElementById("mission-desc").value.trim();
+        const points = parseInt(document.getElementById("mission-points").value);
+
+        if (!title || !desc || !points) {
+          showToast("Completa todos los campos", "error");
+          return;
+        }
+
+        const res = await fetch(API_BASE + "/api/admin/missions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Admin-Key": ADMIN_PASSWORD },
+          body: JSON.stringify({ title, description: desc, points })
+        });
+
+        if (res.ok) {
+          showToast("✅ Misión creada exitosamente!", "success");
+          document.getElementById("mission-title").value = "";
+          document.getElementById("mission-desc").value = "";
+          document.getElementById("mission-points").value = "";
+          loadMissions();
+        } else {
+          showToast("❌ Error al crear la misión", "error");
+        }
+      }
+
+      // =============================================
+      // API STATUS CHECKS
+      // =============================================
+      const ENDPOINTS_TO_CHECK = [
+        { label: "Registro de usuario", method: "POST", path: "/api/auth/register" },
+        { label: "Login de usuario", method: "POST", path: "/api/auth/login" },
+        { label: "Ligas públicas", method: "GET", path: "/api/leagues/public" },
+        { label: "Misiones", method: "GET", path: "/api/missions/test?userId=test" },
+        { label: "Notificaciones", method: "GET", path: "/api/notifications/test" },
+        { label: "Amigos", method: "GET", path: "/api/friends/test" },
+        { label: "Amigos pendientes", method: "GET", path: "/api/friends/test/pending" },
+        { label: "Amigos enviados", method: "GET", path: "/api/friends/test/sent" },
+        { label: "Mensajes de liga", method: "GET", path: "/api/messages/test" },
+        { label: "Mensajes privados", method: "GET", path: "/api/messages/private/a/b" },
+        { label: "Historias", method: "GET", path: "/api/stories/test?userId=test" },
+      ];
+
+      async function checkAllEndpoints() {
+        const tbody = document.getElementById("api-table");
+        tbody.innerHTML = ENDPOINTS_TO_CHECK.map(
+          (e) => `
+          <tr id="check-${btoa(e.path)}">
+            <td>${e.label}</td>
+            <td><span class="badge badge-purple">${e.method}</span></td>
+            <td><span style="color:var(--text-muted)">Verificando...</span></td>
+            <td>—</td>
+          </tr>`
+        ).join("");
+
+        for (const ep of ENDPOINTS_TO_CHECK) {
+          const rowId = "check-" + btoa(ep.path);
+          try {
+            const res = await fetch(API_BASE + ep.path, { method: ep.method });
+            const ok = res.status < 500;
+            const row = document.getElementById(rowId);
+            row.cells[2].innerHTML = ok
+              ? `<span class="badge badge-green">✓ OK</span>`
+              : `<span class="badge badge-red">✗ Error</span>`;
+            row.cells[3].textContent = res.status;
+          } catch (e) {
+            const row = document.getElementById(rowId);
+            row.cells[2].innerHTML = `<span class="badge badge-red">✗ Sin respuesta</span>`;
+            row.cells[3].textContent = "—";
+          }
+        }
+      }
+
+      function escHtml(str) {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+    </script>
+  </body>
+</html>

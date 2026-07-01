@@ -2,11 +2,13 @@
 .godot/
 /android/
 /ios/
-/docs/
 
 node_modules
 .DS_Store
 
+# Local dev files
+godot_win.zip
+backend/guaygo.db
+
 !ios/.gdignore
 !android/.gdignore
-!docs/.gdignore
