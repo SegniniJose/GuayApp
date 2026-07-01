@@ -5,9 +5,18 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
@@ -21,37 +30,38 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
       - name: Install GDScript Formatter
         run: pip3 install "gdtoolkit==4.*"
 
       - name: Run Source Formatter Check
         run: ./ci/check-format-source.sh
 
-      - name: Download Godot 4.5
+      - name: Download Godot 4.6
         run: |
           mkdir -p godot-bin
-          wget -q https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip
-          unzip -q Godot_v4.5-stable_linux.x86_64.zip -d godot-bin
-          chmod +x godot-bin/Godot_v4.5-stable_linux.x86_64
+          wget -q https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+          unzip -q Godot_v4.6-stable_linux.x86_64.zip -d godot-bin
+          chmod +x godot-bin/Godot_v4.6-stable_linux.x86_64
 
-      - name: Download Godot Export Templates
+      - name: Download Godot 4.6 Export Templates
         run: |
-          mkdir -p ~/.local/share/godot/export_templates/4.5.stable
-          cd ~/.local/share/godot/export_templates/4.5.stable
-          wget -q https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_export_templates.tpz
-          unzip -q -j Godot_v4.5-stable_export_templates.tpz -d .
+          mkdir -p ~/.local/share/godot/export_templates/4.6.stable
+          cd ~/.local/share/godot/export_templates/4.6.stable
+          wget -q https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+          unzip -q -j Godot_v4.6-stable_export_templates.tpz -d .
 
       - name: Export Godot Project to Web
         run: |
           mkdir -p ./docs
-          ./godot-bin/Godot_v4.5-stable_linux.x86_64 --headless --path ./godot --export-debug "Web" ../docs/index.html
+          ./godot-bin/Godot_v4.6-stable_linux.x86_64 --headless --path ./godot --export-debug "Web" ../docs/index.html
+          echo "=== Exported files ==="
           ls -la ./docs
 
-      - name: Copy admin panel to docs
-        run: |
-          cp ./docs/admin.html ./docs/admin.html 2>/dev/null || true
-
-      - name: Create .nojekyll for GitHub Pages fallback
+      - name: Create .nojekyll
         run: touch ./docs/.nojekyll
 
       - name: Install Firebase CLI
@@ -60,12 +70,18 @@ jobs:
       - name: Deploy to Firebase Hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: firebase deploy --only hosting --project guay-app-social --token "$FIREBASE_TOKEN"
+        run: |
+          if [ -n "$FIREBASE_TOKEN" ]; then
+            firebase deploy --only hosting --project guay-app-social --token "$FIREBASE_TOKEN"
+            echo "✅ Deployed to Firebase Hosting"
+          else
+            echo "⚠️ FIREBASE_TOKEN not set, skipping Firebase deploy"
+          fi
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload to GitHub Pages
+      - name: Upload to GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs
@@ -73,8 +89,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
