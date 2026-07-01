@@ -38,7 +38,10 @@ jobs:
         run: pip3 install "gdtoolkit==4.*"
 
       - name: Run Source Formatter Check
-        run: ./ci/check-format-source.sh
+        run: |
+          chmod +x ./ci/check-format-source.sh
+          ./ci/check-format-source.sh
+
 
       - name: Download Godot 4.6
         run: |
