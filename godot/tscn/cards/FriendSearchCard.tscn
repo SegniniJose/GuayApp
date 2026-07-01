@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://cu58f2gmqr0ln"]
+
+[ext_resource type="Script" uid="uid://c2l455sn73j3b" path="res://gd/cards/FriendSearchCard.gd" id="1_8eetm"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_g6o50"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_small"]
+bg_color = Color(0.92549, 0.964706, 0.996078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74902, 0.87451, 0.984314, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inner_small"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_small"]
+bg_color = Color(0.427451, 0.690196, 0.839216, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover_small"]
+bg_color = Color(0.352941, 0.603922, 0.74902, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="FriendSearchCard" type="PanelContainer" unique_id=2059068917]
+custom_minimum_size = Vector2(200, 130)
+offset_right = 262.0
+offset_bottom = 130.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_small")
+script = ExtResource("1_8eetm")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=160263557]
+layout_mode = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 17
+theme_override_constants/margin_bottom = 12
+
+[node name="ContentSplitter" type="VBoxContainer" parent="MarginContainer" unique_id=1120516213]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/ContentSplitter" unique_id=537849201]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0431373, 0.364706, 0.611765, 1)
+theme_override_font_sizes/font_size = 16
+text = "Resultados de búsqueda"
+vertical_alignment = 1
+
+[node name="InnerRowPanel" type="PanelContainer" parent="MarginContainer/ContentSplitter" unique_id=599944340]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner_small")
+
+[node name="RowMargin" type="MarginContainer" parent="MarginContainer/ContentSplitter/InnerRowPanel" unique_id=549947032]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="RowLayout" type="HBoxContainer" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin" unique_id=2137845575]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Avatar" type="TextureRect" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout" unique_id=1547472679]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_g6o50")
+
+[node name="UserInfo" type="VBoxContainer" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout" unique_id=723909516]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Username" type="Label" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout/UserInfo" unique_id=2051061283]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_font_sizes/font_size = 18
+text = "d"
+
+[node name="UserId" type="Label" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout/UserInfo" unique_id=2070557033]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "ID: 38a25997-a9ce-437b-9469-2f66be5b75ab"
+clip_text = true
+text_overrun_behavior = 5
+
+[node name="AddButton" type="Button" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout" unique_id=1775514088]
+custom_minimum_size = Vector2(110, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_small")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover_small")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover_small")
+text = "Agregar"
+
+[node name="ButtonIcon" type="TextureRect" parent="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout/AddButton" unique_id=1105731490]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -8.0
+offset_right = 28.0
+offset_bottom = 8.0
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="MarginContainer/ContentSplitter/InnerRowPanel/RowMargin/RowLayout/AddButton" to="." method="_on_add_button_pressed"]

@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cqe1xd8n62jxw"]
+
+[ext_resource type="Script" uid="uid://ccd3w60rssfd" path="res://gd/cards/PublicLeagueCard.gd" id="1_rroxa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_row_bg"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.741176, 0.87451, 0.941176, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blue_btn"]
+bg_color = Color(0.407843, 0.694118, 0.835294, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="PublicLeagueCard" type="PanelContainer" unique_id=1582380445]
+offset_right = 368.0
+offset_bottom = 76.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_row_bg")
+script = ExtResource("1_rroxa")
+
+[node name="Padding" type="MarginContainer" parent="." unique_id=158295146]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="Layout" type="HBoxContainer" parent="Padding" unique_id=1324196083]
+layout_mode = 2
+
+[node name="TextMeta" type="VBoxContainer" parent="Padding/Layout" unique_id=514685554]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LeagueName" type="Label" parent="Padding/Layout/TextMeta" unique_id=836775131]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.121569, 0.121569, 1)
+theme_override_font_sizes/font_size = 18
+text = "name"
+
+[node name="MemberCount" type="Label" parent="Padding/Layout/TextMeta" unique_id=1202591754]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.364706, 0.454902, 0.52549, 1)
+theme_override_font_sizes/font_size = 14
+text = "👤 x/y miembros"
+
+[node name="JoinButton" type="Button" parent="Padding/Layout" unique_id=1608583644]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_blue_btn")
+text = "Unirse"
+
+[connection signal="pressed" from="Padding/Layout/JoinButton" to="." method="_on_join_button_pressed"]

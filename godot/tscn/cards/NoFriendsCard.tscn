@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d3m2n8pql4d7y"]
+
+[ext_resource type="Texture2D" uid="uid://cfbwkwhbiwjsf" path="res://svg/no-friends.svg" id="1_icon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0.180392, 0.545098, 0.854902, 0.156863)
+shadow_size = 12
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 10
+font_color = Color(0.407843, 0.443137, 0.505882, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_subtitle"]
+font_size = 10
+font_color = Color(0.407843, 0.443137, 0.505882, 0.8)
+
+[node name="NoFriends" type="PanelContainer" unique_id=861963632]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = -301.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1881613936]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1854059939]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="FriendsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1388728919]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=788720187]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TextContainer" unique_id=1301662003]
+layout_mode = 2
+text = "No tienes amigos aún"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TextContainer" unique_id=427769964]
+layout_mode = 2
+text = "Busca usuarios para agregarlos"
+label_settings = SubResource("LabelSettings_subtitle")
+horizontal_alignment = 1
+vertical_alignment = 1

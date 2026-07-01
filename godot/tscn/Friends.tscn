@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://di5sgpyp0x7tr"]
+
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="1_ke7jy"]
+[ext_resource type="Script" uid="uid://cvlo12p8fru34" path="res://gd/Friends.gd" id="1_utib6"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="2_utib6"]
+[ext_resource type="PackedScene" uid="uid://cu58f2gmqr0ln" path="res://tscn/cards/FriendSearchCard.tscn" id="3_o642h"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdnmb"]
+gradient = SubResource("Gradient_bg")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjp04"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Bg"]
+bg_color = Color(0.941176, 0.972549, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Search"]
+bg_color = Color(0.901961, 0.94902, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.87, 0.95, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utib6"]
+bg_color = Color(0.5, 0.75, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o642h"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbkyl"]
+bg_color = Color(0.94509804, 0.972549, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk4vc"]
+bg_color = Color(0.94509804, 0.972549, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Card"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.9, 0.95, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[node name="Friends" type="Control" unique_id=197593435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_utib6")
+
+[node name="Background" type="TextureRect" parent="." unique_id=795309671]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_gdnmb")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1143716132]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vjp04")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=1778388226]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Background" type="Panel" parent="BackgroundPanel/MarginContainer" unique_id=2050023635]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Bg")
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=225553352]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/VBox" unique_id=570429073 instance=ExtResource("1_ke7jy")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/VBox" unique_id=1176035714]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer" unique_id=1807059985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin" unique_id=1762980978]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="SearchHBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content" unique_id=1297836070]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SearchBar" type="LineEdit" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/SearchHBox" unique_id=683522268]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_placeholder_color = Color(0.5, 0.6, 0.7, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Search")
+placeholder_text = "  Buscar por nombre o ID..."
+
+[node name="SearchBtn" type="Button" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/SearchHBox" unique_id=191180681]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_utib6")
+text = "🔍"
+
+[node name="SearchResultsCard" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content" unique_id=1752274313 instance=ExtResource("3_o642h")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TabsHBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content" unique_id=1546462910]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TabAmigos" type="Button" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox" unique_id=1250995452 groups=["tabs"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_o642h")
+text = "👥 Amigos"
+
+[node name="TabSolicitudes" type="Button" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox" unique_id=1557023883 groups=["tabs"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbkyl")
+text = "🕒 Solicitudes  "
+
+[node name="SolicitudesCount" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox/TabSolicitudes" unique_id=1800265001]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+text = "0"
+horizontal_alignment = 2
+
+[node name="TabEnviadas" type="Button" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox" unique_id=685504997 groups=["tabs"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xk4vc")
+text = "📤 Enviadas"
+
+[node name="FriendCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content" unique_id=968633059 groups=["cards", "friends"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/FriendCard" unique_id=1173170506]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/FriendCard/Margin" unique_id=1647634670]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="ColorRect" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/FriendCard/Margin/HBox" unique_id=479497964]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.7, 0.85, 1, 1)
+
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/FriendCard/Margin/HBox" unique_id=883048449]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/FriendCard/Margin/HBox/LabelVBox" unique_id=649921963]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "User 2"
+
+[node name="Points" type="Label" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/FriendCard/Margin/HBox/LabelVBox" unique_id=342216585]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.2, 1)
+text = "10 pts"
+
+[node name="RequestsCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content" unique_id=1419492252 groups=["cards", "pending_inbound_requests"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/RequestsCard" unique_id=650749922]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/RequestsCard/Margin" unique_id=206792617]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="ColorRect" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/RequestsCard/Margin/HBox" unique_id=1931759994]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.7, 0.85, 1, 1)
+
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/RequestsCard/Margin/HBox" unique_id=748318467]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/RequestsCard/Margin/HBox/LabelVBox" unique_id=112991746]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "User 2"
+
+[node name="Status" type="Label" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/RequestsCard/Margin/HBox/LabelVBox" unique_id=1151866932]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.2, 1)
+text = "status"
+
+[node name="InvitationsCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content" unique_id=1061754703 groups=["cards", "pending_outbound_invitations"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/InvitationsCard" unique_id=403701066]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/InvitationsCard/Margin" unique_id=1395043008]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="ColorRect" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/InvitationsCard/Margin/HBox" unique_id=1711609792]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.7, 0.85, 1, 1)
+
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/InvitationsCard/Margin/HBox" unique_id=1691525704]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/InvitationsCard/Margin/HBox/LabelVBox" unique_id=1766444365]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "User 2"
+
+[node name="Invitation" type="Label" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/InvitationsCard/Margin/HBox/LabelVBox" unique_id=1960354786]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.2, 1)
+text = "Quiere ser tu amigo"
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBox" unique_id=2135823437 instance=ExtResource("2_utib6")]
+layout_mode = 2
+
+[node name="HttpRequest" type="HTTPRequest" parent="." unique_id=1324960581]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/SearchHBox/SearchBtn" to="." method="_on_search_btn_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox/TabAmigos" to="." method="_on_tab_friends_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox/TabSolicitudes" to="." method="_on_tab_requests_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin/Content/TabsHBox/TabEnviadas" to="." method="_on_tab_invitations_pressed"]

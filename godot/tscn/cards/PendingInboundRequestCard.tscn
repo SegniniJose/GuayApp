@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://b3y7k2m5pql4d"]
+
+[ext_resource type="Script" uid="uid://byj3ruhvu7gvk" path="res://gd/cards/PendingInboundRequestCard.gd" id="1_jidpd"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_kqtuo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.180392, 0.545098, 0.854902, 0.156863)
+shadow_size = 12
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_accept"]
+bg_color = Color(0.435294, 0.709804, 0.882353, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_decline_normal"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.15, 0.15, 0.15, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[node name="InvitationItem" type="PanelContainer" unique_id=757456970]
+offset_right = 285.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+script = ExtResource("1_jidpd")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1429047562]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MainHBox" type="HBoxContainer" parent="MarginContainer" unique_id=1052066474]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Avatar" type="TextureRect" parent="MarginContainer/MainHBox" unique_id=507745511]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_kqtuo")
+
+[node name="TextVBox" type="VBoxContainer" parent="MarginContainer/MainHBox" unique_id=1698828121]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="FriendName" type="RichTextLabel" parent="MarginContainer/MainHBox/TextVBox" unique_id=924467900]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "b"
+fit_content = true
+
+[node name="Status" type="RichTextLabel" parent="MarginContainer/MainHBox/TextVBox" unique_id=475582390]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Quiere ser tu amigo"
+fit_content = true
+
+[node name="ActionsHBox" type="HBoxContainer" parent="MarginContainer/MainHBox" unique_id=1782743104]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="AcceptButton" type="Button" parent="MarginContainer/MainHBox/ActionsHBox" unique_id=1969285966]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_accept")
+text = "✓"
+
+[node name="DeclineButton" type="Button" parent="MarginContainer/MainHBox/ActionsHBox" unique_id=1553624629]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_decline_normal")
+text = "✕"
+
+[connection signal="pressed" from="MarginContainer/MainHBox/ActionsHBox/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MainHBox/ActionsHBox/DeclineButton" to="." method="_on_decline_button_pressed"]

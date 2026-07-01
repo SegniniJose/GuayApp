@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://7ael2mhmqdlc"]
+
+[ext_resource type="Texture2D" uid="uid://c3g0ytpnfwmnw" path="res://svg/bell.svg" id="1_210cg"]
+[ext_resource type="Script" uid="uid://c0un58m4t302r" path="res://gd/Header.gd" id="1_hnjw7"]
+[ext_resource type="Texture2D" uid="uid://b2bvqwksx7nhi" path="res://svg/add-friend.svg" id="2_8pu7p"]
+
+[node name="Header" type="HBoxContainer" unique_id=570429073]
+script = ExtResource("1_hnjw7")
+
+[node name="Amigos" type="LinkButton" parent="." unique_id=1622411095]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.5, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "👥 Amigos"
+underline = 2
+
+[node name="Spacer" type="Control" parent="." unique_id=1981891076]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddFriend" type="TextureButton" parent="." unique_id=1422983272]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("2_8pu7p")
+texture_pressed = ExtResource("2_8pu7p")
+texture_hover = ExtResource("2_8pu7p")
+texture_disabled = ExtResource("2_8pu7p")
+texture_focused = ExtResource("2_8pu7p")
+stretch_mode = 3
+
+[node name="FriendSuggestionCount" type="RichTextLabel" parent="AddFriend" unique_id=588106445]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.19607843, 0.5019608, 0.9019608, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Notifications" type="TextureButton" parent="." unique_id=1643692530]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_210cg")
+texture_pressed = ExtResource("1_210cg")
+texture_hover = ExtResource("1_210cg")
+texture_disabled = ExtResource("1_210cg")
+texture_focused = ExtResource("1_210cg")
+stretch_mode = 3
+
+[node name="NotificationsCount" type="RichTextLabel" parent="Notifications" unique_id=468692498]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.64705884, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ExitButton" type="Button" parent="." unique_id=1523608515]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.2, 0.2, 1)
+text = "Salir ↪"
+flat = true
+
+[node name="Header" type="Control" parent="." unique_id=1746679345]
+layout_mode = 2
+
+[node name="HttpRequest" type="HTTPRequest" parent="." unique_id=1448445683]
+unique_name_in_owner = true
+
+[node name="SummaryTimer" type="Timer" parent="." unique_id=925060050]
+wait_time = 10.0
+
+[connection signal="pressed" from="Amigos" to="." method="_on_amigos_pressed"]
+[connection signal="pressed" from="AddFriend" to="." method="_on_add_friend_pressed"]
+[connection signal="pressed" from="Notifications" to="." method="_on_notifications_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://b8x3j1k8y2m1p"]
+
+[ext_resource type="Script" uid="uid://cfeet8xufngkf" path="res://gd/MissionsHeader.gd" id="1_0n80l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 0.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_border"]
+bg_color = Color(0.352941, 0.67451, 0.843137, 1)
+corner_radius_top_left = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tag"]
+bg_color = Color(0.933333, 0.964706, 0.984314, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn"]
+
+[node name="MissionsHeader" type="PanelContainer" unique_id=794015085]
+offset_right = 500.0
+offset_bottom = 120.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+script = ExtResource("1_0n80l")
+
+[node name="LeftBorderAccent" type="Panel" parent="." unique_id=1549717721]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_border")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=703532174]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="MainLayout" type="VBoxContainer" parent="MarginContainer" unique_id=2133191083]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TopRow" type="HBoxContainer" parent="MarginContainer/MainLayout" unique_id=726155288]
+layout_mode = 2
+alignment = 1
+
+[node name="LeagueNameLabel" type="Label" parent="MarginContainer/MainLayout/TopRow" unique_id=1015313047]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0784314, 0.0980392, 0.121569, 1)
+theme_override_font_sizes/font_size = 22
+text = "league name"
+vertical_alignment = 1
+
+[node name="TagContainer" type="PanelContainer" parent="MarginContainer/MainLayout/TopRow" unique_id=888170467]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tag")
+
+[node name="TagMargin" type="MarginContainer" parent="MarginContainer/MainLayout/TopRow/TagContainer" unique_id=619938376]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="JoinCodeLabel" type="Label" parent="MarginContainer/MainLayout/TopRow/TagContainer/TagMargin" unique_id=2025844875]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.352941, 0.615686, 0.776471, 1)
+theme_override_font_sizes/font_size = 14
+text = "league code"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="MarginContainer/MainLayout" unique_id=1104686272]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MetadataGroup" type="HBoxContainer" parent="MarginContainer/MainLayout/BottomRow" unique_id=818100225]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="MembersIcon" type="TextureRect" parent="MarginContainer/MainLayout/BottomRow/MetadataGroup" unique_id=2019207331]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MembersLabel" type="Label" parent="MarginContainer/MainLayout/BottomRow/MetadataGroup" unique_id=559401291]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.439216, 0.501961, 0.588235, 1)
+theme_override_font_sizes/font_size = 16
+text = "count members"
+vertical_alignment = 1
+
+[node name="SeparatorDot" type="Label" parent="MarginContainer/MainLayout/BottomRow/MetadataGroup" unique_id=598192895]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.439216, 0.501961, 0.588235, 1)
+theme_override_font_sizes/font_size = 16
+text = "•"
+vertical_alignment = 1
+
+[node name="CalendarIcon" type="TextureRect" parent="MarginContainer/MainLayout/BottomRow/MetadataGroup" unique_id=106773334]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DateLabel" type="Label" parent="MarginContainer/MainLayout/BottomRow/MetadataGroup" unique_id=675281526]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.439216, 0.501961, 0.588235, 1)
+theme_override_font_sizes/font_size = 16
+text = "date"
+vertical_alignment = 1
+
+[node name="CopyButton" type="Button" parent="MarginContainer/MainLayout/BottomRow" unique_id=1963730298]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.439216, 0.501961, 0.588235, 1)
+theme_override_colors/font_hover_color = Color(0.352941, 0.615686, 0.776471, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
+text = "Copiar"
+alignment = 2
+
+[connection signal="pressed" from="MarginContainer/MainLayout/BottomRow/CopyButton" to="." method="_on_copy_button_pressed"]

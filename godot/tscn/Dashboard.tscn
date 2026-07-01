@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://6ogk8axrfhps"]
+
+[ext_resource type="Script" uid="uid://dtx40q245cj4o" path="res://gd/Dashboard.gd" id="1_thca8"]
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="2_cbmtx"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_xorw6"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="4_kvein"]
+[ext_resource type="PackedScene" uid="uid://21kkp7pq66uj" path="res://tscn/cards/InviteFriendBubbleCard.tscn" id="5_66rp8"]
+
+[sub_resource type="Gradient" id="Gradient_yqcg0"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_thca8"]
+gradient = SubResource("Gradient_yqcg0")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvein"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.45098, 0.8, 0.901961, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66rp8"]
+bg_color = Color(0.921569, 0.960784, 0.980392, 1)
+border_width_left = 8
+border_color = Color(1, 0.647059, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h0vy"]
+bg_color = Color(0.878431, 0.819608, 0.65098, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Dashboard" type="Control" unique_id=398376449]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_thca8")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1811613867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_thca8")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1432952461 groups=["background_panel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_main")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=653248501]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=763329948]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=570429073 instance=ExtResource("2_cbmtx")]
+layout_mode = 2
+
+[node name="ProfileCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=769414836]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard" unique_id=676920765]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=274691914]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_xorw6")
+
+[node name="Username" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=1863966112]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "User Name"
+
+[node name="Points" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=1491919949]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center][b][font_size=30][color=gray]1[/color][/font_size][/b]
+[font_size=18][color=gray]pts[/color][/font_size][/center]"
+fit_content = true
+
+[node name="Photos" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=246689031]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center][b][font_size=30][color=gray]1[/color][/font_size][/b]
+[font_size=18][color=gray]fotos[/color][/font_size][/center]"
+fit_content = true
+
+[node name="PrivateToggleCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2077059991]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/PrivateToggleCard" unique_id=508771168]
+layout_mode = 2
+
+[node name="TextContent" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/PrivateToggleCard/HBox" unique_id=1626124437]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/PrivateToggleCard/HBox/TextContent" unique_id=350040274]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Perfil privado"
+
+[node name="Subtitle" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/PrivateToggleCard/HBox/TextContent" unique_id=814196948]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "Solo tus amigos pueden ver tu galería"
+
+[node name="CheckButton" type="CheckButton" parent="BackgroundPanel/MarginContainer/VBoxContainer/PrivateToggleCard/HBox" unique_id=1425293245]
+layout_mode = 2
+
+[node name="LeagueSelection" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=666334567]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="LeagueVBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection" unique_id=885408246]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WelcomePanel" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer" unique_id=951732747]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kvein")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/WelcomePanel" unique_id=1445267200]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextContent" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/WelcomePanel/Margin" unique_id=527806896]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/WelcomePanel/Margin/TextContent" unique_id=1977016951]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.301961, 0.701961, 0.8, 1)
+theme_override_font_sizes/font_size = 24
+text = "¡Bienvenido a GuayGo!"
+
+[node name="Desc" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/WelcomePanel/Margin/TextContent" unique_id=994427789]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 12
+text = "Completa misiones diarias con fotos. ¡Otros las validan y ganas puntos! Compite con tu liga en el ranking."
+autowrap_mode = 3
+
+[node name="HowItWorksPanel" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer" unique_id=1392441262]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_66rp8")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HowItWorksPanel" unique_id=1698106769]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Rows" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HowItWorksPanel/Margin" unique_id=1442421692]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HowItWorksPanel/Margin/Rows" unique_id=35114562]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "1️⃣  Únete a una liga o crea la tuya
+2️⃣  Completa 40 misiones diarias con fotos
+3️⃣  Otros validan tu foto con 2 votos positivos
+4️⃣  Gana puntos y sube en el ranking
+🎁  +5 bonus si completan todas las misiones"
+
+[node name="JoinOrCreate" type="CheckBox" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HowItWorksPanel/Margin/Rows" unique_id=1713288446]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Únete a una liga o crea la tuya"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer" unique_id=350091825]
+layout_mode = 2
+
+[node name="CreateLeagueButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HSplitContainer" unique_id=216037960]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.47, 0.53, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_0h0vy")
+text = "Buscar Liga →"
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2135823437 instance=ExtResource("4_kvein")]
+layout_mode = 2
+
+[node name="HttpRequest" type="HTTPRequest" parent="." unique_id=2073902784]
+unique_name_in_owner = true
+
+[node name="InviteFriendBubbleLayer" type="CanvasLayer" parent="." unique_id=1034398178 groups=["invite_friend_bubble_container"]]
+unique_name_in_owner = true
+
+[node name="InviteFriendBubbleCard" parent="InviteFriendBubbleLayer" unique_id=1623654561 instance=ExtResource("5_66rp8")]
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HSplitContainer/CreateLeagueButton" to="." method="_on_create_league_button_pressed"]

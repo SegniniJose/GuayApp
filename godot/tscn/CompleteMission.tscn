@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://dmjhguksfouhn"]
+
+[ext_resource type="Script" uid="uid://cvyjgy45h3vtb" path="res://gd/CompleteMission.gd" id="1_qjmkh"]
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="2_cbmtx"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="4_kvein"]
+
+[sub_resource type="Gradient" id="Gradient_yqcg0"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_thca8"]
+gradient = SubResource("Gradient_yqcg0")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwhar"]
+bg_color = Color(0.91, 0.945, 0.976, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.816, 0.878, 0.941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw2od"]
+bg_color = Color(0.949, 0.973, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878, 0.925, 0.98, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qegq3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 16.0
+expand_margin_right = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chr45"]
+bg_color = Color(0.435, 0.702, 0.824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 16.0
+expand_margin_right = 16.0
+
+[node name="CompleteMission" type="Control" unique_id=398376449]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qjmkh")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1811613867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_thca8")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1432952461]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_main")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=653248501]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=763329948]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=570429073 instance=ExtResource("2_cbmtx")]
+layout_mode = 2
+
+[node name="WindowPadding" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=1669961357]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ContentLayout" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding" unique_id=1461447529]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TopBar" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout" unique_id=728154126]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/TopBar" unique_id=1646707457]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Completar Misión"
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/TopBar" unique_id=1796714367]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "✕"
+flat = true
+
+[node name="Description" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout" unique_id=1714548108]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.45, 0.45, 1)
+theme_override_font_sizes/font_size = 15
+text = "Sube una foto como evidencia para \"Tomar una foto de taza\"."
+autowrap_mode = 2
+
+[node name="UploadArea" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout" unique_id=1043408910]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwhar")
+
+[node name="CenterContainer" type="CenterContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/UploadArea" unique_id=922604954]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlaceholderContent" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/UploadArea/CenterContainer" unique_id=834359445]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="CameraIcon" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/UploadArea/CenterContainer/PlaceholderContent" unique_id=597479185]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.435, 0.702, 0.824, 1)
+theme_override_font_sizes/font_size = 32
+text = "📷"
+horizontal_alignment = 1
+
+[node name="UploadActionText" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/UploadArea/CenterContainer/PlaceholderContent" unique_id=1927003220]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Tocar para tomar foto"
+horizontal_alignment = 1
+
+[node name="UploadSubText" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/UploadArea/CenterContainer/PlaceholderContent" unique_id=276277483]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 13
+text = "o subir desde galería"
+horizontal_alignment = 1
+
+[node name="ValidationNotice" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout" unique_id=1900652000]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xw2od")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/ValidationNotice" unique_id=1379253635]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/ValidationNotice/MarginContainer" unique_id=1771830728]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ClockIcon" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/ValidationNotice/MarginContainer/HBoxContainer" unique_id=672357734]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+text = "🕒"
+vertical_alignment = 1
+
+[node name="NoticeText" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/ValidationNotice/MarginContainer/HBoxContainer" unique_id=1713431326]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.45, 0.5, 1)
+theme_override_font_sizes/font_size = 13
+text = "Tu liga votará para validar tu foto."
+vertical_alignment = 1
+
+[node name="ButtonLayout" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout" unique_id=1226279447]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/ButtonLayout" unique_id=479982582]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qegq3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qegq3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qegq3")
+text = "Cancelar"
+
+[node name="SubmitButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/WindowPadding/ContentLayout/ButtonLayout" unique_id=1178701982]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_chr45")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_chr45")
+theme_override_styles/hover = SubResource("StyleBoxFlat_chr45")
+text = "⬆ Subir Evidencia"
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2135823437 instance=ExtResource("4_kvein")]
+layout_mode = 2
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1905718777]
+unique_name_in_owner = true
+title = "Open a File"
+file_mode = 0
+access = 2

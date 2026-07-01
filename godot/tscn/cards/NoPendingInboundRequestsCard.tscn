@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b8x3j7k2m5pql"]
+
+[ext_resource type="Texture2D" uid="uid://dvgqwx7s65cye" path="res://svg/no-requests.svg" id="1_icon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0.180392, 0.545098, 0.854902, 0.156863)
+shadow_size = 12
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_text"]
+font_size = 10
+font_color = Color(0.407843, 0.443137, 0.505882, 1)
+
+[node name="NoPendingRequests" type="PanelContainer" unique_id=1028538616]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = -295.0
+offset_bottom = -342.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2138184274]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=766234812]
+layout_mode = 2
+alignment = 1
+
+[node name="ClockIcon" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=942957244]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MessageLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=675816101]
+layout_mode = 2
+text = "No tienes solicitudes pendientes"
+label_settings = SubResource("LabelSettings_text")
+horizontal_alignment = 1
+vertical_alignment = 1

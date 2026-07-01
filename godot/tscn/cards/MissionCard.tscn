@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cvtnlsmw10win"]
+
+[ext_resource type="Script" uid="uid://bh1f61xussqlr" path="res://gd/cards/MissionCard.gd" id="1_d1v7x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_item"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.972549, 0.972549, 0.980392, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.901961, 0.901961, 0.921569, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="MissionCard" type="PanelContainer" unique_id=139098042]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_item")
+script = ExtResource("1_d1v7x")
+
+[node name="Label" type="Label" parent="." unique_id=1832060375]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.25, 1)
+text = "📸 Tomar una foto de taza (22 pts)"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

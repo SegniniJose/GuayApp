@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dmbq1u73ciffa"]
+
+[ext_resource type="Script" uid="uid://b16byxrtpjvoi" path="res://gd/cards/FriendCard.gd" id="1_exjoo"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_h071y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Card"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.9, 0.95, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[node name="FriendCard" type="PanelContainer" unique_id=1623654561]
+custom_minimum_size = Vector2(0, 80)
+offset_right = 211.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+script = ExtResource("1_exjoo")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1951714210]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="Margin" unique_id=1929201974]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="TextureRect" parent="Margin/HBox" unique_id=642866073]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_h071y")
+
+[node name="LabelVBox" type="VBoxContainer" parent="Margin/HBox" unique_id=867722175]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="FriendName" type="RichTextLabel" parent="Margin/HBox/LabelVBox" unique_id=887161097]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "friend_name"
+fit_content = true
+
+[node name="Points" type="RichTextLabel" parent="Margin/HBox/LabelVBox" unique_id=519350527]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "points"
+fit_content = true
+
+[node name="Chat" type="Button" parent="Margin/HBox" unique_id=1206190618]
+layout_mode = 2
+text = "💬"
+flat = true
+
+[connection signal="gui_input" from="Margin/HBox/Avatar" to="." method="_on_avatar_gui_input"]
+[connection signal="pressed" from="Margin/HBox/Chat" to="." method="_on_chat_pressed"]

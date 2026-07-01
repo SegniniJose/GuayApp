@@ -1,0 +1,159 @@
+# to test the app
+
+# first stage, clean start.
+
+    1. determine what prefix you wil use for 4 users. this prefix is unique to this test.
+        For example, use prefix "jun04_"
+    ✅ 2026-06-16 5:44
+
+    2. create five users, a b c, d and e. Use the same pattern where the username , email, and password are the same.
+        user:jun04_, email:@, password:
+        user:jun04_a, email:a@a, password:a
+        user:jun04_b, email:b@b, password:b
+        user:jun04_c, email:c@c, password:c
+        user:jun04_d, email:d@d, password:d
+        user:jun04_e, email:e@e, password:e
+        user:jun04_f, email:f@f, password:f
+        user:jun04_g, email:g@g, password:g
+        user:jun04_h, email:h@h, password:h
+
+        this tests the following pages:
+            /
+            /dashboard
+    ✅ 2026-06-16
+
+# second stage, friends
+    1. log in as {prefix}_b and send an invite to {prefix}_a
+    2. log in as {prefix}_c and send an invite to {prefix}_a
+    3. log in as {prefix}_a
+    3.1. {prefix}_a should go to /notifications and click on {prefix}_b's request, it will redirect to /friends.
+    3.1.1 accept {prefix}_b's request in /friends.
+    3.2. {prefix}_a should not accept {prefix}_c's request.
+    3.3. {prefix}_a should use the search at the top of /friends send an invite to {prefix}_d.
+    4. {prefix}_a checks /friends and confirms they see the following
+    4.1. Amigos has {prefix}_b
+    4.2. Solicitudes has {prefix}_c
+    4.3. Enviadas has {prefix}_d
+    4.4. Solicitudes should have a red (1)
+    5. log in as {prefix}_e
+    5.1. {prefix}_e checks /friends and confirms they see the following
+    5.1.1. Amigos has no friends
+    5.1.2. Solicitudes has no requests
+    5.1.3. Enviadas has no invitations
+    5.1.4. Solicitudes should have no red text
+        this tests the following pages:
+            /notifications
+            /friends
+                Amigos
+                Solicitudes
+                Enviadas
+    ✅ 2026-06-16
+
+# third stage, chat
+    1. log in as {prefix}_a
+    2. {prefix}_a should use /friends to start a chat with {prefix}_b
+    2.1 {prefix}_a should be redirected to /chat-private/{chat-id}
+    2.2 {prefix}_a should send the message "test" to {prefix}_b
+    3. log in as {prefix}_b
+    4. {prefix}_b should use /friends to start a chat with {prefix}_a
+    4.1 {prefix}_b should be redirected to /chat-private/{chat-id}
+    4.2 {prefix}_b should see the message "test"
+    4.3 {prefix}_b should send the message "pass" to {prefix}_a
+    5. log in as {prefix}_a
+    5. {prefix}_a should use /friends to chat with {prefix}_b
+    5.1 {prefix}_a should be redirected to /chat-private/{chat-id}
+    5.2 {prefix}_a should see the messages "test" and "pass"
+    5.3 {prefix}_a should use /notifications to go to the chat with {prefix}_b
+        this tests the following pages:
+            /notifications
+            /friends
+                Amigos
+            /chat-private
+    ✅ 2026-06-16
+
+# fourth stage, leagues
+    1. log in as {prefix}_a
+    2. click "Buscar Liga" and "Crear".
+    3. create a league named "{prefix}_a_league"
+    4. go to /dashboard and confirm "Buscar Liga" is not visible, as you are in an active league.
+    5. go to /missions, copy the code from the top (copiar button) HSBNYD
+    6. log in as {prefix}_b
+    7. go to /missions and it will redirect to /leagues.
+    8. on /leagues go to Codigo.
+    9. paste the code. you should now be in a league of 2.
+    10. log in as {prefix}_c
+    11. create a express league named "{prefix}_c_league"
+    12. log in as {prefix}_d
+    13. go to /missions and it will redirect to /leagues.
+    14. on /leagues go to Publicas.
+    15. join "{prefix}_a_league"
+    16. paste the code. you should now be in a league of 3.
+    17. log in as {prefix}_e
+    18. go to /missions and it will redirect to /leagues.
+    19. on /leagues go to Publicas.
+    20. join "{prefix}_a_league"
+    21. paste the code. you should now be in a league of 4.
+    22. log in as {prefix}_f
+    23. go to /missions and it will redirect to /leagues.
+    24. on /leagues go to Publicas.
+    25. join "{prefix}_a_league"
+    26. paste the code. you should now be in a league of 5.
+    27. log in as {prefix}_g
+    28. go to /missions and it will redirect to /leagues.
+    29. on /leagues go to Publicas.
+    30. join "{prefix}_a_league"
+    31. paste the code. you should now be in a league of 6.
+    32. log in as {prefix}_h
+    33. go to /missions and it will redirect to /leagues.
+    34. on /leagues go to Publicas.
+    35. join "{prefix}_a_league"
+    36. paste the code. you should now be in a league of 7.
+        tests
+            /leagues
+            /missions
+    ✅ 2026-06-16
+
+# fifth stage, league chat
+    1. log in as {prefix}_a
+    2. go to /chat.
+    3. type "test".
+    4. log in as {prefix}_b
+    5. go to /chat.
+    6. type "pass".
+    7. log in as {prefix}_a
+    8. go to /chat.
+    9. confirm both "test" and "pass" are visible in the chat.
+    10. confirm the timestamp is the current date, and correct time.
+    ✅ 2026-06-16
+
+# sixth stage, missions
+    1. log in as {prefix}_a
+    2. go to /missions
+    3. upload an image to the first mission.
+    4. log in as {prefix}_b
+    5. look in /notifications and confirm there is a notification "Nueva foto para validar"
+    6. click on notifications, and be redirected to validation.
+    7. click "veradera"
+    8. log in as {prefix}_d
+    9. go to /missions
+    10. upload an image to the first mission.
+    11. log in as {prefix}_a
+    12. look in /notifications and confirm there is a notification "Nueva foto para validar"
+    13. click on notifications, and be redirected to validation.
+    14. click "falsa"
+    ✅ 2026-06-16
+
+# seventh, ranking
+    1. log in as {prefix}_a
+    2. go to /ranking.
+    3. observe ranks 1,2,3 and a list of 4,5,6
+    4. log in as {prefix}_c
+    5. go to /ranking.
+    3. observe the message "No hay más miembros en la liga."
+    ✅ 2026-06-16
+
+# eighth, profile
+    1. log in as {prefix}_a
+    2. go to /friends.
+    3. click on {prefix}_b to go to /profile/{user-id}
+    ✅ 2026-06-14

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c7lrteo8lqgy2"]
+
+[ext_resource type="Script" uid="uid://ci85hmpcrhnvh" path="res://gd/NavBar.gd" id="1_hxolp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0nu4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="NavBar" type="PanelContainer" unique_id=2135823437]
+custom_minimum_size = Vector2(0, 70)
+theme_override_styles/panel = SubResource("StyleBoxFlat_v0nu4")
+script = ExtResource("1_hxolp")
+
+[node name="Icons" type="HBoxContainer" parent="." unique_id=1235515317]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Home" type="Button" parent="Icons" unique_id=1701585835]
+layout_mode = 2
+text = "🏠"
+flat = true
+
+[node name="List" type="Button" parent="Icons" unique_id=2043263086]
+layout_mode = 2
+text = "📊"
+flat = true
+
+[node name="Chat" type="Button" parent="Icons" unique_id=722909827]
+layout_mode = 2
+text = "💬"
+flat = true
+
+[node name="Trophy" type="Button" parent="Icons" unique_id=1803189450]
+layout_mode = 2
+text = "🏆"
+flat = true
+
+[connection signal="pressed" from="Icons/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Icons/List" to="." method="_on_list_pressed"]
+[connection signal="pressed" from="Icons/Chat" to="." method="_on_chat_pressed"]
+[connection signal="pressed" from="Icons/Trophy" to="." method="_on_trophy_pressed"]

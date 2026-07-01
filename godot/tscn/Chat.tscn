@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://c662fo7w4f4ua"]
+
+[ext_resource type="Script" uid="uid://bng70axfe3b02" path="res://gd/Chat.gd" id="1_3pxon"]
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="1_3urqq"]
+[ext_resource type="PackedScene" uid="uid://b8x3g7k1m4n6p" path="res://tscn/cards/ChatMessageCard.tscn" id="2_3pxon"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="2_6o0tv"]
+
+[sub_resource type="Gradient" id="Gradient_nhsjg"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0es08"]
+gradient = SubResource("Gradient_nhsjg")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl4hd"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 1
+border_color = Color(0.901961, 0.901961, 0.901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avatar"]
+bg_color = Color(0.894118, 0.92549, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input_area"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.960784, 0.960784, 0.972549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.878431, 0.901961, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_send_btn"]
+bg_color = Color(0.0588235, 0.45098, 0.941176, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Chat" type="Control" unique_id=1853690489]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3pxon")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1784019737]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0es08")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=541835469]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gl4hd")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=58685139]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Layout" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=426009728]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/Layout" unique_id=570429073 instance=ExtResource("1_3urqq")]
+layout_mode = 2
+
+[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/MarginContainer/Layout" unique_id=225598613]
+visible = false
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader" unique_id=1397520000]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=1399957441]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="Avatar" type="Panel" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/Margin" unique_id=1736802933]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_avatar")
+
+[node name="Char" type="Label" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/Margin/Avatar" unique_id=804789472]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0588235, 0.45098, 0.941176, 1)
+text = "#"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextInfo" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=278719243]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/TextInfo" unique_id=224941285]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Chat de Liga"
+
+[node name="Sub" type="Label" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/TextInfo" unique_id=699108704]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.447059, 0.447059, 0.447059, 1)
+theme_override_font_sizes/font_size = 12
+text = "Conversa con tu equipo"
+
+[node name="CollageBtn" type="Button" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=44857167]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Collage"
+
+[node name="Spacer" type="Control" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=1439629831]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="ChatFeed" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/Layout" unique_id=161632394]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/Layout/ChatFeed" unique_id=1664354582]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 15
+
+[node name="Messages" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/ChatFeed/Margin" unique_id=1286571326]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ChatMessageCard" parent="BackgroundPanel/MarginContainer/Layout/ChatFeed/Margin/Messages" unique_id=1518989688 groups=["league_chat"] instance=ExtResource("2_3pxon")]
+layout_mode = 2
+
+[node name="InputBar" type="PanelContainer" parent="BackgroundPanel/MarginContainer/Layout" unique_id=1562837391]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/InputBar" unique_id=1399232239]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox" unique_id=699580160]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox/Margin" unique_id=362059479]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_input_area")
+placeholder_text = "Escribe un mensaje..."
+
+[node name="SendBtn" type="Button" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox" unique_id=854447887]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_send_btn")
+text = ">"
+
+[node name="Spacer" type="Control" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox" unique_id=1715604390]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/Layout" unique_id=2135823437 instance=ExtResource("2_6o0tv")]
+layout_mode = 2
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/Layout/InputBar/HBox/SendBtn" to="." method="_on_send_btn_pressed"]

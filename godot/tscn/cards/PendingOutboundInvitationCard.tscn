@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c71vbqrqu0i8h"]
+
+[ext_resource type="Script" uid="uid://qd06yux0qka8" path="res://gd/cards/PendingOutboundInvitationCard.gd" id="1_ru3sd"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_ge3x4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Card"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.9, 0.95, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[node name="InvitationsCard" type="PanelContainer" unique_id=690575093]
+custom_minimum_size = Vector2(0, 80)
+offset_right = 108.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+script = ExtResource("1_ru3sd")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=791514087]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="Margin" unique_id=163338930]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="TextureRect" parent="Margin/HBox" unique_id=250876744]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_ge3x4")
+
+[node name="LabelVBox" type="VBoxContainer" parent="Margin/HBox" unique_id=1309413385]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="FriendName" type="RichTextLabel" parent="Margin/HBox/LabelVBox" unique_id=1495951208]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "friend name"
+fit_content = true
+
+[node name="Invitation" type="RichTextLabel" parent="Margin/HBox/LabelVBox" unique_id=44863383]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "invitation"
+fit_content = true

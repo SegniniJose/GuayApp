@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://b8x3g7k1m4n6p"]
+
+[ext_resource type="Script" uid="uid://cefoxcn13621k" path="res://gd/cards/ChatMessageCard.gd" id="1_4204l"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_0qj65"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_left"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.701961, 0.898039, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_right"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0, 0.619608, 0.952941, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="ChatMessageCard" type="VSplitContainer" unique_id=1518989688]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -692.0
+offset_bottom = -864.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4204l")
+
+[node name="LeftBubbleContainer" type="HBoxContainer" parent="." unique_id=2096968905]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftBubbleContainer" unique_id=1196632639]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 64
+
+[node name="LeftBubble" type="PanelContainer" parent="LeftBubbleContainer/MarginContainer" unique_id=931091656]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_left")
+
+[node name="HBox" type="HBoxContainer" parent="LeftBubbleContainer/MarginContainer/LeftBubble" unique_id=1299856802]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LeftAvatar" type="TextureRect" parent="LeftBubbleContainer/MarginContainer/LeftBubble/HBox" unique_id=826899942]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_0qj65")
+
+[node name="Text" type="VBoxContainer" parent="LeftBubbleContainer/MarginContainer/LeftBubble/HBox" unique_id=1152077575]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LeftMessage" type="RichTextLabel" parent="LeftBubbleContainer/MarginContainer/LeftBubble/HBox/Text" unique_id=203143217]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "main"
+fit_content = true
+
+[node name="LeftTimestamp" type="RichTextLabel" parent="LeftBubbleContainer/MarginContainer/LeftBubble/HBox/Text" unique_id=388679693]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+text = "date"
+fit_content = true
+
+[node name="RightBubbleContainer" type="HBoxContainer" parent="." unique_id=1309745639]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RightBubbleContainer" unique_id=622598738]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 64
+
+[node name="RightBubble" type="PanelContainer" parent="RightBubbleContainer/MarginContainer" unique_id=516849966]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_right")
+
+[node name="HBox" type="HBoxContainer" parent="RightBubbleContainer/MarginContainer/RightBubble" unique_id=1571801566]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RightAvatar" type="TextureRect" parent="RightBubbleContainer/MarginContainer/RightBubble/HBox" unique_id=1539647494]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_0qj65")
+
+[node name="Text" type="VBoxContainer" parent="RightBubbleContainer/MarginContainer/RightBubble/HBox" unique_id=861487446]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="RightMessage" type="RichTextLabel" parent="RightBubbleContainer/MarginContainer/RightBubble/HBox/Text" unique_id=1114767440]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "main"
+fit_content = true
+
+[node name="RightTimestamp" type="RichTextLabel" parent="RightBubbleContainer/MarginContainer/RightBubble/HBox/Text" unique_id=1439637180]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+text = "date"
+fit_content = true

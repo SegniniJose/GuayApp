@@ -1,0 +1,290 @@
+[gd_scene format=3 uid="uid://b1xf4g8k6m2np"]
+
+[ext_resource type="Script" uid="uid://c8kqa5ptcuh0d" path="res://gd/Profile.gd" id="1_mnno5"]
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="2_nrvwh"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="3_j0qkr"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="4_3c35t"]
+
+[sub_resource type="Gradient" id="Gradient_yqcg0"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ln8iy"]
+gradient = SubResource("Gradient_yqcg0")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t68xr"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnno5"]
+content_margin_left = 20.0
+content_margin_top = 24.0
+content_margin_right = 20.0
+content_margin_bottom = 24.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.04)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrvwh"]
+bg_color = Color(0.352941, 0.670588, 0.843137, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0qkr"]
+bg_color = Color(0.427451, 0.729412, 0.894118, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c35t"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.121569, 0.121569, 0.141176, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ln8iy"]
+bg_color = Color(0.960784, 0.968627, 0.980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.121569, 0.121569, 0.141176, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owtgk"]
+content_margin_left = 16.0
+content_margin_top = 32.0
+content_margin_right = 16.0
+content_margin_bottom = 32.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.909804, 0.960784, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="Profile" type="Control" unique_id=464617615]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 1024.0
+script = ExtResource("1_mnno5")
+
+[node name="Background" type="TextureRect" parent="." unique_id=361434021]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ln8iy")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1144003133]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -385.0
+offset_right = 200.0
+offset_bottom = 373.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t68xr")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=845123549]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=1212712756]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=570429073 instance=ExtResource("2_nrvwh")]
+layout_mode = 2
+
+[node name="MainCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=1589125199]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnno5")
+
+[node name="CardContent" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard" unique_id=1963693491]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AvatarCenter" type="CenterContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent" unique_id=2129796100]
+layout_mode = 2
+
+[node name="Avatar" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/AvatarCenter" unique_id=701384833]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("3_j0qkr")
+
+[node name="Username" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent" unique_id=1182517124]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.121569, 0.141176, 1)
+theme_override_font_sizes/font_size = 26
+text = "username"
+horizontal_alignment = 1
+
+[node name="PointsRow" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent" unique_id=1500049866]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="PointsIcon" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/PointsRow" unique_id=2121997931]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Points" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/PointsRow" unique_id=1546651297]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.815686, 0.584314, 0.054902, 1)
+theme_override_font_sizes/font_size = 16
+text = "x puntos"
+
+[node name="StatusRow" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent" unique_id=373117318]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="StatusIcon" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/StatusRow" unique_id=192189594]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Status" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/StatusRow" unique_id=1565550034]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.690196, 0.294118, 1)
+theme_override_font_sizes/font_size = 15
+text = "Perfil público"
+
+[node name="ControlSpacer" type="Control" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent" unique_id=2115215192]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ButtonsRow" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent" unique_id=1667013522]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AddFriendButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/ButtonsRow" unique_id=622286674]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_nrvwh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j0qkr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j0qkr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nrvwh")
+text = "Agregar amigo"
+
+[node name="MessageButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/ButtonsRow" unique_id=1728522198]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.121569, 0.121569, 0.141176, 1)
+theme_override_colors/font_focus_color = Color(0.121569, 0.121569, 0.141176, 1)
+theme_override_colors/font_pressed_color = Color(0.121569, 0.121569, 0.141176, 1)
+theme_override_colors/font_hover_color = Color(0.121569, 0.121569, 0.141176, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c35t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ln8iy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ln8iy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3c35t")
+text = "Mensaje"
+
+[node name="GalleryContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=754527694]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="GalleryHeaderRow" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer" unique_id=969803480]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GalleryIcon" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer/GalleryHeaderRow" unique_id=229852317]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GalleryTitle" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer/GalleryHeaderRow" unique_id=271528875]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.121569, 0.141176, 1)
+theme_override_font_sizes/font_size = 18
+text = "Galería de misiones (0)"
+
+[node name="EmptyGalleryCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer" unique_id=802904104]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_owtgk")
+
+[node name="EmptyCardContent" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer/EmptyGalleryCard" unique_id=764671261]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="CameraOutlineIcon" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer/EmptyGalleryCard/EmptyCardContent" unique_id=2087312069]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EmptyGalleryLabel" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/GalleryContainer/EmptyGalleryCard/EmptyCardContent" unique_id=783046896]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.556863, 0.592157, 0.658824, 1)
+theme_override_font_sizes/font_size = 16
+text = "No hay fotos validadas aún"
+horizontal_alignment = 1
+
+[node name="WindowPadding" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=1071961256]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2135823437 instance=ExtResource("4_3c35t")]
+layout_mode = 2
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/ButtonsRow/AddFriendButton" to="." method="_on_add_friend_button_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/CardContent/ButtonsRow/MessageButton" to="." method="_on_message_button_pressed"]

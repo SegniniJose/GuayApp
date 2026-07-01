@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://dpq71tw4dq6ae"]
+
+[ext_resource type="Script" uid="uid://q0j6sre2brqb" path="res://gd/Notifications.gd" id="1_x7ii1"]
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="1_xa56e"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="2_x7ii1"]
+[ext_resource type="PackedScene" uid="uid://3imevgwi7oq5" path="res://tscn/cards/NotificationCard.tscn" id="3_f16mf"]
+
+[sub_resource type="Gradient" id="Gradient_nhsjg"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbkmh"]
+gradient = SubResource("Gradient_nhsjg")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5nhq"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_MarkReadBtn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_AmberCard"]
+bg_color = Color(1, 0.984314, 0.941176, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.92, 0.75, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_AmberCircle"]
+bg_color = Color(0.960784, 0.658824, 0.12549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Notifications" type="Control" unique_id=1841511861]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7ii1")
+
+[node name="Background" type="TextureRect" parent="." unique_id=324692602]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rbkmh")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1427723710]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a5nhq")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=1244281786]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=786024410]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/VBox" unique_id=570429073 instance=ExtResource("1_xa56e")]
+layout_mode = 2
+
+[node name="Content" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox" unique_id=1120931641]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/VBox/Content" unique_id=502727321]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ItemsVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll" unique_id=289723728]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[node name="Header" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox" unique_id=1217944281]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header" unique_id=830205790]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = " ← "
+flat = true
+
+[node name="TitleVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header" unique_id=311681843]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -2
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header/TitleVBox" unique_id=1558110258]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 20
+text = "🔔 Notificaciones"
+
+[node name="Subtitle" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header/TitleVBox" unique_id=1452652064]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1 sin leer"
+
+[node name="MarkAllBtn" type="Button" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header" unique_id=1235699784 groups=["notifications"]]
+custom_minimum_size = Vector2(110, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_MarkReadBtn")
+text = "✓ Marcar todas"
+
+[node name="FriendRequestCard" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox" unique_id=1272532933 instance=ExtResource("3_f16mf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ValidationCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox" unique_id=228230913]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_AmberCard")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard" unique_id=1722584774]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard/Margin" unique_id=2042311893]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CircleIcon" type="ColorRect" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard/Margin/HBox" unique_id=785071020]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(1, 0.93, 0.8, 1)
+
+[node name="Text" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard/Margin/HBox" unique_id=1457521480]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Main" type="Label" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard/Margin/HBox/Text" unique_id=777198584]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.15, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Fotos por validar"
+
+[node name="Sub" type="Label" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard/Margin/HBox/Text" unique_id=524367629]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.3, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Revisa las fotos de tus compañeros"
+
+[node name="IrBtn" type="Button" parent="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/ValidationCard/Margin/HBox" unique_id=1583807043]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_AmberCircle")
+text = "Ir"
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBox" unique_id=2135823437 instance=ExtResource("2_x7ii1")]
+layout_mode = 2
+
+[node name="HttpRequest" type="HTTPRequest" parent="." unique_id=1905297124]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header/BackBtn" to="BackgroundPanel/MarginContainer/VBox/Header" method="_on_back_btn_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBox/Content/Scroll/ItemsVBox/Header/MarkAllBtn" to="." method="_on_mark_all_btn_pressed"]

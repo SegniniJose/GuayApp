@@ -1,0 +1,319 @@
+[gd_scene format=3 uid="uid://dlbdp0guedoci"]
+
+[ext_resource type="Script" uid="uid://c48xajy7ory6t" path="res://gd/Login.gd" id="1_a4fkl"]
+
+[sub_resource type="Gradient" id="Gradient_mu7f7"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_mu7f7")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4fkl"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Icon"]
+bg_color = Color(0.388235, 0.352941, 0.941176, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0.388235, 0.352941, 0.941176, 0.4)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Tabs"]
+bg_color = Color(0.941176, 0.941176, 0.941176, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Card"]
+bg_color = Color(1, 1, 1, 0.8)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Input"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.878431, 0.878431, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu7f7"]
+content_margin_left = 15.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9, 0.9, 0.9, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Button"]
+bg_color = Color(0.388235, 0.352941, 0.941176, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.388235, 0.352941, 0.941176, 0.2)
+shadow_size = 8
+
+[node name="Login" type="Control" unique_id=1000723237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a4fkl")
+
+[node name="Background" type="TextureRect" parent="." unique_id=304283863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bg")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1666999344]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a4fkl")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=797516383]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=1600922768]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Header" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox" unique_id=1432043781]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconRect" type="Panel" parent="BackgroundPanel/MarginContainer/MainVBox/Header" unique_id=1488939513]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_Icon")
+
+[node name="Emoji" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Header/IconRect" unique_id=1101835997]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "🏝️"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/MainVBox/Header" unique_id=1928646829]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][color=#1f2937][font_size=48][b]Guay[color=#6366f1]Go[/color][/b][/font_size][/color][/center]"
+fit_content = true
+
+[node name="Subtitle" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Header" unique_id=1366420226]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.447059, 0.490196, 1)
+theme_override_font_sizes/font_size = 16
+text = "Tu liga, tus misiones, tu diversión."
+horizontal_alignment = 1
+
+[node name="TabContainer" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox" unique_id=676228566]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TabsBG" type="Panel" parent="BackgroundPanel/MarginContainer/MainVBox/TabContainer" unique_id=997203620]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_Tabs")
+
+[node name="BtnLogin" type="Button" parent="BackgroundPanel/MarginContainer/MainVBox/TabContainer" unique_id=2017282585]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Iniciar Sesión"
+flat = true
+
+[node name="BtnRegister" type="Button" parent="BackgroundPanel/MarginContainer/MainVBox/TabContainer" unique_id=954005692]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "Registro"
+flat = true
+
+[node name="Card" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainVBox" unique_id=1823745627]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card" unique_id=1319698446]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin" unique_id=1432386766]
+layout_mode = 2
+
+[node name="Welcome" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox" unique_id=668465295]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/Welcome" unique_id=2023988065]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_font_sizes/font_size = 18
+text = "Bienvenido de nuevo"
+
+[node name="Sub" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/Welcome" unique_id=48589572]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "Ingresa tus datos para continuar"
+
+[node name="LoginSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox" unique_id=673894776]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="User" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/LoginSection" unique_id=714896158]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/LoginSection/User" unique_id=348361101]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "Usuario o Correo"
+
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/LoginSection/User" unique_id=2404713]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Input")
+placeholder_text = "tu usuario o correo"
+
+[node name="Pass" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/LoginSection" unique_id=1275702522]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/LoginSection/Pass" unique_id=93341027]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "Contraseña"
+
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/LoginSection/Pass" unique_id=1870567113]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Input")
+placeholder_text = "••••••••"
+secret = true
+
+[node name="RegisterSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox" unique_id=1612733492]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="User" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection" unique_id=735682291]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection/User" unique_id=1008783296]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "Nombre de Usuario"
+
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection/User" unique_id=2108369925]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mu7f7")
+placeholder_text = "Elige tu alias"
+
+[node name="Email" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection" unique_id=1115855474]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection/Email" unique_id=1883787168]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "Correo Electrónico"
+
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection/Email" unique_id=1741555907]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mu7f7")
+placeholder_text = "tu@email.com"
+
+[node name="Pass" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection" unique_id=718562555]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection/Pass" unique_id=2017612497]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "Contraseña"
+
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/RegisterSection/Pass" unique_id=1738643527]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mu7f7")
+placeholder_text = "••••••••"
+secret = true
+
+[node name="SubmitBtn" type="Button" parent="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox" unique_id=844420025]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+text = "Entrar a GuayGo"
+
+[node name="LoginRequest" type="HTTPRequest" parent="." unique_id=714225955]
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainVBox/TabContainer/BtnLogin" to="." method="_on_tab_login_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainVBox/TabContainer/BtnRegister" to="." method="_on_tab_register_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainVBox/Card/Margin/VBox/SubmitBtn" to="." method="_on_submit_pressed"]
+[connection signal="request_completed" from="LoginRequest" to="." method="_on_login_request_completed"]

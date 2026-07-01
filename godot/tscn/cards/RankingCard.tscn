@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b8y7x6r5e4w3q"]
+
+[ext_resource type="Script" uid="uid://lunlexakcri8" path="res://gd/cards/RankingCard.gd" id="1_voudk"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="2_lebba"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orange"]
+bg_color = Color(0.941176, 0.643137, 0.133333, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="RankingCard" type="MarginContainer" unique_id=768927116]
+offset_right = 245.0
+offset_bottom = 66.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_voudk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1191571358]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RankLabel" type="Label" parent="HBoxContainer" unique_id=1123046948]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.364706, 0.454902, 0.52549, 1)
+theme_override_font_sizes/font_size = 22
+text = "4"
+vertical_alignment = 1
+
+[node name="Avatar" type="TextureRect" parent="HBoxContainer" unique_id=312978513]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("2_lebba")
+
+[node name="NameAndTag" type="VBoxContainer" parent="HBoxContainer" unique_id=1215335985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="UsernameLabel" type="Label" parent="HBoxContainer/NameAndTag" unique_id=651980434]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_font_sizes/font_size = 20
+text = "Username"
+vertical_alignment = 1
+
+[node name="YouTag" type="PanelContainer" parent="HBoxContainer/NameAndTag" unique_id=1469809147]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_orange")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/NameAndTag/YouTag" unique_id=289573380]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/NameAndTag/YouTag/MarginContainer" unique_id=1966341043]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Tú"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointsLabel" type="Label" parent="HBoxContainer" unique_id=1660787705]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.439216, 0.698039, 0.823529, 1)
+theme_override_font_sizes/font_size = 22
+text = "0 pts"
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -1,0 +1,646 @@
+[gd_scene format=3 uid="uid://bo8fw78mcbqmw"]
+
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="1_7hr55"]
+[ext_resource type="Script" uid="uid://svesxds6dow4" path="res://gd/Leagues.gd" id="1_sbw0c"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="2_26hdg"]
+[ext_resource type="PackedScene" uid="uid://cqe1xd8n62jxw" path="res://tscn/cards/PublicLeagueCard.tscn" id="3_045oy"]
+
+[sub_resource type="Gradient" id="Gradient_g6kbk"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7hr55"]
+gradient = SubResource("Gradient_g6kbk")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26hdg"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tabs"]
+bg_color = Color(0.941176, 0.956863, 0.972549, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbw0c"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878, 0.925, 0.961, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.03)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vxdn"]
+bg_color = Color(0.964706, 0.980392, 0.992157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.819608, 0.898039, 0.941176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g30cv"]
+bg_color = Color(0.882353, 0.972549, 0.901961, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_045oy"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.92, 0.95, 0.98, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.45, 0.6, 0.7, 0.1)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df272"]
+bg_color = Color(0.741, 0.859, 0.925, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mle2h"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878, 0.925, 0.961, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.04)
+shadow_size = 15
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijv8g"]
+bg_color = Color(1, 0.97, 0.92, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.9, 0.7, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oimlt"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.88, 0.93, 0.96, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.45, 0.6, 0.7, 0.1)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdcb2"]
+bg_color = Color(0.38, 0.74, 0.88, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfu8x"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.12, 0.15, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2x4o"]
+bg_color = Color(1, 0.85, 0.62, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="Leagues" type="Control" unique_id=27899686]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbw0c")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2019860017]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_7hr55")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=593539842]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_26hdg")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=745487682]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Background" type="ColorRect" parent="BackgroundPanel/MarginContainer" unique_id=1801330667]
+layout_mode = 2
+
+[node name="MainLayout" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=2121987139]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/MainLayout" unique_id=570429073 instance=ExtResource("1_7hr55")]
+layout_mode = 2
+
+[node name="Content" type="MarginContainer" parent="BackgroundPanel/MarginContainer/MainLayout" unique_id=1203459722]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content" unique_id=1076782021]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox" unique_id=652929059]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Ligas"
+
+[node name="Description" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox" unique_id=785602245]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.45, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "Únete a un grupo o crea el tuyo propio para competir."
+autowrap_mode = 2
+
+[node name="TabContainer" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox" unique_id=1847144883]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tabs")
+
+[node name="Tabs" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer" unique_id=9528473]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PublicasButton" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer/Tabs" unique_id=1666014067]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "🌐 Públicas"
+flat = true
+
+[node name="CodigoButton" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer/Tabs" unique_id=2138323166]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Código"
+flat = true
+
+[node name="CrearButton" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer/Tabs" unique_id=1531187501]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Crear"
+flat = true
+
+[node name="Publicas" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox" unique_id=1199428011]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbw0c")
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas" unique_id=1671976655]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/VBox" unique_id=1935367569]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.6, 0.3, 1)
+text = "🌐"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/VBox" unique_id=579409472]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Ligas Públicas"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/VBox" unique_id=712731329]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Message" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/VBox" unique_id=727441919]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.45, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "No hay ligas públicas disponibles"
+horizontal_alignment = 1
+
+[node name="PublicLeaguesPanel" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas" unique_id=1106911200]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vxdn")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel" unique_id=1572546124]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ContentSplitter" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer" unique_id=427665950]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HeaderSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter" unique_id=594262908]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="IconWrapper" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter/HeaderSection" unique_id=84932238]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g30cv")
+
+[node name="GlobeIcon" type="TextureRect" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter/HeaderSection/IconWrapper" unique_id=955706838]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter/HeaderSection" unique_id=1455283984]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.121569, 0.121569, 1)
+theme_override_font_sizes/font_size = 20
+text = "Ligas Públicas"
+
+[node name="SubtitleLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter/HeaderSection" unique_id=844321283]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.364706, 0.454902, 0.52549, 1)
+theme_override_font_sizes/font_size = 14
+text = "Únete a una liga abierta y empieza a jugar."
+
+[node name="PublicLeaguesList" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter" unique_id=1013926715]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PublicLeagueCard" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Publicas/PublicLeaguesPanel/MarginContainer/ContentSplitter/PublicLeaguesList" unique_id=1582380445 instance=ExtResource("3_045oy")]
+layout_mode = 2
+
+[node name="Codigo" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox" unique_id=1072484012]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbw0c")
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo" unique_id=1559635653]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="UserIcon" type="Panel" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox" unique_id=716535180]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_045oy")
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox/UserIcon" unique_id=970979512]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.47, 0.64, 0.78, 1)
+text = "👤"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox" unique_id=1225906871]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.2, 1)
+theme_override_font_sizes/font_size = 26
+text = "Unirse a una Liga"
+
+[node name="Subtitle" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox" unique_id=1553456585]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.55, 0.65, 1)
+theme_override_font_sizes/font_size = 18
+text = "Ingresa el código que te compartió tu amigo."
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox" unique_id=1597035599]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="CodeInput" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox" unique_id=1169561066]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.4, 0.5, 1)
+theme_override_colors/font_placeholder_color = Color(0.65, 0.7, 0.75, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_045oy")
+placeholder_text = "CÓDIGO (EJ. ABC123)"
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox" unique_id=1303978816]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_df272")
+text = "Unirse Ahora"
+
+[node name="Crear" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox" unique_id=566015760]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mle2h")
+
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear" unique_id=531183415]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Icon" type="Panel" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=1308744521]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ijv8g")
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/Icon" unique_id=891788516]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.6, 0, 1)
+text = "+"
+horizontal_alignment = 1
+
+[node name="Header" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=806919794]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/Header" unique_id=2011712280]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.2, 1)
+theme_override_font_sizes/font_size = 12
+text = "Crear Nueva Liga"
+
+[node name="Sub" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/Header" unique_id=832866202]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.55, 0.65, 1)
+theme_override_font_sizes/font_size = 12
+text = "Tú serás el administrador de esta liga."
+
+[node name="NameSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=1965827828]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/NameSection" unique_id=235410271]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Nombre de la Liga"
+
+[node name="LeagueName" type="LineEdit" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/NameSection" unique_id=1235910619]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oimlt")
+placeholder_text = "Ej. Los Invencibles"
+
+[node name="TypeSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=1618403186]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/TypeSection" unique_id=1869717829]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Tipo de Liga"
+
+[node name="Btns" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/TypeSection" unique_id=56722729]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Dias" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/TypeSection/Btns" unique_id=2121460982]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_wdcb2")
+text = "📅 Por días"
+
+[node name="Express" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/TypeSection/Btns" unique_id=1626773798]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.1, 0.1, 0.2, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qfu8x")
+text = "⚡ Express"
+
+[node name="DurationDaysSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=1009662242]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/DurationDaysSection" unique_id=213877590]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "📅 Duración"
+
+[node name="DaysDurationOptionButton" type="OptionButton" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/DurationDaysSection" unique_id=788153350]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oimlt")
+selected = 0
+item_count = 7
+popup/item_0/text = "1 dia"
+popup/item_0/id = 1
+popup/item_1/text = "2 dia"
+popup/item_1/id = 2
+popup/item_2/text = "3 dia"
+popup/item_2/id = 3
+popup/item_3/text = "4 dia"
+popup/item_3/id = 4
+popup/item_4/text = "5 dia"
+popup/item_4/id = 5
+popup/item_5/text = "6 dia"
+popup/item_5/id = 6
+popup/item_6/text = "1 semana"
+popup/item_6/id = 7
+
+[node name="DurationExpressSection" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=1400255952]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DurationLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/DurationExpressSection" unique_id=222126913]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "📅 Duración Express"
+
+[node name="ExpressDurationOptionButton" type="OptionButton" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/DurationExpressSection" unique_id=1792428570]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oimlt")
+selected = 0
+item_count = 6
+popup/item_0/text = "5 minutos"
+popup/item_0/id = 5
+popup/item_1/text = "10 minutos"
+popup/item_1/id = 10
+popup/item_2/text = "15 minutos"
+popup/item_2/id = 15
+popup/item_3/text = "30 minutos"
+popup/item_3/id = 30
+popup/item_4/text = "45 minutos"
+popup/item_4/id = 45
+popup/item_5/text = "1 hora"
+popup/item_5/id = 60
+
+[node name="LocationLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/DurationExpressSection" unique_id=208018807]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "📍Local (opcional)"
+
+[node name="ExpressLocationOptionButton2" type="OptionButton" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/DurationExpressSection" unique_id=926075219]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oimlt")
+selected = 0
+item_count = 2
+popup/item_0/text = "Sin local específico"
+popup/item_0/id = 0
+popup/item_1/text = "LA CASA URBANA"
+popup/item_1/id = 1
+
+[node name="PrivateToggle" type="PanelContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=284576058]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oimlt")
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle" unique_id=1902059576]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle/Margin" unique_id=893954658]
+layout_mode = 2
+
+[node name="Lock" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle/Margin/HBox" unique_id=358829931]
+layout_mode = 2
+text = "🔒 "
+
+[node name="Text" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle/Margin/HBox" unique_id=685174497]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -2
+
+[node name="Main" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle/Margin/HBox/Text" unique_id=1321055706]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Liga Privada"
+
+[node name="Sub" type="Label" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle/Margin/HBox/Text" unique_id=1608017275]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "Solo con código de invitación"
+
+[node name="PublicPrivateSwitch" type="CheckButton" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/PrivateToggle/Margin/HBox" unique_id=626361245]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SubmitBtn" type="Button" parent="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content" unique_id=1911148016]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_l2x4o")
+text = "Crear Liga  →"
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/MainLayout" unique_id=2135823437 instance=ExtResource("2_26hdg")]
+layout_mode = 2
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer/Tabs/PublicasButton" to="." method="_on_publicas_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer/Tabs/CodigoButton" to="." method="_on_codigo_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/TabContainer/Tabs/CrearButton" to="." method="_on_crear_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Codigo/VBox/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/TypeSection/Btns/Dias" to="." method="_on_dias_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/TypeSection/Btns/Express" to="." method="_on_express_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/MainLayout/Content/VBox/Crear/Content/SubmitBtn" to="." method="_on_submit_btn_pressed"]

@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+/ios/
+/docs/
+
+node_modules
+.DS_Store
+
+!ios/.gdignore
+!android/.gdignore
+!docs/.gdignore

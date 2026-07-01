@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://b8jd1wvyqfmn4"]
+
+[ext_resource type="Script" uid="uid://bkfsgvyn3cbbr" path="res://gd/MissionValidation.gd" id="1_w1ra4"]
+[ext_resource type="PackedScene" uid="uid://7ael2mhmqdlc" path="res://tscn/Header.tscn" id="2_xvn83"]
+[ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="3_lvvao"]
+[ext_resource type="Script" uid="uid://lgef8wx8hjf4" path="res://gd/ui/TextureRectUrl.gd" id="3_xvn83"]
+
+[sub_resource type="Gradient" id="Gradient_xvn83"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_thca8"]
+gradient = SubResource("Gradient_xvn83")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main"]
+bg_color = Color(0.92, 0.96, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbchw"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uffie"]
+bg_color = Color(0.91, 0.945, 0.976, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.816, 0.878, 0.941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1ra4"]
+bg_color = Color(0.231373, 0.478431, 0.321569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvn83"]
+bg_color = Color(1, 1, 1, 0.08)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvvao"]
+bg_color = Color(0.231373, 0.478431, 0.321569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfldq"]
+bg_color = Color(0.898039, 0.258824, 0.25098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.3)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gm7r"]
+bg_color = Color(0.282353, 0.752941, 0.423529, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.3)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[node name="MissionValidation" type="Control" unique_id=398376449]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w1ra4")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1811613867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_thca8")
+
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1432952461]
+custom_minimum_size = Vector2(400, 750)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -375.0
+offset_right = 200.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_main")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=653248501]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=763329948]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Header" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=570429073 instance=ExtResource("2_xvn83")]
+layout_mode = 2
+
+[node name="MainCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=1646695611]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wbchw")
+
+[node name="ContentLayout" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard" unique_id=1461447529]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout" unique_id=1300593732]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/Margin" unique_id=1726042164]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/Margin/HBox" unique_id=2015561034]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("3_xvn83")
+
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/Margin/HBox" unique_id=1872152598]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="FriendName" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/Margin/HBox/LabelVBox" unique_id=162111332]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "friend_name"
+fit_content = true
+
+[node name="TaskDescription" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/Margin/HBox/LabelVBox" unique_id=1589253153]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "task description"
+fit_content = true
+
+[node name="UploadArea" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout" unique_id=1592323517]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uffie")
+
+[node name="CenterContainer" type="CenterContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/UploadArea" unique_id=1321578858]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlaceholderContent" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/UploadArea/CenterContainer" unique_id=2007943610]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="CameraIcon" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/UploadArea/CenterContainer/PlaceholderContent" unique_id=1261668505]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.435, 0.702, 0.824, 1)
+theme_override_font_sizes/font_size = 32
+text = "📷"
+horizontal_alignment = 1
+
+[node name="UploadActionText" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/UploadArea/CenterContainer/PlaceholderContent" unique_id=453730107]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Tocar para tomar foto"
+horizontal_alignment = 1
+
+[node name="UploadSubText" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/UploadArea/CenterContainer/PlaceholderContent" unique_id=1722728644]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 13
+text = "o subir desde galería"
+horizontal_alignment = 1
+
+[node name="AlreadyVoted" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout" unique_id=828284087]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w1ra4")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/AlreadyVoted" unique_id=877910532]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="CapsuleButton" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/AlreadyVoted/MarginContainer" unique_id=617681801]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xvn83")
+
+[node name="AlreadyVotedLabel" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/AlreadyVoted/MarginContainer/CapsuleButton" unique_id=1723441738]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Ya votaste: 🤔"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VoteTrueFalse" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout" unique_id=2091182948]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvvao")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/VoteTrueFalse" unique_id=705569853]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ButtonContainer" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/VoteTrueFalse/MarginContainer" unique_id=229775329]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="FalsaButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/VoteTrueFalse/MarginContainer/ButtonContainer" unique_id=1678760784]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_kfldq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kfldq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kfldq")
+text = "✕ Falsa"
+
+[node name="VerdaderaButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/VoteTrueFalse/MarginContainer/ButtonContainer" unique_id=1247170427]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_7gm7r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7gm7r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7gm7r")
+text = "✓ Verdadera"
+
+[node name="WindowPadding" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=1669961357]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2135823437 instance=ExtResource("3_lvvao")]
+layout_mode = 2
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1905718777]
+unique_name_in_owner = true
+title = "Open a File"
+file_mode = 0
+access = 2
+
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/VoteTrueFalse/MarginContainer/ButtonContainer/FalsaButton" to="." method="_on_falsa_button_pressed"]
+[connection signal="pressed" from="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/ContentLayout/VoteTrueFalse/MarginContainer/ButtonContainer/VerdaderaButton" to="." method="_on_verdadera_button_pressed"]
