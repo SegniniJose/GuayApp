@@ -118,6 +118,10 @@ func main() {
 	r.GET("/api/notifications/:userId/count", handleGetNotificationsCount)
 	r.GET("/api/notifications/:userId/summary", handleGetNotificationsSummary)
 
+	// --- 8. Rutas de Administración ---
+	r.POST("/api/admin/missions", handleAdminCreateMission)
+	r.GET("/api/admin/users", handleAdminGetAllUsers)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "9999"

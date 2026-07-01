@@ -838,3 +838,47 @@ func handleGetNotificationsSummary(c *gin.Context) {
 	DB.Model(&Notification{}).Where("user_id = ? AND is_read = ?", userId, false).Count(&count)
 	c.JSON(200, gin.H{"unreadNotifications": count})
 }
+
+// ==========================================
+// 8. CONTROLADORES DE ADMINISTRACIÓN
+// ==========================================
+
+const AdminKey = "GuayAdmin2025!"
+
+func handleAdminCreateMission(c *gin.Context) {
+	if c.GetHeader("X-Admin-Key") != AdminKey {
+		c.JSON(401, gin.H{"error": "No autorizado"})
+		return
+	}
+	var req struct {
+		Title       string `json:"title"`
+		Description string `json:"description"`
+		Points      int    `json:"points"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil || req.Title == "" {
+		c.JSON(400, gin.H{"error": "Parámetros inválidos"})
+		return
+	}
+	mission := Mission{
+		ID:          generateID(),
+		Title:       req.Title,
+		Description: req.Description,
+		Points:      req.Points,
+	}
+	if err := DB.Create(&mission).Error; err != nil {
+		c.JSON(500, gin.H{"error": "Error al crear la misión"})
+		return
+	}
+	c.JSON(200, mission)
+}
+
+func handleAdminGetAllUsers(c *gin.Context) {
+	if c.GetHeader("X-Admin-Key") != AdminKey {
+		c.JSON(401, gin.H{"error": "No autorizado"})
+		return
+	}
+	var users []User
+	DB.Order("points desc").Find(&users)
+	c.JSON(200, users)
+}
+
