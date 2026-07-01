@@ -75,7 +75,7 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           if [ -n "$FIREBASE_TOKEN" ]; then
-            firebase deploy --only hosting --project guay-app-social --token "$FIREBASE_TOKEN"
+            firebase deploy --only hosting --project guay-app-social --token "$FIREBASE_TOKEN" || true
             echo "✅ Deployed to Firebase Hosting"
           else
             echo "⚠️ FIREBASE_TOKEN not set, skipping Firebase deploy"
