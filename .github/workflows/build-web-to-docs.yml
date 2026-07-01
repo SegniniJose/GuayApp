@@ -60,7 +60,7 @@ jobs:
       - name: Export Godot Project to Web
         run: |
           mkdir -p ./docs
-          ./godot-bin/Godot_v4.6-stable_linux.x86_64 --headless --path ./godot --export-debug "Web" ../docs/index.html
+          ./godot-bin/Godot_v4.6-stable_linux.x86_64 --headless --path ./godot --export-release "Web" ../docs/index.html
           echo "=== Exported files ==="
           ls -la ./docs
 

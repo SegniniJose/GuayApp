@@ -6,7 +6,7 @@ static var headers: Array[String] = ["Content-Type: application/json"]
 #change this URL to be the actual server
 #static var base_url_dev = "https://d583b40b-1cae-452e-ac12-74ac5903d7b0-00-1enao8eqex4ts.worf.replit.dev"
 #static var base_url_prod = "https://d583b40b-1cae-452e-ac12-74ac5903d7b0-00-1enao8eqex4ts.worf.replit.dev"
-static var base_url_dev = "http://localhost:9999"
+static var base_url_dev = "https://guayapp.onrender.com"
 static var base_url_prod = "https://guayapp.onrender.com"
 static var users_suggestions_limit = "5"
 static var base_url
