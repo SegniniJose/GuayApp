@@ -64,8 +64,22 @@ jobs:
           echo "=== Exported files ==="
           ls -la ./docs
 
+      - name: Export Godot Project to iOS Xcode Project
+        run: |
+          mkdir -p ./ios_build
+          ./godot-bin/Godot_v4.6-stable_linux.x86_64 --headless --path ./godot --export-release "iOS" ../ios_build/GuayGo.xcodeproj
+          echo "=== Exported iOS files ==="
+          ls -la ./ios_build
+
+      - name: Upload iOS Xcode Project Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-xcode-project
+          path: ./ios_build
+
       - name: Create .nojekyll
         run: touch ./docs/.nojekyll
+
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
