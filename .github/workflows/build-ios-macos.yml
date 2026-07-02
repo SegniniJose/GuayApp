@@ -1,0 +1,65 @@
+name: Build iOS Xcode Project (macOS)
+
+on:
+  workflow_dispatch:  # Solo se dispara manualmente para ahorrar minutos
+
+permissions:
+  contents: read
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot 4.6 for macOS
+        run: |
+          mkdir -p godot-bin
+          curl -L -o godot_mac.zip https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_macos.universal.zip
+          unzip -q godot_mac.zip -d godot-bin
+          ls -la godot-bin/
+
+      - name: Install Godot iOS Export Templates
+        run: |
+          mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.6.stable
+          cd ~/Library/Application\ Support/Godot/export_templates/4.6.stable
+          curl -L -o templates.tpz https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+          unzip -q -j templates.tpz -d .
+          echo "=== Templates installed ==="
+          ls -la .
+
+      - name: Make Godot executable
+        run: |
+          GODOT_APP=$(find godot-bin -name "Godot" -type f | head -1)
+          if [ -z "$GODOT_APP" ]; then
+            GODOT_APP=$(find godot-bin -name "*.app" -type d | head -1)
+            GODOT_BIN="$GODOT_APP/Contents/MacOS/Godot"
+          else
+            GODOT_BIN="$GODOT_APP"
+          fi
+          echo "GODOT_BIN=$GODOT_BIN" >> $GITHUB_ENV
+          chmod +x "$GODOT_BIN"
+          echo "Godot binary: $GODOT_BIN"
+
+      - name: Export iOS Xcode Project
+        run: |
+          mkdir -p ./ios_build
+          "$GODOT_BIN" --headless --path ./godot --export-release "iOS" ../ios_build/GuayGo.xcodeproj
+          echo "=== Exported iOS files ==="
+          ls -la ./ios_build
+
+      - name: Compress Xcode project
+        run: |
+          cd ios_build
+          zip -r ../GuayGo_iOS_Xcode.zip .
+          echo "=== ZIP created ==="
+          ls -la ../GuayGo_iOS_Xcode.zip
+
+      - name: Upload iOS Xcode Project Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-xcode-project-macos
+          path: GuayGo_iOS_Xcode.zip
+          retention-days: 30
