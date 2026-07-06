@@ -80,17 +80,10 @@ texture = SubResource("GradientTexture2D_thca8")
 
 [node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1432952461 groups=["background_panel"]]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 750)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -375.0
-offset_right = 200.0
-offset_bottom = 375.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_main")

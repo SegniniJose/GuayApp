@@ -5,8 +5,10 @@
 
 node_modules
 .DS_Store
+.firebase/
 
 # Local dev files
+godot_templates.tpz
 godot_win.zip
 backend/guaygo.db
 

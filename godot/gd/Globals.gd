@@ -38,6 +38,8 @@ static var votes: Dictionary = {}
 static var public_leagues: Array[Dictionary] = []
 static var profile_friend_id = ""
 static var profile: Dictionary = {}
+static var temp_captured_image: Image = null
+static var open_gallery_on_complete_mission: bool = false
 
 static func _static_init():
 	if OS.has_feature("debug"):

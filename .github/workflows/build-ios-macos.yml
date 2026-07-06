@@ -1,10 +1,15 @@
 name: Build iOS Xcode Project (macOS)
 
 on:
-  workflow_dispatch:  # Solo se dispara manualmente para ahorrar minutos
+  push:
+    branches: ["main"]
+    paths:
+      - "godot/**"
+      - ".github/workflows/build-ios-macos.yml"
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-ios:
@@ -48,18 +53,33 @@ jobs:
           mkdir -p ./ios_build
           "$GODOT_BIN" --headless --path ./godot --export-release "iOS" ../ios_build/GuayGo.xcodeproj
           echo "=== Exported iOS files ==="
-          ls -la ./ios_build
+          ls -laR ./ios_build | head -80
 
       - name: Compress Xcode project
         run: |
           cd ios_build
-          zip -r ../GuayGo_iOS_Xcode.zip .
+          zip -r ../GuayGo_iOS_Xcode_v1.0.1.zip .
           echo "=== ZIP created ==="
-          ls -la ../GuayGo_iOS_Xcode.zip
+          ls -la ../GuayGo_iOS_Xcode_v1.0.1.zip
 
       - name: Upload iOS Xcode Project Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-xcode-project-macos
-          path: GuayGo_iOS_Xcode.zip
-          retention-days: 30
+          path: GuayGo_iOS_Xcode_v1.0.1.zip
+          retention-days: 90
+
+      - name: Create GitHub Release (iOS build)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ios-v1.0.1-${{ github.run_number }}
+          name: GuayGo iOS Xcode v1.0.1 (build ${{ github.run_number }})
+          body: |
+            Proyecto Xcode listo para abrir en Mac.
+
+            Incluye: pantalla completa, cámara en misiones, API en https://guayapp.onrender.com
+
+            Ver CLIENTE_iOS.md en el repositorio para instrucciones.
+          files: GuayGo_iOS_Xcode_v1.0.1.zip
+          draft: false
+          prerelease: false
