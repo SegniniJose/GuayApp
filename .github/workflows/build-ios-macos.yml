@@ -60,7 +60,7 @@ jobs:
           cd ios_build
           zip -r ../GuayGo_iOS_Xcode_v1.0.2.zip .
           echo "=== ZIP created ==="
-          ls -la ../GuayGo_iOS_Xcode_v1.0.1.zip
+          ls -la ../GuayGo_iOS_Xcode_v1.0.2.zip
 
       - name: Upload iOS Xcode Project Artifact
         uses: actions/upload-artifact@v4

@@ -36,10 +36,11 @@ Descomprime el ZIP. Dentro verás una carpeta con el proyecto Xcode (`.xcodeproj
 2. Si el iPhone pide **confiar en el desarrollador**: Ajustes → General → VPN y gestión de dispositivos → Confiar.
 3. La primera vez que uses la **cámara**, acepta el permiso.
 
-## 6. Qué probar (versión 1.0.1)
+## 6. Qué probar (versión 1.0.2)
 
 - Registro e inicio de sesión.
 - Pantalla **a pantalla completa** (ya no se ve pequeña).
+- **Nueva interfaz** más legible (Dashboard, Login, barra de navegación).
 - Misiones → tocar para subir foto → debe abrirse la **cámara** (botón **Galería** si prefieres una foto guardada).
 - Amigos, ligas, chat y ranking según el plan de pruebas.
 
