@@ -85,6 +85,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Deploy to Firebase Hosting
+        continue-on-error: true
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
@@ -92,8 +93,7 @@ jobs:
             firebase deploy --only hosting:guay-app-social --project guay-app-social --token "$FIREBASE_TOKEN"
             echo "Deployed to Firebase Hosting"
           else
-            echo "FIREBASE_TOKEN not set, skipping Firebase deploy"
-            exit 1
+            echo "FIREBASE_TOKEN not set — update the secret in GitHub repo settings"
           fi
 
       - name: Setup GitHub Pages

@@ -35,8 +35,9 @@ Para el cliente con Mac, usa siempre el artifact del workflow **macOS**.
 
 ### 4. Web
 
-- Firebase: https://guay-app-social.web.app
-- Requiere secret `FIREBASE_TOKEN` en el repo para deploy automático.
+- **Actualizada (GitHub Pages):** https://segninijose.github.io/GuayApp/
+- **Firebase:** https://guay-app-social.web.app (requiere `FIREBASE_TOKEN` válido en secrets)
+- Si Firebase no actualiza, regenera el token: `firebase login:ci` y guárdalo en GitHub → Settings → Secrets → `FIREBASE_TOKEN`
 
 ### 5. Backend
 
