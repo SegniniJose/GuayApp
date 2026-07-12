@@ -89,10 +89,11 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           if [ -n "$FIREBASE_TOKEN" ]; then
-            firebase deploy --only hosting --project guay-app-social --token "$FIREBASE_TOKEN" || true
-            echo "✅ Deployed to Firebase Hosting"
+            firebase deploy --only hosting:guay-app-social --project guay-app-social --token "$FIREBASE_TOKEN"
+            echo "Deployed to Firebase Hosting"
           else
-            echo "⚠️ FIREBASE_TOKEN not set, skipping Firebase deploy"
+            echo "FIREBASE_TOKEN not set, skipping Firebase deploy"
+            exit 1
           fi
 
       - name: Setup GitHub Pages

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "guay-app-social",
     "public": "docs",
     "ignore": [
       "firebase.json",

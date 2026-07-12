@@ -6,6 +6,7 @@ App social de misiones diarias con fotos, ligas y ranking. Cliente Godot 4.6 + b
 
 | Servicio | URL |
 |----------|-----|
+| Web (actualizada) | https://segninijose.github.io/GuayApp/ |
 | Web (Firebase) | https://guay-app-social.web.app |
 | API (Render) | https://guayapp.onrender.com |
 | Repositorio | https://github.com/SegniniJose/GuayApp |
