@@ -29,4 +29,4 @@ docs/           Build web exportado (Firebase Hosting)
 
 ## Versión actual
 
-**1.0.1** — Pantalla completa en móvil, cámara en misiones, permisos iOS/Android.
+**1.0.2** — UI profesional rediseñada, pantalla completa, cámara en misiones, permisos iOS/Android.

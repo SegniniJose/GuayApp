@@ -2,38 +2,51 @@
 
 [ext_resource type="Script" uid="uid://ci85hmpcrhnvh" path="res://gd/NavBar.gd" id="1_hxolp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0nu4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nav"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+border_width_top = 1
+border_color = Color(0.886275, 0.909804, 0.941176, 1)
+shadow_color = Color(0, 0, 0, 0.08)
+shadow_size = 12
+shadow_offset = Vector2(0, -2)
 
 [node name="NavBar" type="PanelContainer" unique_id=2135823437]
-custom_minimum_size = Vector2(0, 70)
-theme_override_styles/panel = SubResource("StyleBoxFlat_v0nu4")
+custom_minimum_size = Vector2(0, 76)
+theme_override_styles/panel = SubResource("StyleBoxFlat_nav")
 script = ExtResource("1_hxolp")
 
 [node name="Icons" type="HBoxContainer" parent="." unique_id=1235515317]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Home" type="Button" parent="Icons" unique_id=1701585835]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "🏠"
 flat = true
 
 [node name="List" type="Button" parent="Icons" unique_id=2043263086]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "📊"
 flat = true
 
 [node name="Chat" type="Button" parent="Icons" unique_id=722909827]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "💬"
 flat = true
 
 [node name="Trophy" type="Button" parent="Icons" unique_id=1803189450]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "🏆"
 flat = true
 

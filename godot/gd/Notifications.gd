@@ -51,4 +51,11 @@ func load_notifications() -> void:
 
 
 func _on_mark_all_btn_pressed() -> void:
-	await Globals.show_popup(self, "to do", "to do")
+	var callback = func(_response: Dictionary):
+		Globals.notifications_summary = {"unreadNotifications": 0}
+		refresh_subtitle()
+		for i in Globals.notifications.size():
+			Globals.notifications[i]["isRead"] = true
+		refresh_notifications()
+	var url = Globals.get_api_notifications_mark_all_read_url(Globals.user_id)
+	await Globals.http_post_callback(self, url, {}, callback)

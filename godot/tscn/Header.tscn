@@ -4,33 +4,51 @@
 [ext_resource type="Script" uid="uid://c0un58m4t302r" path="res://gd/Header.gd" id="1_hnjw7"]
 [ext_resource type="Texture2D" uid="uid://b2bvqwksx7nhi" path="res://svg/add-friend.svg" id="2_8pu7p"]
 
-[node name="Header" type="HBoxContainer" unique_id=570429073]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+bg_color = Color(1, 1, 1, 1)
+content_margin_left = 4.0
+content_margin_top = 8.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.06)
+shadow_size = 8
+shadow_offset = Vector2(0, 2)
+
+[node name="Header" type="PanelContainer" unique_id=570429073]
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 script = ExtResource("1_hnjw7")
 
-[node name="Amigos" type="LinkButton" parent="." unique_id=1622411095]
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1981891077]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.5, 0.9, 1)
-theme_override_font_sizes/font_size = 18
-text = "👥 Amigos"
-underline = 2
+theme_override_constants/separation = 12
 
-[node name="Spacer" type="Control" parent="." unique_id=1981891076]
+[node name="Amigos" type="LinkButton" parent="HBox" unique_id=1622411095]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.388235, 0.4, 0.945098, 1)
+theme_override_colors/font_hover_color = Color(0.309804, 0.27451, 0.898039, 1)
+theme_override_font_sizes/font_size = 16
+text = "👥 Amigos"
+underline = 0
+
+[node name="Spacer" type="Control" parent="HBox" unique_id=1981891076]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AddFriend" type="TextureButton" parent="." unique_id=1422983272]
+[node name="AddFriend" type="TextureButton" parent="HBox" unique_id=1422983272]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(24, 24)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("2_8pu7p")
 texture_pressed = ExtResource("2_8pu7p")
 texture_hover = ExtResource("2_8pu7p")
-texture_disabled = ExtResource("2_8pu7p")
-texture_focused = ExtResource("2_8pu7p")
-stretch_mode = 3
+stretch_mode = 5
 
-[node name="FriendSuggestionCount" type="RichTextLabel" parent="AddFriend" unique_id=588106445]
+[node name="FriendSuggestionCount" type="RichTextLabel" parent="HBox/AddFriend" unique_id=588106445]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -39,25 +57,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.19607843, 0.5019608, 0.9019608, 1)
+theme_override_colors/default_color = Color(0.388235, 0.4, 0.945098, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 1
-text = "0"
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 11
+text = ""
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Notifications" type="TextureButton" parent="." unique_id=1643692530]
-custom_minimum_size = Vector2(24, 24)
+[node name="Notifications" type="TextureButton" parent="HBox" unique_id=1643692530]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("1_210cg")
 texture_pressed = ExtResource("1_210cg")
 texture_hover = ExtResource("1_210cg")
-texture_disabled = ExtResource("1_210cg")
-texture_focused = ExtResource("1_210cg")
-stretch_mode = 3
+stretch_mode = 5
 
-[node name="NotificationsCount" type="RichTextLabel" parent="Notifications" unique_id=468692498]
+[node name="NotificationsCount" type="RichTextLabel" parent="HBox/Notifications" unique_id=468692498]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -66,21 +83,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_colors/default_color = Color(1, 0.64705884, 0, 1)
+theme_override_colors/default_color = Color(0.960784, 0.619608, 0.043137, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 1
-text = "0"
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 11
+text = ""
 horizontal_alignment = 2
-vertical_alignment = 2
+vertical_alignment = 0
 
-[node name="ExitButton" type="Button" parent="." unique_id=1523608515]
+[node name="ExitButton" type="Button" parent="HBox" unique_id=1523608515]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.2, 0.2, 1)
-text = "Salir ↪"
+theme_override_colors/font_color = Color(0.937255, 0.266667, 0.266667, 1)
+theme_override_font_sizes/font_size = 14
+text = "Salir"
 flat = true
-
-[node name="Header" type="Control" parent="." unique_id=1746679345]
-layout_mode = 2
 
 [node name="HttpRequest" type="HTTPRequest" parent="." unique_id=1448445683]
 unique_name_in_owner = true
@@ -88,7 +104,7 @@ unique_name_in_owner = true
 [node name="SummaryTimer" type="Timer" parent="." unique_id=925060050]
 wait_time = 10.0
 
-[connection signal="pressed" from="Amigos" to="." method="_on_amigos_pressed"]
-[connection signal="pressed" from="AddFriend" to="." method="_on_add_friend_pressed"]
-[connection signal="pressed" from="Notifications" to="." method="_on_notifications_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="HBox/Amigos" to="." method="_on_amigos_pressed"]
+[connection signal="pressed" from="HBox/AddFriend" to="." method="_on_add_friend_pressed"]
+[connection signal="pressed" from="HBox/Notifications" to="." method="_on_notifications_pressed"]
+[connection signal="pressed" from="HBox/ExitButton" to="." method="_on_exit_button_pressed"]

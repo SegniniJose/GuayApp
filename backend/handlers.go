@@ -839,6 +839,12 @@ func handleGetNotificationsSummary(c *gin.Context) {
 	c.JSON(200, gin.H{"unreadNotifications": count})
 }
 
+func handleMarkAllNotificationsRead(c *gin.Context) {
+	userId := c.Param("userId")
+	DB.Model(&Notification{}).Where("user_id = ?", userId).Update("is_read", true)
+	c.JSON(200, gin.H{"status": "success"})
+}
+
 // ==========================================
 // 8. CONTROLADORES DE ADMINISTRACIÓN
 // ==========================================

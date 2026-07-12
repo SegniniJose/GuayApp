@@ -209,6 +209,10 @@ static func get_api_notifications_summary_url(userId: String):
 	return "%s/api/notifications/%s/summary" % [base_url, userId]
 
 
+static func get_api_notifications_mark_all_read_url(userId: String):
+	return "%s/api/notifications/%s/mark-all-read" % [base_url, userId]
+
+
 static func set_profile(response: Dictionary):
 	Globals.user_id = get_or_default(response, "id", Globals.user_id, "")
 	Globals.username = get_or_default(response, "username", Globals.username, "")
@@ -298,27 +302,34 @@ static func shake_node(node: Control) -> void:
 static func on_request_completed(
 	requester: Node, response_code: int, body: PackedByteArray, callback: Callable
 ):
-	var text = body.get_string_from_utf8()
+	var text := body.get_string_from_utf8().strip_edges()
+	if text.is_empty():
+		await Globals.show_error_popup(
+			requester,
+			"No se pudo conectar al servidor. Verifica tu conexión e intenta de nuevo.",
+			null
+		)
+		return
+
 	var json: JSON = JSON.new()
 	var error: Error = json.parse(text)
 	if error != OK:
-		var error_msg: String = (
-			"JSON Parse Error: %s at line %d '%s'"
-			% [json.get_error_message(), json.get_error_line(), text]
+		await Globals.show_error_popup(
+			requester,
+			"Respuesta inválida del servidor. Intenta de nuevo en unos segundos.",
+			null
 		)
-		push_error(error_msg)
-		await Globals.show_error_popup(requester, error_msg, null)
+		return
 
 	if response_code == 200:
-		var data = json.get_data()
-		await callback.call(data)
-	else:
-		var error_msg = "Error de conexión"
-		var response = json.get_data()
-		if response and response is Dictionary and response.has("error"):
-			error_msg = response["error"]
+		await callback.call(json.get_data())
+		return
 
-		await Globals.show_error_popup(requester, error_msg, null)
+	var error_msg := "Error de conexión"
+	var response = json.get_data()
+	if response is Dictionary and response.has("error"):
+		error_msg = str(response["error"])
+	await Globals.show_error_popup(requester, error_msg, null)
 
 
 static func http_request_callback(requester: Node, url: String, callback: Callable):

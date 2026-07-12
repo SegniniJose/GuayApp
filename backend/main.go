@@ -129,6 +129,7 @@ func main() {
 	r.GET("/api/notifications/:userId", handleGetNotifications)
 	r.GET("/api/notifications/:userId/count", handleGetNotificationsCount)
 	r.GET("/api/notifications/:userId/summary", handleGetNotificationsSummary)
+	r.POST("/api/notifications/:userId/mark-all-read", handleMarkAllNotificationsRead)
 
 	// --- 8. Rutas de Administración ---
 	r.POST("/api/admin/missions", handleAdminCreateMission)

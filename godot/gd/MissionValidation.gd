@@ -93,14 +93,14 @@ func _on_verdadera_button_pressed() -> void:
 	await post_vote()
 
 
-func get_vote_bool() -> String:
+func get_vote_bool():
 	match vote:
 		"falsa":
-			return "false"
+			return false
 		"verdadera":
-			return "true"
+			return true
 		_:
-			return ""
+			return null
 
 
 func post_vote() -> void:
@@ -115,5 +115,7 @@ func post_vote() -> void:
 		"missionCompletionId": Globals.mission_completion_id,
 		"userId": Globals.user_id,
 	}
+	if data["isValid"] == null:
+		return
 	print("post_vote ", url, " ", data)
 	await Globals.http_post_callback(self, url, data, callback)

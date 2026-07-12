@@ -43,7 +43,14 @@ Para el cliente con Mac, usa siempre el artifact del workflow **macOS**.
 - Render: https://guayapp.onrender.com
 - Actualizar backend: push a `main` si tienes auto-deploy en Render, o redeploy manual en el panel de Render.
 
-## Cambios recientes (v1.0.1)
+## Cambios recientes (v1.0.2)
+
+- Sistema de diseño `GuayTheme` (colores, tipografía, sombras).
+- Dashboard, Login, Header y NavBar rediseñados.
+- Animación de entrada entre escenas (`ScenePolish`).
+- Corrección de bugs en Profile y notificaciones.
+
+## Cambios anteriores (v1.0.1)
 
 - UI a pantalla completa en móvil.
 - Cámara nativa en misiones (`CameraCapture.tscn`).

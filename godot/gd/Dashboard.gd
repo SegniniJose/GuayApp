@@ -5,13 +5,17 @@ class_name Dashboard
 @onready var points_label: RichTextLabel = %Points
 @onready var photos_label: RichTextLabel = %Photos
 @onready var avatar: TextureRectUrl = %Avatar
+@onready var profile_card: PanelContainer = %ProfileCard
+@onready var private_card: PanelContainer = %PrivateToggleCard
+@onready var welcome_panel: PanelContainer = %WelcomePanel
+@onready var create_btn: Button = %CreateLeagueButton
 
 @onready var HttpRequest = %HttpRequest
-
 @onready var league_container: VBoxContainer = %LeagueVBoxContainer
 
+
 func _ready() -> void:
-	print("Dashboard _ready started")
+	_apply_dashboard_styles()
 	refresh_username_label()
 	refresh_points_label()
 	await refresh_avatar()
@@ -19,21 +23,26 @@ func _ready() -> void:
 	await load_profile()
 	await load_photo_count()
 	await load_league_status()
-	print("Dashboard _ready success")
+	GuayTheme.fade_in(self)
+
+
+func _apply_dashboard_styles() -> void:
+	GuayTheme.apply_panel(profile_card, GuayTheme.panel_surface())
+	GuayTheme.apply_panel(private_card, GuayTheme.panel_surface())
+	GuayTheme.apply_panel(welcome_panel, GuayTheme.panel_welcome())
+	GuayTheme.apply_label(username_label, GuayTheme.FONT_HEADING, GuayTheme.COLOR_TEXT, true)
+	GuayTheme.apply_button_primary(create_btn)
+	create_btn.add_theme_font_size_override("font_size", GuayTheme.FONT_BODY)
+	create_btn.text = "Buscar o crear liga →"
+	avatar.custom_minimum_size = Vector2(72, 72)
 
 
 func refresh_photos_label() -> void:
-	photos_label.text = (
-		"[center][b][font_size=30][color=gray]%s[/color][/font_size][/b]\n[font_size=18][color=gray]fotos[/color][/font_size][/center]"
-		% Globals.photo_count
-	)
+	photos_label.text = GuayTheme.stat_bbcode(Globals.photo_count, "fotos", "#8b5cf6")
 
 
 func refresh_points_label() -> void:
-	points_label.text = (
-		"[center][b][font_size=30][color=gray]%s[/color][/font_size][/b]\n[font_size=18][color=gray]pts[/color][/font_size][/center]"
-		% Globals.points
-	)
+	points_label.text = GuayTheme.stat_bbcode(Globals.points, "puntos", "#f59e0b")
 
 
 func refresh_avatar() -> void:
@@ -41,12 +50,11 @@ func refresh_avatar() -> void:
 
 
 func refresh_username_label() -> void:
-	username_label.text = Globals.username
+	username_label.text = Globals.username if Globals.username != "" else "Jugador"
 
 
 func load_profile() -> void:
 	var callback = func(response: Dictionary):
-		print("Profile Success!", response)
 		Globals.set_profile(response)
 		refresh_username_label()
 		refresh_points_label()
@@ -54,35 +62,28 @@ func load_profile() -> void:
 	var url = Globals.get_api_users_profile_url(Globals.user_id, Globals.user_id)
 	HttpRequest.request(url, Globals.headers, HTTPClient.METHOD_GET)
 	var http_response = await HttpRequest.request_completed
-	var response_code = http_response[1]
-	var body = http_response[3]
-	Globals.on_request_completed(self, response_code, body, callback)
+	Globals.on_request_completed(self, http_response[1], http_response[3], callback)
 
 
 func load_photo_count() -> void:
 	var callback = func(response: Dictionary):
-		print("Photo Count Success!", response)
 		Globals.photo_count = response.count
 		refresh_photos_label()
 	var url = Globals.get_api_users_photo_count_url(Globals.user_id)
 	HttpRequest.request(url, Globals.headers, HTTPClient.METHOD_GET)
 	var http_response = await HttpRequest.request_completed
-	var response_code = http_response[1]
-	var body = http_response[3]
-	Globals.on_request_completed(self, response_code, body, callback)
+	Globals.on_request_completed(self, http_response[1], http_response[3], callback)
 
 
 func refresh_league_status() -> void:
-	if Globals.league_status.status == "active":
+	if Globals.league_status.get("status", "") == "active":
 		league_container.visible = false
 
 
 func load_league_status() -> void:
-	print("load_league_status '", Globals.league_id, "'")
 	if Globals.league_id == "":
 		return
 	var callback = func(response: Dictionary):
-		print("League Status Success!", response)
 		Globals.league_status = response
 		refresh_league_status()
 	var url = Globals.get_api_leagues_status_url()

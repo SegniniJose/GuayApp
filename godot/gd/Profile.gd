@@ -4,7 +4,7 @@ class_name Profile
 @onready var avatar: TextureRectUrl = %Avatar
 @onready var username: Label = %Username
 @onready var points: Label = %Points
-@onready var status: Label = %Points
+@onready var status: Label = %Status
 
 func _ready() -> void:
 	load_profile()
@@ -22,6 +22,10 @@ func refresh_profile():
 	print("refresh_profile ", Globals.profile)
 	username.text = Globals.profile.username
 	points.text = str(Globals.profile.points) + " pts"
+	if Globals.profile.get("isPrivate", false):
+		status.text = "Perfil privado"
+	else:
+		status.text = "Perfil público"
 	await avatar.set_url(Globals.profile.avatar)
 
 

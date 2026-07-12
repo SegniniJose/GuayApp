@@ -8,20 +8,14 @@
 
 [sub_resource type="Gradient" id="Gradient_yqcg0"]
 offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
+colors = PackedColorArray(0.945098, 0.960784, 0.976471, 1, 0.929412, 0.94902, 0.992157, 1, 0.913725, 0.941176, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_thca8"]
 gradient = SubResource("Gradient_yqcg0")
 fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main"]
-bg_color = Color(0.92, 0.96, 1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0, 0, 0, 0.1)
-shadow_size = 10
+bg_color = Color(0.945098, 0.960784, 0.976471, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
 bg_color = Color(1, 1, 1, 0)
@@ -90,61 +84,73 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_main")
 
 [node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=653248501]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=763329948]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 20
 
 [node name="Header" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=570429073 instance=ExtResource("2_cbmtx")]
 layout_mode = 2
 
 [node name="ProfileCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=769414836]
-custom_minimum_size = Vector2(0, 100)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
 [node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard" unique_id=676920765]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 16
 
 [node name="Avatar" type="TextureRect" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=274691914]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_vertical = 4
 expand_mode = 1
+stretch_mode = 5
 script = ExtResource("2_xorw6")
 
-[node name="Username" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=1863966112]
+[node name="InfoVBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=676920766]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Username" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox/InfoVBox" unique_id=1863966112]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
+theme_override_font_sizes/font_size = 24
 text = "User Name"
 
-[node name="Points" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=1491919949]
-unique_name_in_owner = true
+[node name="StatsRow" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox/InfoVBox" unique_id=676920767]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Points" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox/InfoVBox/StatsRow" unique_id=1491919949]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 56)
+layout_mode = 2
 bbcode_enabled = true
-text = "[center][b][font_size=30][color=gray]1[/color][/font_size][/b]
-[font_size=18][color=gray]pts[/color][/font_size][/center]"
+text = "[center][font_size=28][color=#f59e0b][b]0[/b][/color][/font_size]
+[font_size=13][color=#475569]puntos[/color][/font_size][/center]"
 fit_content = true
 
-[node name="Photos" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox" unique_id=246689031]
+[node name="Photos" type="RichTextLabel" parent="BackgroundPanel/MarginContainer/VBoxContainer/ProfileCard/HBox/InfoVBox/StatsRow" unique_id=246689031]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 56)
 layout_mode = 2
-size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center][b][font_size=30][color=gray]1[/color][/font_size][/b]
-[font_size=18][color=gray]fotos[/color][/font_size][/center]"
+text = "[center][font_size=28][color=#8b5cf6][b]0[/b][/color][/font_size]
+[font_size=13][color=#475569]fotos[/color][/font_size][/center]"
 fit_content = true
 
 [node name="PrivateToggleCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2077059991]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
@@ -181,6 +187,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="WelcomePanel" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer" unique_id=951732747]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kvein")
 
@@ -247,6 +254,7 @@ text = "Únete a una liga o crea la tuya"
 layout_mode = 2
 
 [node name="CreateLeagueButton" type="Button" parent="BackgroundPanel/MarginContainer/VBoxContainer/LeagueSelection/LeagueVBoxContainer/HSplitContainer" unique_id=216037960]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.47, 0.53, 1)
