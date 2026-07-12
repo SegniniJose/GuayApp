@@ -81,15 +81,73 @@ static func panel_nav() -> StyleBoxFlat:
 
 
 static func input_normal() -> StyleBoxFlat:
-	return make_flat(COLOR_SURFACE, 12, 0, COLOR_BORDER, 1)
+	var s := make_flat(COLOR_SURFACE, 12, 0, COLOR_BORDER, 1)
+	s.content_margin_left = 14.0
+	s.content_margin_top = 12.0
+	s.content_margin_right = 14.0
+	s.content_margin_bottom = 12.0
+	return s
 
 
 static func input_focus() -> StyleBoxFlat:
-	return make_flat(COLOR_SURFACE, 12, 0, COLOR_PRIMARY, 2)
+	var s := make_flat(COLOR_SURFACE, 12, 0, COLOR_PRIMARY, 2)
+	s.content_margin_left = 14.0
+	s.content_margin_top = 12.0
+	s.content_margin_right = 14.0
+	s.content_margin_bottom = 12.0
+	return s
 
 
 static func header_bar() -> StyleBoxFlat:
 	return make_flat(COLOR_HEADER_BG, 0, 8)
+
+
+static func login_card() -> StyleBoxFlat:
+	var s := make_flat(COLOR_SURFACE, 24, 20, COLOR_BORDER, 1)
+	s.content_margin_left = 28.0
+	s.content_margin_top = 28.0
+	s.content_margin_right = 28.0
+	s.content_margin_bottom = 28.0
+	return s
+
+
+static func tab_bar_bg() -> StyleBoxFlat:
+	return make_flat(Color("e8ecf4"), 14, 0)
+
+
+static func tab_active() -> StyleBoxFlat:
+	return make_flat(COLOR_SURFACE, 12, 8)
+
+
+static func tab_inactive() -> StyleBoxFlat:
+	return make_flat(Color.TRANSPARENT, 12, 0)
+
+
+static func logo_box() -> StyleBoxFlat:
+	var s := make_flat(COLOR_PRIMARY, 22, 16)
+	s.shadow_color = Color(COLOR_PRIMARY.r, COLOR_PRIMARY.g, COLOR_PRIMARY.b, 0.35)
+	return s
+
+
+static func feature_chip() -> StyleBoxFlat:
+	return make_flat(COLOR_PRIMARY_LIGHT, 20, 0, COLOR_PRIMARY, 1)
+
+
+static func apply_tab(btn: Button, active: bool) -> void:
+	btn.flat = false
+	btn.add_theme_font_size_override("font_size", FONT_LABEL)
+	if active:
+		btn.add_theme_color_override("font_color", COLOR_PRIMARY)
+		btn.add_theme_stylebox_override("normal", tab_active())
+		btn.add_theme_stylebox_override("hover", tab_active())
+		btn.add_theme_stylebox_override("pressed", tab_active())
+		btn.add_theme_stylebox_override("focus", tab_active())
+	else:
+		btn.add_theme_color_override("font_color", COLOR_TEXT_MUTED)
+		btn.add_theme_stylebox_override("normal", tab_inactive())
+		btn.add_theme_stylebox_override("hover", tab_inactive())
+		btn.add_theme_stylebox_override("pressed", tab_inactive())
+		btn.add_theme_stylebox_override("focus", tab_inactive())
 
 
 static func stat_bbcode(value: int, label: String, accent_hex: String) -> String:
@@ -133,8 +191,12 @@ static func apply_line_edit(le: LineEdit) -> void:
 	le.add_theme_font_size_override("font_size", FONT_BODY)
 	le.add_theme_color_override("font_color", COLOR_TEXT)
 	le.add_theme_color_override("font_placeholder_color", COLOR_TEXT_MUTED)
+	le.add_theme_color_override("caret_color", COLOR_PRIMARY)
+	le.add_theme_color_override("font_uneditable_color", COLOR_TEXT)
+	le.add_theme_color_override("font_outline_color", COLOR_TEXT)
 	le.add_theme_stylebox_override("normal", input_normal())
 	le.add_theme_stylebox_override("focus", input_focus())
+	le.add_theme_stylebox_override("read_only", input_normal())
 
 
 static func apply_panel(container: PanelContainer, style: StyleBoxFlat) -> void:
