@@ -131,6 +131,8 @@ func _on_tab_login_pressed() -> void:
 	submit_btn.text = "Entrar a GuayGo  →"
 	login_section.visible = true
 	register_section.visible = false
+	for le in [login_user_input, login_pass_input]:
+		GuayTheme.apply_line_edit(le)
 
 
 func _on_tab_register_pressed() -> void:
@@ -140,6 +142,9 @@ func _on_tab_register_pressed() -> void:
 	submit_btn.text = "Crear mi cuenta  →"
 	login_section.visible = false
 	register_section.visible = true
+	for le in [register_user_input, register_email_input, register_pass_input]:
+		GuayTheme.apply_line_edit(le)
+
 
 
 func _update_tabs(is_login: bool) -> void:
