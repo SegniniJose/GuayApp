@@ -251,7 +251,6 @@ placeholder_text = "••••••••"
 secret = true
 
 [node name="RegisterSection" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 

@@ -190,13 +190,15 @@ static func apply_link(btn: LinkButton, color: Color = COLOR_PRIMARY) -> void:
 static func apply_line_edit(le: LineEdit) -> void:
 	le.add_theme_font_size_override("font_size", FONT_BODY)
 	le.add_theme_color_override("font_color", COLOR_TEXT)
+	le.add_theme_color_override("font_selected_color", COLOR_TEXT)
+	le.add_theme_color_override("font_uneditable_color", COLOR_TEXT)
 	le.add_theme_color_override("font_placeholder_color", COLOR_TEXT_MUTED)
 	le.add_theme_color_override("caret_color", COLOR_PRIMARY)
-	le.add_theme_color_override("font_uneditable_color", COLOR_TEXT)
 	le.add_theme_color_override("font_outline_color", COLOR_TEXT)
 	le.add_theme_stylebox_override("normal", input_normal())
 	le.add_theme_stylebox_override("focus", input_focus())
 	le.add_theme_stylebox_override("read_only", input_normal())
+
 
 
 static func apply_panel(container: PanelContainer, style: StyleBoxFlat) -> void:
