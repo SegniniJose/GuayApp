@@ -26,12 +26,14 @@ driver/driver="Dummy"
 
 [display]
 
-window/size/viewport_width=1080
-window/size/viewport_height=1920
-window/size/resizable=false
+window/size/viewport_width=450
+window/size/viewport_height=800
+window/size/resizable=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 window/handheld/orientation=1
+window/dpi/allow_hidpi=true
+
 
 [physics]
 
