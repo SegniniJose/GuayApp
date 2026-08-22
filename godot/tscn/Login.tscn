@@ -91,9 +91,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Content" type="VBoxContainer" parent="Center"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
 
 [node name="Brand" type="VBoxContainer" parent="Center/Content"]
 layout_mode = 2

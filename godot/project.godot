@@ -26,11 +26,13 @@ driver/driver="Dummy"
 
 [display]
 
-window/size/viewport_width=450
-window/size/viewport_height=800
+window/size/viewport_width=390
+window/size/viewport_height=844
+window/size/window_width_override=430
+window/size/window_height_override=860
 window/size/resizable=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 window/dpi/allow_hidpi=true
 

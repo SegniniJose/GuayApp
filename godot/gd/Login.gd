@@ -33,6 +33,8 @@ func _ready() -> void:
 	_collect_field_labels()
 	_ensure_login_extras()
 	_apply_login_styles()
+	_adapt_content_width()
+	get_viewport().size_changed.connect(_adapt_content_width)
 	modulate.a = 0
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "modulate:a", 1.0, 0.5)
@@ -42,6 +44,19 @@ func _ready() -> void:
 	register_section.visible = false
 	_animate_logo()
 	_animate_deco()
+
+
+func _adapt_content_width() -> void:
+	var content: VBoxContainer = $Center/Content
+	var vp_w := get_viewport_rect().size.x
+	# Márgenes laterales según ancho (móvil / tablet / PC-marco).
+	var side_pad := 24.0
+	if vp_w < 360.0:
+		side_pad = 16.0
+	elif vp_w >= 500.0:
+		side_pad = 28.0
+	var target_w := clampf(vp_w - side_pad * 2.0, 260.0, 400.0)
+	content.custom_minimum_size = Vector2(target_w, 0)
 
 
 func _ensure_login_extras() -> void:
