@@ -15,24 +15,26 @@ func _ready() -> void:
 
 
 func _request_camera_permission() -> void:
-	var os_name := OS.get_name()
-	if os_name == "Android":
-		OS.request_permissions(
-			PackedStringArray(
-				[
-					"android.permission.CAMERA",
-					"android.permission.READ_MEDIA_IMAGES",
-				]
-			)
-		)
-	elif os_name == "iOS":
-		OS.request_permissions(PackedStringArray(["camera"]))
+	# Godot 4.x: request_permissions() sin argumentos (Android usa el export preset).
+	if OS.get_name() == "Android":
+		OS.request_permissions()
 
 
 func _start_camera() -> void:
-	CameraServer.set_monitoring(true)
-	await get_tree().create_timer(0.35).timeout
+	if not CameraServer.camera_feeds_updated.is_connected(_on_camera_feeds_updated):
+		CameraServer.camera_feeds_updated.connect(_on_camera_feeds_updated)
+	CameraServer.monitoring_feeds = true
+	await get_tree().create_timer(0.5).timeout
+	_try_attach_feed()
 
+
+func _on_camera_feeds_updated() -> void:
+	_try_attach_feed()
+
+
+func _try_attach_feed() -> void:
+	if _camera_texture != null:
+		return
 	if CameraServer.get_feed_count() == 0:
 		_show_status("No se pudo abrir la cámara. Usa la galería.")
 		return
@@ -68,7 +70,9 @@ func _stop_camera() -> void:
 		if feed:
 			feed.set_active(false)
 	_camera_texture = null
-	CameraServer.set_monitoring(false)
+	CameraServer.monitoring_feeds = false
+	if CameraServer.camera_feeds_updated.is_connected(_on_camera_feeds_updated):
+		CameraServer.camera_feeds_updated.disconnect(_on_camera_feeds_updated)
 
 
 func _return_with_image(image: Image) -> void:

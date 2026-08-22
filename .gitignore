@@ -11,6 +11,19 @@ node_modules
 godot_templates.tpz
 godot_win.zip
 backend/guaygo.db
+godot-bin/
+ci-artifact/
+_restore_pages/
+_restore_extract/
+
+# Godot web export artifacts (CI regenerates these)
+docs/*.wasm
+docs/*.pck
+docs/*.js
+docs/*.png
+docs/.nojekyll
+!docs/admin.html
+!docs/index.html
 
 !ios/.gdignore
 !android/.gdignore
