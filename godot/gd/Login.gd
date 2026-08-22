@@ -1,27 +1,31 @@
 extends Control
 class_name Login
 
-@onready var logo_panel = $Center/Content/Brand/LogoWrap/LogoPanel
-@onready var submit_btn = $Center/Content/FormCard/FormVBox/SubmitBtn
-@onready var login_section = $Center/Content/FormCard/FormVBox/LoginSection
-@onready var login_user_input = $Center/Content/FormCard/FormVBox/LoginSection/User/LineEdit
-@onready var login_pass_input = $Center/Content/FormCard/FormVBox/LoginSection/Pass/LineEdit
-@onready var register_section = $Center/Content/FormCard/FormVBox/RegisterSection
-@onready var register_user_input = $Center/Content/FormCard/FormVBox/RegisterSection/User/LineEdit
-@onready var register_email_input = $Center/Content/FormCard/FormVBox/RegisterSection/Email/LineEdit
-@onready var register_pass_input = $Center/Content/FormCard/FormVBox/RegisterSection/Pass/LineEdit
-@onready var btn_login = $Center/Content/TabSwitcher/TabHBox/BtnLogin
-@onready var btn_register = $Center/Content/TabSwitcher/TabHBox/BtnRegister
-@onready var card_title = $Center/Content/FormCard/FormVBox/Welcome/Title
-@onready var card_subtitle = $Center/Content/FormCard/FormVBox/Welcome/Sub
-@onready var form_card = $Center/Content/FormCard
-@onready var tab_switcher = $Center/Content/TabSwitcher
+const ROOT := "Scroll/Margin/Content"
+
+@onready var logo_panel = get_node(ROOT + "/Brand/LogoWrap/LogoPanel")
+@onready var submit_btn = get_node(ROOT + "/FormCard/FormVBox/SubmitBtn")
+@onready var login_section = get_node(ROOT + "/FormCard/FormVBox/LoginSection")
+@onready var login_user_input = get_node(ROOT + "/FormCard/FormVBox/LoginSection/User/LineEdit")
+@onready var login_pass_input = get_node(ROOT + "/FormCard/FormVBox/LoginSection/Pass/LineEdit")
+@onready var register_section = get_node(ROOT + "/FormCard/FormVBox/RegisterSection")
+@onready var register_user_input = get_node(ROOT + "/FormCard/FormVBox/RegisterSection/User/LineEdit")
+@onready var register_email_input = get_node(ROOT + "/FormCard/FormVBox/RegisterSection/Email/LineEdit")
+@onready var register_pass_input = get_node(ROOT + "/FormCard/FormVBox/RegisterSection/Pass/LineEdit")
+@onready var btn_login = get_node(ROOT + "/TabSwitcher/TabHBox/BtnLogin")
+@onready var btn_register = get_node(ROOT + "/TabSwitcher/TabHBox/BtnRegister")
+@onready var card_title = get_node(ROOT + "/FormCard/FormVBox/Welcome/Title")
+@onready var card_subtitle = get_node(ROOT + "/FormCard/FormVBox/Welcome/Sub")
+@onready var form_card = get_node(ROOT + "/FormCard")
+@onready var tab_switcher = get_node(ROOT + "/TabSwitcher")
 @onready var deco_top = $DecoTop
 @onready var deco_bottom = $DecoBottom
 @onready var login_request = $LoginRequest
-@onready var app_title = $Center/Content/Brand/AppTitle
-@onready var tagline = $Center/Content/Brand/Tagline
-@onready var footer = $Center/Content/Footer
+@onready var app_title = get_node(ROOT + "/Brand/AppTitle")
+@onready var tagline = get_node(ROOT + "/Brand/Tagline")
+@onready var footer = get_node(ROOT + "/Footer")
+@onready var content: VBoxContainer = get_node(ROOT)
+@onready var margin: MarginContainer = $Scroll/Margin
 
 var _field_labels: Array[Label] = []
 var _forgot_btn: LinkButton
@@ -33,51 +37,52 @@ func _ready() -> void:
 	_collect_field_labels()
 	_ensure_login_extras()
 	_apply_login_styles()
-	_adapt_content_width()
-	get_viewport().size_changed.connect(_adapt_content_width)
+	_adapt_layout()
+	get_viewport().size_changed.connect(_adapt_layout)
 	modulate.a = 0
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "modulate:a", 1.0, 0.5)
-	logo_panel.pivot_offset = logo_panel.size / 2
-	submit_btn.pivot_offset = submit_btn.size / 2
+	tween.tween_property(self, "modulate:a", 1.0, 0.45)
 	login_section.visible = true
 	register_section.visible = false
-	_animate_logo()
+	# Sin scale del logo: evitaba el corte superior.
 	_animate_deco()
 
 
-func _adapt_content_width() -> void:
-	var content: VBoxContainer = $Center/Content
-	var vp_w := get_viewport_rect().size.x
-	# Usa casi todo el ancho del viewport (márgenes pequeños).
-	var side_pad := 20.0
-	if vp_w < 360.0:
-		side_pad = 12.0
-	elif vp_w >= 420.0:
-		side_pad = 24.0
-	var target_w := clampf(vp_w - side_pad * 2.0, 280.0, 390.0)
+func _adapt_layout() -> void:
+	var vp := get_viewport_rect().size
+	var side := 20.0
+	if vp.x < 380.0:
+		side = 14.0
+	elif vp.x >= 900.0:
+		side = 32.0
+	margin.add_theme_constant_override("margin_left", int(side))
+	margin.add_theme_constant_override("margin_right", int(side))
+	margin.add_theme_constant_override("margin_top", 28 if vp.y > 700.0 else 16)
+	margin.add_theme_constant_override("margin_bottom", 28 if vp.y > 700.0 else 16)
+
+	# En PC el formulario se centra con ancho cómodo; en móvil usa casi todo el ancho.
+	var max_form := 440.0 if vp.x >= 700.0 else 520.0
+	var target_w := clampf(vp.x - side * 2.0, 280.0, max_form)
 	content.custom_minimum_size = Vector2(target_w, 0)
 	content.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 
 
 func _ensure_login_extras() -> void:
-	# Placeholders and copy from mockup
 	login_user_input.placeholder_text = "Correo electrónico o usuario"
 	login_pass_input.placeholder_text = "Contraseña"
 	card_title.text = "¡Bienvenido a GuayGo!"
 	card_subtitle.text = "Inicia sesión para continuar"
 	tagline.text = "Conecta. Une. Vive experiencias."
-	app_title.text = "[center][font_size=34][color=#0066ff][b]GuayGo[/b][/color][/font_size][/center]"
-	footer.text = "💛 Hecho para unir personas  ·  +2.5K personas ya están dentro"
+	app_title.text = "[center][font_size=32][color=#0066ff][b]GuayGo[/b][/color][/font_size][/center]"
+	footer.text = "Hecho para unir personas  ·  +2.5K personas ya están dentro"
 
-	var chip_m = $Center/Content/Brand/Features/ChipMissions/Label
-	var chip_l = $Center/Content/Brand/Features/ChipLeagues/Label
-	var chip_r = $Center/Content/Brand/Features/ChipRanking/Label
-	chip_m.text = "🎯 Misiones"
-	chip_l.text = "🏆 Ligas"
-	chip_r.text = "📅 Eventos"
+	var chip_m = get_node(ROOT + "/Brand/Features/ChipMissions/Label")
+	var chip_l = get_node(ROOT + "/Brand/Features/ChipLeagues/Label")
+	var chip_r = get_node(ROOT + "/Brand/Features/ChipRanking/Label")
+	chip_m.text = "Misiones"
+	chip_l.text = "Ligas"
+	chip_r.text = "Eventos"
 
-	# Forgot password
 	if form_card.get_node_or_null("FormVBox/ForgotRow") == null:
 		var forgot_row := HBoxContainer.new()
 		forgot_row.name = "ForgotRow"
@@ -90,7 +95,6 @@ func _ensure_login_extras() -> void:
 		form_card.get_node("FormVBox").add_child(forgot_row)
 		form_card.get_node("FormVBox").move_child(forgot_row, submit_btn.get_index())
 
-	# Social row (UI del mockup; auth real sigue siendo usuario/clave del backend)
 	if form_card.get_node_or_null("FormVBox/SocialBlock") == null:
 		var social := VBoxContainer.new()
 		social.name = "SocialBlock"
@@ -105,8 +109,8 @@ func _ensure_login_extras() -> void:
 		_social_row.add_theme_constant_override("separation", 16)
 		for pair in [["G", "Google"], ["", "Apple"], ["f", "Facebook"]]:
 			var b2 := Button.new()
-			b2.custom_minimum_size = Vector2(52, 52)
-			b2.text = pair[0]
+			b2.custom_minimum_size = Vector2(48, 48)
+			b2.text = pair[0] if pair[0] != "" else "A"
 			b2.tooltip_text = pair[1]
 			b2.pressed.connect(_on_social_pressed.bind(pair[1]))
 			GuayTheme.apply_button_outline(b2)
@@ -114,7 +118,6 @@ func _ensure_login_extras() -> void:
 		social.add_child(_social_row)
 		form_card.get_node("FormVBox").add_child(social)
 
-	# Outline "Crear cuenta" under social when on login tab
 	if form_card.get_node_or_null("FormVBox/CreateOutline") == null:
 		_create_outline_btn = Button.new()
 		_create_outline_btn.name = "CreateOutline"
@@ -152,9 +155,9 @@ func _apply_login_styles() -> void:
 		GuayTheme.apply_label(label, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_SECONDARY)
 
 	for chip_path in [
-		"Center/Content/Brand/Features/ChipMissions",
-		"Center/Content/Brand/Features/ChipLeagues",
-		"Center/Content/Brand/Features/ChipRanking",
+		ROOT + "/Brand/Features/ChipMissions",
+		ROOT + "/Brand/Features/ChipLeagues",
+		ROOT + "/Brand/Features/ChipRanking",
 	]:
 		var chip = get_node_or_null(chip_path)
 		if chip:
@@ -168,23 +171,13 @@ func _apply_login_styles() -> void:
 
 	deco_top.modulate = Color(GuayTheme.COLOR_PRIMARY.r, GuayTheme.COLOR_PRIMARY.g, GuayTheme.COLOR_PRIMARY.b, 0.12)
 	deco_bottom.modulate = Color(GuayTheme.COLOR_ACCENT_GOLD.r, GuayTheme.COLOR_ACCENT_GOLD.g, GuayTheme.COLOR_ACCENT_GOLD.b, 0.14)
-
 	_update_tabs(true)
-
-
-func _animate_logo() -> void:
-	var tween = create_tween().set_loops()
-	tween.tween_property(logo_panel, "scale", Vector2(1.04, 1.04), 2.2).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(logo_panel, "scale", Vector2.ONE, 2.2).set_trans(Tween.TRANS_SINE)
 
 
 func _animate_deco() -> void:
 	var t1 = create_tween().set_loops()
-	t1.tween_property(deco_top, "position", deco_top.position + Vector2(0, 12), 5.0).set_trans(Tween.TRANS_SINE)
-	t1.tween_property(deco_top, "position", deco_top.position, 5.0).set_trans(Tween.TRANS_SINE)
-	var t2 = create_tween().set_loops()
-	t2.tween_property(deco_bottom, "position", deco_bottom.position + Vector2(0, -10), 6.0).set_trans(Tween.TRANS_SINE)
-	t2.tween_property(deco_bottom, "position", deco_bottom.position, 6.0).set_trans(Tween.TRANS_SINE)
+	t1.tween_property(deco_top, "modulate:a", 0.18, 4.0).set_trans(Tween.TRANS_SINE)
+	t1.tween_property(deco_top, "modulate:a", 0.10, 4.0).set_trans(Tween.TRANS_SINE)
 
 
 func _on_forgot_pressed() -> void:
@@ -194,7 +187,7 @@ func _on_forgot_pressed() -> void:
 func _on_social_pressed(provider: String) -> void:
 	Globals.show_popup(
 		self,
-		provider,
+		"Próximamente",
 		"El login con %s estará disponible pronto. Por ahora usa usuario/correo y contraseña." % provider
 	)
 
@@ -202,7 +195,7 @@ func _on_social_pressed(provider: String) -> void:
 func _on_submit_pressed() -> void:
 	if login_section.visible:
 		_on_submit_login_pressed()
-	if register_section.visible:
+	else:
 		_on_submit_register_pressed()
 
 
@@ -255,9 +248,6 @@ func _on_tab_login_pressed() -> void:
 	var social = form_card.get_node_or_null("FormVBox/SocialBlock")
 	if social:
 		social.visible = true
-	var forgot = form_card.get_node_or_null("FormVBox/ForgotRow")
-	if forgot:
-		forgot.visible = true
 	for le in [login_user_input, login_pass_input]:
 		GuayTheme.apply_line_edit(le)
 
@@ -265,7 +255,7 @@ func _on_tab_login_pressed() -> void:
 func _on_tab_register_pressed() -> void:
 	_update_tabs(false)
 	card_title.text = "Crea tu cuenta"
-	card_subtitle.text = "Únete y empieza tu aventura"
+	card_subtitle.text = "Únete a GuayGo en segundos"
 	submit_btn.text = "Crear mi cuenta  →"
 	login_section.visible = false
 	register_section.visible = true
@@ -274,9 +264,6 @@ func _on_tab_register_pressed() -> void:
 	var social = form_card.get_node_or_null("FormVBox/SocialBlock")
 	if social:
 		social.visible = false
-	var forgot = form_card.get_node_or_null("FormVBox/ForgotRow")
-	if forgot:
-		forgot.visible = false
 	for le in [register_user_input, register_email_input, register_pass_input]:
 		GuayTheme.apply_line_edit(le)
 
@@ -284,6 +271,3 @@ func _on_tab_register_pressed() -> void:
 func _update_tabs(is_login: bool) -> void:
 	GuayTheme.apply_tab(btn_login, is_login)
 	GuayTheme.apply_tab(btn_register, not is_login)
-	var tween = create_tween()
-	form_card.scale = Vector2(0.97, 0.97)
-	tween.tween_property(form_card, "scale", Vector2.ONE, 0.22).set_trans(Tween.TRANS_BACK)
