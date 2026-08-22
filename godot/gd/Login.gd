@@ -66,24 +66,33 @@ func _setup_hero() -> void:
 func _adapt_layout() -> void:
 	var vp := get_viewport_rect().size
 	var is_desktop := vp.x >= 900.0
+	var is_short := vp.y < 780.0
 	var side := 16.0
 	if is_desktop:
-		side = maxf(24.0, (vp.x - 440.0) * 0.5)
+		side = maxf(24.0, (vp.x - 480.0) * 0.5)
 	elif vp.x < 400.0:
 		side = 12.0
 	margin.add_theme_constant_override("margin_left", int(side))
 	margin.add_theme_constant_override("margin_right", int(side))
-	margin.add_theme_constant_override("margin_top", 20 if is_desktop else 12)
-	margin.add_theme_constant_override("margin_bottom", 20 if is_desktop else 12)
+	margin.add_theme_constant_override("margin_top", 24 if is_desktop else (8 if is_short else 12))
+	margin.add_theme_constant_override("margin_bottom", 24 if is_desktop else (8 if is_short else 12))
 
-	var target_w := 420.0 if is_desktop else clampf(vp.x - side * 2.0, 300.0, 420.0)
+	var target_w := 460.0 if is_desktop else clampf(vp.x - side * 2.0, 300.0, 420.0)
 	content.custom_minimum_size = Vector2(target_w, 0)
 	content.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	content.add_theme_constant_override("separation", 10 if is_short else 14)
+
+	# Compactar marca en pantallas bajas para que no se corte el botón.
+	var brand = get_node_or_null(ROOT + "/Brand")
+	if brand and _desc_label:
+		_desc_label.visible = not is_short
+	var features = get_node_or_null(ROOT + "/Brand/Features")
+	if features:
+		features.visible = not (is_short and not is_desktop)
 
 	if hero:
 		hero.visible = true
-		# Más visible el mockup de fondo en desktop
-		hero.modulate = Color(1, 1, 1, 0.55 if is_desktop else 0.28)
+		hero.modulate = Color(1, 1, 1, 0.62 if is_desktop else 0.32)
 
 
 func _ensure_login_extras() -> void:
@@ -179,7 +188,7 @@ func _apply_login_styles() -> void:
 	GuayTheme.apply_panel(form_card, GuayTheme.login_card())
 	GuayTheme.apply_panel(tab_switcher, GuayTheme.tab_bar_bg())
 	GuayTheme.apply_button_primary(submit_btn)
-	submit_btn.text = "Entrar a GuayGo  →"
+	submit_btn.text = "Entrar a GuayGo"
 	submit_btn.add_theme_font_size_override("font_size", GuayTheme.FONT_BODY + 1)
 
 	for le in [login_user_input, login_pass_input, register_user_input, register_email_input, register_pass_input]:
@@ -258,7 +267,7 @@ func _on_submit_register_pressed() -> void:
 
 func _on_login_request_completed(_result, response_code, _headers, body) -> void:
 	submit_btn.disabled = false
-	submit_btn.text = "Entrar a GuayGo  →" if login_section.visible else "Crear mi cuenta  →"
+	submit_btn.text = "Entrar a GuayGo" if login_section.visible else "Crear mi cuenta"
 	var callback = func(response: Dictionary):
 		Globals.erase_all()
 		Globals.set_profile(response)
@@ -270,7 +279,7 @@ func _on_tab_login_pressed() -> void:
 	_update_tabs(true)
 	card_title.text = "¡Bienvenido a GuayGo!"
 	card_subtitle.text = "Inicia sesión para continuar"
-	submit_btn.text = "Entrar a GuayGo  →"
+	submit_btn.text = "Entrar a GuayGo"
 	login_section.visible = true
 	register_section.visible = false
 	if _create_outline_btn:
@@ -284,7 +293,7 @@ func _on_tab_register_pressed() -> void:
 	_update_tabs(false)
 	card_title.text = "Crea tu cuenta"
 	card_subtitle.text = "Únete a GuayGo en segundos"
-	submit_btn.text = "Crear mi cuenta  →"
+	submit_btn.text = "Crear mi cuenta"
 	login_section.visible = false
 	register_section.visible = true
 	if _create_outline_btn:
