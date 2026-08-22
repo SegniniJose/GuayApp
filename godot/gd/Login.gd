@@ -1,7 +1,7 @@
 extends Control
 class_name Login
 
-## Login construido como el mockup (no usa la imagen de referencia como fondo).
+## Login compacto: nada se corta. Footer dentro del flujo (no overlay).
 
 const ROOT := "Scroll/Margin/Content"
 
@@ -34,18 +34,23 @@ const ROOT := "Scroll/Margin/Content"
 
 var _field_labels: Array[Label] = []
 var _forgot_btn: LinkButton
-var _social_row: HBoxContainer
+var _social_block: VBoxContainer
 var _create_outline_btn: Button
 var _desc_label: Label
-var _footer_bar: PanelContainer
+var _inline_footer: PanelContainer
 
 
 func _ready() -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	# Scroll vertical si hace falta (nunca cortar controles)
+	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	if hero:
 		hero.visible = false
 		hero.texture = null
+	# Quitar footer overlay de builds anteriores (era lo que tapaba todo)
+	var old_bar = get_node_or_null("FooterBar")
+	if old_bar:
+		old_bar.queue_free()
 	_setup_mockup_background()
 	_collect_field_labels()
 	_ensure_login_extras()
@@ -58,7 +63,6 @@ func _ready() -> void:
 
 
 func _setup_mockup_background() -> void:
-	# Fondo limpio tipo mockup (blobs azul/amarillo), sin foto de referencia.
 	if background:
 		background.modulate = Color.WHITE
 	deco_top.modulate = Color(GuayTheme.COLOR_PRIMARY.r, GuayTheme.COLOR_PRIMARY.g, GuayTheme.COLOR_PRIMARY.b, 0.16)
@@ -68,27 +72,34 @@ func _setup_mockup_background() -> void:
 
 func _adapt_layout() -> void:
 	var vp := get_viewport_rect().size
-	var is_desktop := vp.x >= 960.0
+	var is_desktop := vp.x >= 900.0
 	var h := vp.y
-	var show_logo := h >= 640.0
-	var show_desc := h >= 760.0
-	var show_chips := h >= 680.0
-	var pad_y := 10 if h < 720.0 else 20
+	# Compactación agresiva según altura útil
+	var show_logo := h >= 780.0
+	var show_tagline := h >= 700.0
+	var show_desc := h >= 860.0
+	var show_chips := h >= 820.0
+	var show_social := h >= 620.0
+	var show_create_outline := h >= 660.0 and login_section.visible
+	var pad_y := 8 if h < 720.0 else 16
 	var pad_x := 16.0
 	if is_desktop:
-		pad_x = maxf(40.0, (vp.x - 440.0) * 0.5)
+		pad_x = maxf(24.0, (vp.x - 420.0) * 0.5)
+
 	margin.add_theme_constant_override("margin_left", int(pad_x))
 	margin.add_theme_constant_override("margin_right", int(pad_x))
 	margin.add_theme_constant_override("margin_top", pad_y)
-	margin.add_theme_constant_override("margin_bottom", pad_y + (56 if _footer_bar else 0))
+	margin.add_theme_constant_override("margin_bottom", pad_y)
 
-	content.custom_minimum_size = Vector2(420.0 if is_desktop else clampf(vp.x - pad_x * 2.0, 300.0, 400.0), 0)
+	content.custom_minimum_size = Vector2(400.0 if is_desktop else clampf(vp.x - pad_x * 2.0, 280.0, 400.0), 0)
 	content.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	content.add_theme_constant_override("separation", 8 if h < 700.0 else 12)
+	content.add_theme_constant_override("separation", 6 if h < 720.0 else 10)
 
 	var logo_wrap = get_node_or_null(ROOT + "/Brand/LogoWrap")
 	if logo_wrap:
 		logo_wrap.visible = show_logo
+	if tagline:
+		tagline.visible = show_tagline
 	if _desc_label:
 		_desc_label.visible = show_desc
 	var features = get_node_or_null(ROOT + "/Brand/Features")
@@ -96,16 +107,22 @@ func _adapt_layout() -> void:
 		features.visible = show_chips
 	if footer:
 		footer.visible = false
-	if _footer_bar:
-		_footer_bar.visible = true
+	if _social_block:
+		_social_block.visible = show_social and login_section.visible
+	if _create_outline_btn:
+		_create_outline_btn.visible = show_create_outline
+	if _inline_footer:
+		_inline_footer.visible = true
 
-	var field_h := 42 if h < 700.0 else 48
+	var field_h := 40 if h < 700.0 else 46
 	for le in [login_user_input, login_pass_input, register_user_input, register_email_input, register_pass_input]:
 		if le:
 			le.custom_minimum_size = Vector2(0, field_h)
 	if submit_btn:
-		submit_btn.custom_minimum_size = Vector2(0, 48)
-	app_title.text = "[center][font_size=%d][color=#1a56db][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]" % (30 if h < 700.0 else 36)
+		submit_btn.custom_minimum_size = Vector2(0, 44 if h < 700.0 else 48)
+	if app_title:
+		app_title.visible = true
+		app_title.text = "[center][font_size=%d][color=#1a56db][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]" % (26 if h < 700.0 else 32)
 
 
 func _ensure_login_extras() -> void:
@@ -135,7 +152,9 @@ func _ensure_login_extras() -> void:
 	get_node(ROOT + "/Brand/Features/ChipLeagues/Label").text = "🏆  Ligas"
 	get_node(ROOT + "/Brand/Features/ChipRanking/Label").text = "📅  Eventos"
 
-	if form_card.get_node_or_null("FormVBox/ForgotRow") == null:
+	var form_vbox: VBoxContainer = form_card.get_node("FormVBox")
+
+	if form_vbox.get_node_or_null("ForgotRow") == null:
 		var forgot_row := HBoxContainer.new()
 		forgot_row.name = "ForgotRow"
 		forgot_row.alignment = BoxContainer.ALIGNMENT_END
@@ -144,63 +163,70 @@ func _ensure_login_extras() -> void:
 		_forgot_btn.underline = LinkButton.UNDERLINE_MODE_NEVER
 		_forgot_btn.pressed.connect(_on_forgot_pressed)
 		forgot_row.add_child(_forgot_btn)
-		form_card.get_node("FormVBox").add_child(forgot_row)
-		form_card.get_node("FormVBox").move_child(forgot_row, submit_btn.get_index())
+		form_vbox.add_child(forgot_row)
+		form_vbox.move_child(forgot_row, submit_btn.get_index())
+	else:
+		_forgot_btn = form_vbox.get_node("ForgotRow").get_child(0) as LinkButton
 
-	if form_card.get_node_or_null("FormVBox/SocialBlock") == null:
-		var social := VBoxContainer.new()
-		social.name = "SocialBlock"
-		social.add_theme_constant_override("separation", 8)
+	if form_vbox.get_node_or_null("SocialBlock") == null:
+		_social_block = VBoxContainer.new()
+		_social_block.name = "SocialBlock"
+		_social_block.add_theme_constant_override("separation", 6)
 		var sep := Label.new()
 		sep.text = "o continúa con"
 		sep.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		GuayTheme.apply_label(sep, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
-		social.add_child(sep)
-		_social_row = HBoxContainer.new()
-		_social_row.alignment = BoxContainer.ALIGNMENT_CENTER
-		_social_row.add_theme_constant_override("separation", 14)
+		_social_block.add_child(sep)
+		var social_row := HBoxContainer.new()
+		social_row.alignment = BoxContainer.ALIGNMENT_CENTER
+		social_row.add_theme_constant_override("separation", 12)
 		for pair in [["G", "Google"], ["A", "Apple"], ["f", "Facebook"]]:
 			var b2 := Button.new()
-			b2.custom_minimum_size = Vector2(48, 48)
+			b2.custom_minimum_size = Vector2(42, 42)
 			b2.text = pair[0]
 			b2.tooltip_text = pair[1]
 			b2.pressed.connect(_on_social_pressed.bind(pair[1]))
-			var circle := GuayTheme.make_flat(Color.WHITE, 24, 4, GuayTheme.COLOR_BORDER, 1)
+			var circle := GuayTheme.make_flat(Color.WHITE, 21, 3, GuayTheme.COLOR_BORDER, 1)
 			b2.add_theme_stylebox_override("normal", circle)
-			b2.add_theme_stylebox_override("hover", GuayTheme.make_flat(GuayTheme.COLOR_PRIMARY_LIGHT, 24, 4, GuayTheme.COLOR_PRIMARY, 1))
+			b2.add_theme_stylebox_override("hover", GuayTheme.make_flat(GuayTheme.COLOR_PRIMARY_LIGHT, 21, 3, GuayTheme.COLOR_PRIMARY, 1))
 			b2.add_theme_color_override("font_color", GuayTheme.COLOR_TEXT)
-			_social_row.add_child(b2)
-		social.add_child(_social_row)
-		form_card.get_node("FormVBox").add_child(social)
+			social_row.add_child(b2)
+		_social_block.add_child(social_row)
+		form_vbox.add_child(_social_block)
+	else:
+		_social_block = form_vbox.get_node("SocialBlock")
 
-	if form_card.get_node_or_null("FormVBox/CreateOutline") == null:
+	if form_vbox.get_node_or_null("CreateOutline") == null:
 		_create_outline_btn = Button.new()
 		_create_outline_btn.name = "CreateOutline"
-		_create_outline_btn.custom_minimum_size = Vector2(0, 46)
+		_create_outline_btn.custom_minimum_size = Vector2(0, 42)
 		_create_outline_btn.text = "Crear cuenta"
 		_create_outline_btn.pressed.connect(_on_tab_register_pressed)
-		form_card.get_node("FormVBox").add_child(_create_outline_btn)
-
-	# Footer azul del mockup
-	if get_node_or_null("FooterBar") == null:
-		_footer_bar = PanelContainer.new()
-		_footer_bar.name = "FooterBar"
-		_footer_bar.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
-		_footer_bar.offset_top = -64
-		_footer_bar.add_theme_stylebox_override("panel", GuayTheme.make_flat(GuayTheme.COLOR_FOOTER_BLUE, 0, 0))
-		var fl := Label.new()
-		fl.text = "💛  Hecho para unir personas    ·    +2.5K personas ya están dentro"
-		fl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		fl.add_theme_color_override("font_color", Color.WHITE)
-		fl.add_theme_font_size_override("font_size", 13)
-		var fm := MarginContainer.new()
-		fm.add_theme_constant_override("margin_top", 18)
-		fm.add_theme_constant_override("margin_bottom", 18)
-		fm.add_child(fl)
-		_footer_bar.add_child(fm)
-		add_child(_footer_bar)
+		form_vbox.add_child(_create_outline_btn)
 	else:
-		_footer_bar = get_node("FooterBar")
+		_create_outline_btn = form_vbox.get_node("CreateOutline")
+
+	# Footer DENTRO del contenido (no fijo encima) — evita cortar botones
+	if content.get_node_or_null("InlineFooter") == null:
+		_inline_footer = PanelContainer.new()
+		_inline_footer.name = "InlineFooter"
+		_inline_footer.add_theme_stylebox_override("panel", GuayTheme.make_flat(GuayTheme.COLOR_FOOTER_BLUE, 16, 0))
+		var fl := Label.new()
+		fl.text = "💛  Hecho para unir personas  ·  +2.5K dentro"
+		fl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		fl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		fl.add_theme_color_override("font_color", Color.WHITE)
+		fl.add_theme_font_size_override("font_size", 12)
+		var fm := MarginContainer.new()
+		fm.add_theme_constant_override("margin_left", 12)
+		fm.add_theme_constant_override("margin_right", 12)
+		fm.add_theme_constant_override("margin_top", 10)
+		fm.add_theme_constant_override("margin_bottom", 10)
+		fm.add_child(fl)
+		_inline_footer.add_child(fm)
+		content.add_child(_inline_footer)
+	else:
+		_inline_footer = content.get_node("InlineFooter")
 
 
 func _collect_field_labels() -> void:
@@ -307,9 +333,8 @@ func _on_tab_register_pressed() -> void:
 	register_section.visible = true
 	if _create_outline_btn:
 		_create_outline_btn.visible = false
-	var social = form_card.get_node_or_null("FormVBox/SocialBlock")
-	if social:
-		social.visible = false
+	if _social_block:
+		_social_block.visible = false
 
 
 func _update_tabs(is_login: bool) -> void:
