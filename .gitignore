@@ -27,3 +27,8 @@ docs/.nojekyll
 
 !ios/.gdignore
 !android/.gdignore
+
+_fix_web/
+_ios_out/
+_live_index.html
+

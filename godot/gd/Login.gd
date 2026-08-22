@@ -49,14 +49,15 @@ func _ready() -> void:
 func _adapt_content_width() -> void:
 	var content: VBoxContainer = $Center/Content
 	var vp_w := get_viewport_rect().size.x
-	# Márgenes laterales según ancho (móvil / tablet / PC-marco).
-	var side_pad := 24.0
+	# Usa casi todo el ancho del viewport (márgenes pequeños).
+	var side_pad := 20.0
 	if vp_w < 360.0:
-		side_pad = 16.0
-	elif vp_w >= 500.0:
-		side_pad = 28.0
-	var target_w := clampf(vp_w - side_pad * 2.0, 260.0, 400.0)
+		side_pad = 12.0
+	elif vp_w >= 420.0:
+		side_pad = 24.0
+	var target_w := clampf(vp_w - side_pad * 2.0, 280.0, 390.0)
 	content.custom_minimum_size = Vector2(target_w, 0)
+	content.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 
 
 func _ensure_login_extras() -> void:
