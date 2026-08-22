@@ -1,22 +1,25 @@
 extends Node
 
-## Pantalla completa en web, móvil y escritorio (sin marcos).
-enum DeviceClass { PHONE, TABLET, DESKTOP }
+## Escala nítida + pantalla completa (sin barras negras ni blur).
 
 
 func _ready() -> void:
-	get_tree().root.size_changed.connect(_apply_for_device)
-	call_deferred("_apply_for_device")
+	RenderingServer.set_default_clear_color(Color("f7f9fc"))
+	get_tree().root.size_changed.connect(_apply)
+	call_deferred("_apply")
 
 
-func _apply_for_device() -> void:
+func _apply() -> void:
 	var win := get_window()
-	win.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-	win.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	if win == null:
+		return
+
+	# Clave: desactivar content-scale. El canvas web ya es 1:1 con el píxel.
+	# Así no hay letterbox negro ni upscale borroso desde 390px.
+	win.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 	win.content_scale_factor = 1.0
 
 	if OS.has_feature("web"):
-		# El canvas HTML ya es 100vw/100vh; no forzar tamaños raros.
 		return
 
 	if OS.has_feature("Android") or OS.has_feature("iOS") or OS.has_feature("mobile"):
@@ -26,5 +29,4 @@ func _apply_for_device() -> void:
 			win.size = screen
 		return
 
-	# Desktop nativo: ventana usable a pantalla casi completa
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
