@@ -13,8 +13,15 @@ func _ready() -> void:
 
 func _apply_nav_styles() -> void:
 	add_theme_stylebox_override("panel", GuayTheme.panel_nav())
+	home_btn.text = "🏠\nInicio"
+	list_btn.text = "🎯\nMisiones"
+	chat_btn.text = "💬\nSocial"
+	trophy_btn.text = "🏆\nRanking"
 	for btn in [home_btn, list_btn, chat_btn, trophy_btn]:
-		btn.add_theme_font_size_override("font_size", 28)
+		btn.add_theme_font_size_override("font_size", 12)
+		btn.add_theme_color_override("font_color", GuayTheme.COLOR_TEXT_MUTED)
+		btn.add_theme_color_override("font_hover_color", GuayTheme.COLOR_PRIMARY)
+		btn.add_theme_color_override("font_pressed_color", GuayTheme.COLOR_PRIMARY)
 		btn.flat = true
 
 

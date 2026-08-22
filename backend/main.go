@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
@@ -11,9 +13,25 @@ import (
 
 var DB *gorm.DB
 
+func normalizeDatabaseURL(dbURL string) string {
+	dbURL = strings.TrimSpace(dbURL)
+	if dbURL == "" {
+		return dbURL
+	}
+	if !strings.Contains(dbURL, "sslmode=") {
+		if strings.Contains(dbURL, "?") {
+			return dbURL + "&sslmode=require"
+		}
+		return dbURL + "?sslmode=require"
+	}
+	return dbURL
+}
+
 func initDB() {
 	var err error
-	dbURL := os.Getenv("DATABASE_URL")
+	dbURL := normalizeDatabaseURL(os.Getenv("DATABASE_URL"))
+	fmt.Printf("DATABASE_URL presente: %v\n", dbURL != "")
+
 	if dbURL != "" {
 		DB, err = gorm.Open(postgres.Open(dbURL), &gorm.Config{})
 		if err != nil {
@@ -21,7 +39,6 @@ func initDB() {
 		}
 		println("Conectado con éxito a PostgreSQL (Producción).")
 	} else {
-		// SQLite local para desarrollo
 		DB, err = gorm.Open(sqlite.Open("guaygo.db"), &gorm.Config{})
 		if err != nil {
 			panic("Error al conectar a la base de datos SQLite: " + err.Error())
@@ -29,7 +46,6 @@ func initDB() {
 		println("Conectado con éxito a SQLite local (Desarrollo).")
 	}
 
-	// Migraciones automáticas de GORM
 	DB.AutoMigrate(
 		&User{},
 		&League{},
@@ -65,7 +81,6 @@ func main() {
 	initDB()
 	seedMissions()
 
-	// En Render el entorno suele ser Release. En local podemos dejarlo por defecto.
 	if os.Getenv("DATABASE_URL") != "" {
 		gin.SetMode(gin.ReleaseMode)
 	}
@@ -77,7 +92,7 @@ func main() {
 		c.JSON(200, gin.H{
 			"app":     "GuayApp Backend",
 			"status":  "online",
-			"version": "1.0.0",
+			"version": "1.0.1",
 			"docs":    "https://guay-app-social.web.app/admin.html",
 		})
 	})
@@ -85,17 +100,14 @@ func main() {
 		c.JSON(200, gin.H{"status": "ok"})
 	})
 
-	// --- 1. Rutas de Autenticación ---
 	r.POST("/api/auth/register", handleRegister)
 	r.POST("/api/auth/login", handleLogin)
 
-	// --- 2. Rutas de Usuarios ---
 	r.GET("/api/users/:userId/profile", handleGetProfile)
 	r.GET("/api/users/:userId/photo-count", handleGetPhotoCount)
 	r.GET("/api/users/:userId/suggestions", handleGetSuggestions)
 	r.GET("/api/users/search", handleSearchUsers)
 
-	// --- 3. Rutas de Amistad ---
 	r.POST("/api/friends/request", handleFriendRequest)
 	r.POST("/api/friends/accept", handleFriendAccept)
 	r.POST("/api/friends/reject", handleFriendReject)
@@ -103,7 +115,6 @@ func main() {
 	r.GET("/api/friends/:userId/pending", handleGetPendingFriends)
 	r.GET("/api/friends/:userId/sent", handleGetSentRequests)
 
-	// --- 4. Rutas de Ligas ---
 	r.POST("/api/leagues", handleCreateLeague)
 	r.GET("/api/leagues/code/:code", handleGetLeagueByCode)
 	r.GET("/api/leagues/id/:leagueId", handleGetLeagueByID)
@@ -112,26 +123,22 @@ func main() {
 	r.GET("/api/leagues/:leagueId/members", handleGetLeagueMembers)
 	r.GET("/api/leagues/public", handleGetPublicLeagues)
 
-	// --- 5. Rutas de Mensajería ---
 	r.GET("/api/messages/:leagueId", handleGetLeagueMessages)
 	r.POST("/api/messages", handleSendLeagueMessage)
 	r.GET("/api/messages/private/:userId/:friendId", handleGetPrivateMessages)
 	r.POST("/api/messages/private", handleSendPrivateMessage)
 	r.GET("/api/messages/unread/:userId", handleGetUnreadMessages)
 
-	// --- 6. Rutas de Misiones e Historias ---
 	r.GET("/api/missions/:leagueId", handleGetMissions)
 	r.POST("/api/missions/:missionId/complete", handleCompleteMission)
 	r.POST("/api/votes", handlePostVote)
 	r.GET("/api/stories/:leagueId", handleGetStories)
 
-	// --- 7. Rutas de Notificaciones ---
 	r.GET("/api/notifications/:userId", handleGetNotifications)
 	r.GET("/api/notifications/:userId/count", handleGetNotificationsCount)
 	r.GET("/api/notifications/:userId/summary", handleGetNotificationsSummary)
 	r.POST("/api/notifications/:userId/mark-all-read", handleMarkAllNotificationsRead)
 
-	// --- 8. Rutas de Administración ---
 	r.POST("/api/admin/missions", handleAdminCreateMission)
 	r.GET("/api/admin/users", handleAdminGetAllUsers)
 

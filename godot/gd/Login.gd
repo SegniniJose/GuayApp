@@ -126,8 +126,8 @@ func _on_login_request_completed(_result, response_code, _headers, body) -> void
 
 func _on_tab_login_pressed() -> void:
 	_update_tabs(true)
-	card_title.text = "Bienvenido de nuevo"
-	card_subtitle.text = "Ingresa tus datos para continuar"
+	card_title.text = "¡Bienvenido a GuayGo!"
+	card_subtitle.text = "Inicia sesión para continuar"
 	submit_btn.text = "Entrar a GuayGo  →"
 	login_section.visible = true
 	register_section.visible = false
@@ -138,8 +138,8 @@ func _on_tab_login_pressed() -> void:
 func _on_tab_register_pressed() -> void:
 	_update_tabs(false)
 	card_title.text = "Crea tu cuenta"
-	card_subtitle.text = "Únete a la liga y empieza tu aventura"
-	submit_btn.text = "Crear mi cuenta  →"
+	card_subtitle.text = "Únete y empieza tu aventura"
+	submit_btn.text = "Crear cuenta  →"
 	login_section.visible = false
 	register_section.visible = true
 	for le in [register_user_input, register_email_input, register_pass_input]:
