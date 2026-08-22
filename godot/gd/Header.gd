@@ -18,12 +18,16 @@ func _ready() -> void:
 
 func _apply_header_styles() -> void:
 	GuayTheme.apply_link(amigos_btn)
-	amigos_btn.text = "👥 Amigos"
+	amigos_btn.text = "👥  Amigos"
 	GuayTheme.apply_button_ghost(exit_btn, GuayTheme.COLOR_DANGER)
 	exit_btn.text = "Salir"
 	exit_btn.add_theme_font_size_override("font_size", GuayTheme.FONT_LABEL)
 	friend_suggestion_count.add_theme_color_override("default_color", GuayTheme.COLOR_PRIMARY)
-	notifications_count.add_theme_color_override("default_color", GuayTheme.COLOR_ACCENT_GOLD)
+	# Campana (TextureButton) — acento amarillo mockup
+	var notif_btn = get_node_or_null("HBox/Notifications")
+	if notif_btn:
+		notif_btn.modulate = Color("ffc107")
+	notifications_count.add_theme_color_override("default_color", Color.WHITE)
 
 
 func _on_exit_button_pressed() -> void:

@@ -12,6 +12,25 @@ class_name NavBar
 
 func _ready() -> void:
 	_apply_nav_styles()
+	_highlight_active()
+
+
+func _highlight_active() -> void:
+	var scene := str(get_tree().current_scene.scene_file_path) if get_tree().current_scene else ""
+	var active: Button = null
+	if scene.find("Missions") >= 0 or scene.find("Camera") >= 0:
+		active = home_btn
+	elif scene.find("League") >= 0:
+		active = list_btn
+	elif scene.find("Ranking") >= 0:
+		active = trophy_btn
+	elif scene.find("Dashboard") >= 0 or scene.find("Profile") >= 0:
+		active = profile_btn
+	for b in [home_btn, list_btn, trophy_btn, profile_btn]:
+		if b == null:
+			continue
+		var c := GuayTheme.COLOR_PRIMARY if b == active else GuayTheme.COLOR_TEXT_MUTED
+		b.add_theme_color_override("font_color", c)
 
 
 func _apply_nav_styles() -> void:

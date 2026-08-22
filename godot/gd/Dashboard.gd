@@ -30,7 +30,8 @@ func _apply_dashboard_styles() -> void:
 	GuayTheme.apply_panel(profile_card, GuayTheme.panel_surface())
 	GuayTheme.apply_panel(private_card, GuayTheme.panel_surface())
 	GuayTheme.apply_panel(welcome_panel, GuayTheme.panel_hero())
-	GuayTheme.apply_label(username_label, GuayTheme.FONT_HEADING, GuayTheme.COLOR_PRIMARY, true)
+	# Título estilo "Mis estadísticas" + nombre
+	GuayTheme.apply_label(username_label, GuayTheme.FONT_HEADING, GuayTheme.COLOR_PRIMARY_DARK, true)
 	# Botón amarillo como mockup "Empezar misión"
 	var gold_btn := GuayTheme.make_flat(GuayTheme.COLOR_ACCENT_GOLD, 18, 8)
 	create_btn.add_theme_stylebox_override("normal", gold_btn)
@@ -40,9 +41,41 @@ func _apply_dashboard_styles() -> void:
 	create_btn.text = "Empezar misión  →"
 	avatar.custom_minimum_size = Vector2(72, 72)
 
+	# Badge Nivel + "Mis estadísticas" (mockup Perfil)
+	var info = profile_card.get_node_or_null("HBox/InfoVBox")
+	if info and info.get_node_or_null("StatsTitle") == null:
+		var stats_title := Label.new()
+		stats_title.name = "StatsTitle"
+		stats_title.text = "Mis estadísticas"
+		GuayTheme.apply_label(stats_title, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
+		info.add_child(stats_title)
+		info.move_child(stats_title, 0)
+		var level := Label.new()
+		level.name = "LevelBadge"
+		level.text = "  ⭐ Nivel 1  "
+		GuayTheme.apply_label(level, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_PRIMARY, true)
+		var pill := PanelContainer.new()
+		pill.name = "LevelPill"
+		pill.add_theme_stylebox_override("panel", GuayTheme.make_flat(GuayTheme.COLOR_PRIMARY_LIGHT, 14, 0))
+		pill.add_child(level)
+		info.add_child(pill)
+		info.move_child(pill, 2)
+
 	# Hero: MISIÓN RECOMENDADA (mockup Inicio)
 	var welcome_title = welcome_panel.get_node_or_null("Margin/TextContent/Title")
 	var welcome_desc = welcome_panel.get_node_or_null("Margin/TextContent/Desc")
+	if welcome_panel.get_node_or_null("Margin/TextContent/RecBadge") == null:
+		var text_content = welcome_panel.get_node_or_null("Margin/TextContent")
+		if text_content:
+			var badge := Label.new()
+			badge.name = "RecBadge"
+			badge.text = "🔥  MISIÓN RECOMENDADA"
+			GuayTheme.apply_label(badge, GuayTheme.FONT_CAPTION, Color("1a1a1a"), true)
+			var badge_panel := PanelContainer.new()
+			badge_panel.add_theme_stylebox_override("panel", GuayTheme.make_flat(GuayTheme.COLOR_ACCENT_GOLD, 12, 0))
+			badge_panel.add_child(badge)
+			text_content.add_child(badge_panel)
+			text_content.move_child(badge_panel, 0)
 	if welcome_title:
 		welcome_title.text = "¡Completa tu primera misión y gana puntos!"
 		GuayTheme.apply_label(welcome_title, GuayTheme.FONT_HEADING, Color.WHITE, true)
@@ -53,8 +86,8 @@ func _apply_dashboard_styles() -> void:
 	var private_title = private_card.get_node_or_null("HBox/TextContent/Title")
 	var private_sub = private_card.get_node_or_null("HBox/TextContent/Subtitle")
 	if private_title:
-		private_title.text = "Perfil privado"
-		GuayTheme.apply_label(private_title, GuayTheme.FONT_BODY, GuayTheme.COLOR_TEXT, true)
+		private_title.text = "🔒  Perfil privado"
+		GuayTheme.apply_label(private_title, GuayTheme.FONT_BODY, GuayTheme.COLOR_PRIMARY, true)
 	if private_sub:
 		private_sub.text = "Solo tus amigos pueden ver tu galería"
 		GuayTheme.apply_label(private_sub, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
@@ -64,7 +97,7 @@ func _apply_dashboard_styles() -> void:
 		GuayTheme.apply_panel(how, GuayTheme.panel_surface())
 		var how_header = how.get_node_or_null("Margin/Rows/Header")
 		if how_header:
-			how_header.text = "Únete a una liga\nCompleta misiones con fotos\nLa comunidad valida (2 votos)\nSube en el ranking"
+			how_header.text = "👥 Únete a una liga\n📷 Completa misiones con fotos\n✅ La comunidad valida (2 votos)\n🏆 Sube en el ranking"
 			GuayTheme.apply_label(how_header, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_SECONDARY)
 
 

@@ -1,21 +1,23 @@
 extends RefCounted
 class_name GuayTheme
 
-# Paleta GuayGo (mockups azul + amarillo)
-const COLOR_PRIMARY := Color("0066ff")
-const COLOR_PRIMARY_DARK := Color("0052cc")
-const COLOR_PRIMARY_LIGHT := Color("e8f1ff")
-const COLOR_BG := Color("f7f9fc")
+# Paleta GuayGo (referencia mockups)
+const COLOR_PRIMARY := Color("1a56db")
+const COLOR_PRIMARY_DARK := Color("0f3ea8")
+const COLOR_PRIMARY_LIGHT := Color("ebf5ff")
+const COLOR_BG := Color("f5f7fb")
 const COLOR_SURFACE := Color("ffffff")
 const COLOR_TEXT := Color("0f172a")
-const COLOR_TEXT_SECONDARY := Color("475569")
-const COLOR_TEXT_MUTED := Color("8e8e93")
-const COLOR_BORDER := Color("e5e7eb")
+const COLOR_TEXT_SECONDARY := Color("64748b")
+const COLOR_TEXT_MUTED := Color("94a3b8")
+const COLOR_BORDER := Color("e2e8f0")
 const COLOR_ACCENT_GOLD := Color("ffc107")
+const COLOR_ACCENT_ORANGE := Color("f59e0b")
 const COLOR_ACCENT_VIOLET := Color("8b5cf6")
 const COLOR_SUCCESS := Color("10b981")
 const COLOR_DANGER := Color("ef4444")
 const COLOR_HEADER_BG := Color("ffffff")
+const COLOR_FOOTER_BLUE := Color("1a56db")
 
 const FONT_TITLE := 28
 const FONT_HEADING := 22

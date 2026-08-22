@@ -1,7 +1,7 @@
 extends Control
 class_name Login
 
-## Login fluido: cabe en pantalla sin scroll. PC = card centrada sobre hero. Atajos del navegador liberados vía HTML.
+## Login construido como el mockup (no usa la imagen de referencia como fondo).
 
 const ROOT := "Scroll/Margin/Content"
 
@@ -37,13 +37,16 @@ var _forgot_btn: LinkButton
 var _social_row: HBoxContainer
 var _create_outline_btn: Button
 var _desc_label: Label
+var _footer_bar: PanelContainer
 
 
 func _ready() -> void:
-	# Sin scroll: el layout se compacta para caber en la ventana.
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	_setup_hero()
+	if hero:
+		hero.visible = false
+		hero.texture = null
+	_setup_mockup_background()
 	_collect_field_labels()
 	_ensure_login_extras()
 	_apply_login_styles()
@@ -52,85 +55,57 @@ func _ready() -> void:
 	call_deferred("_adapt_layout")
 	login_section.visible = true
 	register_section.visible = false
-	modulate.a = 1.0
 
 
-func _setup_hero() -> void:
-	var tex: Texture2D = load("res://assets/login_mockup.jpg")
-	if tex and hero:
-		hero.texture = tex
-		hero.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		hero.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+func _setup_mockup_background() -> void:
+	# Fondo limpio tipo mockup (blobs azul/amarillo), sin foto de referencia.
 	if background:
-		background.modulate = Color(1, 1, 1, 0.55)
+		background.modulate = Color.WHITE
+	deco_top.modulate = Color(GuayTheme.COLOR_PRIMARY.r, GuayTheme.COLOR_PRIMARY.g, GuayTheme.COLOR_PRIMARY.b, 0.16)
+	deco_bottom.modulate = Color(GuayTheme.COLOR_ACCENT_GOLD.r, GuayTheme.COLOR_ACCENT_GOLD.g, GuayTheme.COLOR_ACCENT_GOLD.b, 0.18)
+	RenderingServer.set_default_clear_color(GuayTheme.COLOR_BG)
 
 
 func _adapt_layout() -> void:
 	var vp := get_viewport_rect().size
 	var is_desktop := vp.x >= 960.0
 	var h := vp.y
-
-	# Compactación agresiva para NO necesitar scroll.
-	var show_logo := h >= 720.0
-	var show_desc := h >= 820.0 and is_desktop
-	var show_chips := h >= 700.0
-	var show_footer := h >= 640.0
-	var show_social := h >= 600.0
-	var pad_y := 8 if h < 700.0 else (16 if h < 900.0 else 28)
+	var show_logo := h >= 640.0
+	var show_desc := h >= 760.0
+	var show_chips := h >= 680.0
+	var pad_y := 10 if h < 720.0 else 20
 	var pad_x := 16.0
 	if is_desktop:
-		pad_x = maxf(32.0, (vp.x - 440.0) * 0.5)
-	elif vp.x < 400.0:
-		pad_x = 12.0
-
+		pad_x = maxf(40.0, (vp.x - 440.0) * 0.5)
 	margin.add_theme_constant_override("margin_left", int(pad_x))
 	margin.add_theme_constant_override("margin_right", int(pad_x))
 	margin.add_theme_constant_override("margin_top", pad_y)
-	margin.add_theme_constant_override("margin_bottom", pad_y)
+	margin.add_theme_constant_override("margin_bottom", pad_y + (56 if _footer_bar else 0))
 
-	var target_w := 420.0 if is_desktop else clampf(vp.x - pad_x * 2.0, 300.0, 400.0)
-	content.custom_minimum_size = Vector2(target_w, 0)
+	content.custom_minimum_size = Vector2(420.0 if is_desktop else clampf(vp.x - pad_x * 2.0, 300.0, 400.0), 0)
 	content.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	content.add_theme_constant_override("separation", 8 if h < 700.0 else 12)
 
 	var logo_wrap = get_node_or_null(ROOT + "/Brand/LogoWrap")
 	if logo_wrap:
 		logo_wrap.visible = show_logo
-	if logo_panel:
-		logo_panel.custom_minimum_size = Vector2(56, 56) if h < 800.0 else Vector2(72, 72)
 	if _desc_label:
 		_desc_label.visible = show_desc
 	var features = get_node_or_null(ROOT + "/Brand/Features")
 	if features:
 		features.visible = show_chips
 	if footer:
-		footer.visible = show_footer
-	var social = form_card.get_node_or_null("FormVBox/SocialBlock") if form_card else null
-	if social:
-		social.visible = show_social and login_section.visible
-	if _create_outline_btn:
-		_create_outline_btn.visible = login_section.visible and h >= 560.0
+		footer.visible = false
+	if _footer_bar:
+		_footer_bar.visible = true
 
-	# Campos más bajos en pantallas cortas
-	var field_h := 40 if h < 700.0 else 48
+	var field_h := 42 if h < 700.0 else 48
 	for le in [login_user_input, login_pass_input, register_user_input, register_email_input, register_pass_input]:
 		if le:
 			le.custom_minimum_size = Vector2(0, field_h)
 	if submit_btn:
-		submit_btn.custom_minimum_size = Vector2(0, 44 if h < 700.0 else 52)
-	if tab_switcher:
-		tab_switcher.custom_minimum_size = Vector2(0, 40 if h < 700.0 else 48)
-
-	if form_card:
-		var form_vbox = form_card.get_node_or_null("FormVBox")
-		if form_vbox:
-			form_vbox.add_theme_constant_override("separation", 10 if h < 700.0 else 14)
-
-	if hero:
-		hero.modulate = Color(1, 1, 1, 0.7 if is_desktop else 0.4)
-	if app_title:
-		var fs := 28 if h < 700.0 else 36
-		app_title.text = "[center][font_size=%d][color=#0056e0][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]" % fs
+		submit_btn.custom_minimum_size = Vector2(0, 48)
+	app_title.text = "[center][font_size=%d][color=#1a56db][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]" % (30 if h < 700.0 else 36)
 
 
 func _ensure_login_extras() -> void:
@@ -139,7 +114,6 @@ func _ensure_login_extras() -> void:
 	card_title.text = "¡Bienvenido a GuayGo!"
 	card_subtitle.text = "Inicia sesión para continuar"
 	tagline.text = "Conecta. Une. Vive experiencias."
-	footer.text = "Hecho para unir personas  ·  +2.5K personas ya estan dentro"
 
 	var brand: VBoxContainer = get_node(ROOT + "/Brand")
 	if brand.get_node_or_null("Desc") == null:
@@ -155,18 +129,18 @@ func _ensure_login_extras() -> void:
 
 	var logo_label = logo_panel.get_node_or_null("LogoLabel")
 	if logo_label:
-		logo_label.text = "G"
+		logo_label.text = "G📍"
 
-	get_node(ROOT + "/Brand/Features/ChipMissions/Label").text = "Misiones"
-	get_node(ROOT + "/Brand/Features/ChipLeagues/Label").text = "Ligas"
-	get_node(ROOT + "/Brand/Features/ChipRanking/Label").text = "Eventos"
+	get_node(ROOT + "/Brand/Features/ChipMissions/Label").text = "🎯  Misiones"
+	get_node(ROOT + "/Brand/Features/ChipLeagues/Label").text = "🏆  Ligas"
+	get_node(ROOT + "/Brand/Features/ChipRanking/Label").text = "📅  Eventos"
 
 	if form_card.get_node_or_null("FormVBox/ForgotRow") == null:
 		var forgot_row := HBoxContainer.new()
 		forgot_row.name = "ForgotRow"
 		forgot_row.alignment = BoxContainer.ALIGNMENT_END
 		_forgot_btn = LinkButton.new()
-		_forgot_btn.text = "Olvidaste tu contraseña?"
+		_forgot_btn.text = "¿Olvidaste tu contraseña?"
 		_forgot_btn.underline = LinkButton.UNDERLINE_MODE_NEVER
 		_forgot_btn.pressed.connect(_on_forgot_pressed)
 		forgot_row.add_child(_forgot_btn)
@@ -178,7 +152,7 @@ func _ensure_login_extras() -> void:
 		social.name = "SocialBlock"
 		social.add_theme_constant_override("separation", 8)
 		var sep := Label.new()
-		sep.text = "o continua con"
+		sep.text = "o continúa con"
 		sep.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		GuayTheme.apply_label(sep, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
 		social.add_child(sep)
@@ -187,14 +161,14 @@ func _ensure_login_extras() -> void:
 		_social_row.add_theme_constant_override("separation", 14)
 		for pair in [["G", "Google"], ["A", "Apple"], ["f", "Facebook"]]:
 			var b2 := Button.new()
-			b2.custom_minimum_size = Vector2(44, 44)
+			b2.custom_minimum_size = Vector2(48, 48)
 			b2.text = pair[0]
 			b2.tooltip_text = pair[1]
 			b2.pressed.connect(_on_social_pressed.bind(pair[1]))
-			var circle := GuayTheme.make_flat(Color.WHITE, 22, 2, GuayTheme.COLOR_PRIMARY, 2)
+			var circle := GuayTheme.make_flat(Color.WHITE, 24, 4, GuayTheme.COLOR_BORDER, 1)
 			b2.add_theme_stylebox_override("normal", circle)
-			b2.add_theme_stylebox_override("hover", GuayTheme.make_flat(GuayTheme.COLOR_PRIMARY_LIGHT, 22, 2, GuayTheme.COLOR_PRIMARY, 2))
-			b2.add_theme_color_override("font_color", GuayTheme.COLOR_PRIMARY)
+			b2.add_theme_stylebox_override("hover", GuayTheme.make_flat(GuayTheme.COLOR_PRIMARY_LIGHT, 24, 4, GuayTheme.COLOR_PRIMARY, 1))
+			b2.add_theme_color_override("font_color", GuayTheme.COLOR_TEXT)
 			_social_row.add_child(b2)
 		social.add_child(_social_row)
 		form_card.get_node("FormVBox").add_child(social)
@@ -202,10 +176,31 @@ func _ensure_login_extras() -> void:
 	if form_card.get_node_or_null("FormVBox/CreateOutline") == null:
 		_create_outline_btn = Button.new()
 		_create_outline_btn.name = "CreateOutline"
-		_create_outline_btn.custom_minimum_size = Vector2(0, 44)
+		_create_outline_btn.custom_minimum_size = Vector2(0, 46)
 		_create_outline_btn.text = "Crear cuenta"
 		_create_outline_btn.pressed.connect(_on_tab_register_pressed)
 		form_card.get_node("FormVBox").add_child(_create_outline_btn)
+
+	# Footer azul del mockup
+	if get_node_or_null("FooterBar") == null:
+		_footer_bar = PanelContainer.new()
+		_footer_bar.name = "FooterBar"
+		_footer_bar.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+		_footer_bar.offset_top = -64
+		_footer_bar.add_theme_stylebox_override("panel", GuayTheme.make_flat(GuayTheme.COLOR_FOOTER_BLUE, 0, 0))
+		var fl := Label.new()
+		fl.text = "💛  Hecho para unir personas    ·    +2.5K personas ya están dentro"
+		fl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		fl.add_theme_color_override("font_color", Color.WHITE)
+		fl.add_theme_font_size_override("font_size", 13)
+		var fm := MarginContainer.new()
+		fm.add_theme_constant_override("margin_top", 18)
+		fm.add_theme_constant_override("margin_bottom", 18)
+		fm.add_child(fl)
+		_footer_bar.add_child(fm)
+		add_child(_footer_bar)
+	else:
+		_footer_bar = get_node("FooterBar")
 
 
 func _collect_field_labels() -> void:
@@ -228,7 +223,6 @@ func _apply_login_styles() -> void:
 	GuayTheme.apply_label(card_title, GuayTheme.FONT_HEADING, GuayTheme.COLOR_PRIMARY_DARK, true)
 	GuayTheme.apply_label(card_subtitle, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_SECONDARY)
 	GuayTheme.apply_label(tagline, GuayTheme.FONT_BODY, GuayTheme.COLOR_PRIMARY, true)
-	GuayTheme.apply_label(footer, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
 	if _desc_label:
 		GuayTheme.apply_label(_desc_label, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_SECONDARY)
 	for label in _field_labels:
@@ -241,8 +235,6 @@ func _apply_login_styles() -> void:
 		GuayTheme.apply_link(_forgot_btn)
 	if _create_outline_btn:
 		GuayTheme.apply_button_outline(_create_outline_btn)
-	deco_top.modulate = Color(GuayTheme.COLOR_PRIMARY.r, GuayTheme.COLOR_PRIMARY.g, GuayTheme.COLOR_PRIMARY.b, 0.12)
-	deco_bottom.modulate = Color(GuayTheme.COLOR_ACCENT_GOLD.r, GuayTheme.COLOR_ACCENT_GOLD.g, GuayTheme.COLOR_ACCENT_GOLD.b, 0.12)
 	_update_tabs(true)
 
 
@@ -251,7 +243,7 @@ func _on_forgot_pressed() -> void:
 
 
 func _on_social_pressed(provider: String) -> void:
-	Globals.show_popup(self, "Proximamente", "Login con %s pronto. Usa usuario y contrasena." % provider)
+	Globals.show_popup(self, "Próximamente", "Login con %s pronto. Usa usuario y contraseña." % provider)
 
 
 func _on_submit_pressed() -> void:
@@ -270,8 +262,7 @@ func _on_submit_login_pressed() -> void:
 		return
 	submit_btn.disabled = true
 	submit_btn.text = "Conectando..."
-	var data = {"identifier": username, "password": password}
-	login_request.request("%s/api/auth/login" % Globals.base_url, Globals.headers, HTTPClient.METHOD_POST, JSON.stringify(data))
+	login_request.request("%s/api/auth/login" % Globals.base_url, Globals.headers, HTTPClient.METHOD_POST, JSON.stringify({"identifier": username, "password": password}))
 
 
 func _on_submit_register_pressed() -> void:
@@ -284,8 +275,7 @@ func _on_submit_register_pressed() -> void:
 		return
 	submit_btn.disabled = true
 	submit_btn.text = "Creando cuenta..."
-	var data = {"username": username, "email": email, "password": password}
-	login_request.request(Globals.get_api_auth_register_url(), Globals.headers, HTTPClient.METHOD_POST, JSON.stringify(data))
+	login_request.request(Globals.get_api_auth_register_url(), Globals.headers, HTTPClient.METHOD_POST, JSON.stringify({"username": username, "email": email, "password": password}))
 
 
 func _on_login_request_completed(_result, response_code, _headers, body) -> void:
@@ -301,7 +291,7 @@ func _on_login_request_completed(_result, response_code, _headers, body) -> void
 func _on_tab_login_pressed() -> void:
 	_update_tabs(true)
 	card_title.text = "¡Bienvenido a GuayGo!"
-	card_subtitle.text = "Inicia sesion para continuar"
+	card_subtitle.text = "Inicia sesión para continuar"
 	submit_btn.text = "Entrar a GuayGo"
 	login_section.visible = true
 	register_section.visible = false
@@ -311,7 +301,7 @@ func _on_tab_login_pressed() -> void:
 func _on_tab_register_pressed() -> void:
 	_update_tabs(false)
 	card_title.text = "Crea tu cuenta"
-	card_subtitle.text = "Unete a GuayGo en segundos"
+	card_subtitle.text = "Únete a GuayGo en segundos"
 	submit_btn.text = "Crear mi cuenta"
 	login_section.visible = false
 	register_section.visible = true
