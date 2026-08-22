@@ -27,6 +27,7 @@ const FORM := "Scroll/Margin/Content/FormCard/FormVBox"
 @onready var social_row: HBoxContainer = %SocialRow
 @onready var create_outline: Button = %CreateOutline
 @onready var inline_footer: PanelContainer = %InlineFooter
+@onready var forgot_btn: LinkButton = %ForgotBtn
 @onready var scroll: ScrollContainer = $Scroll
 @onready var login_request: HTTPRequest = $LoginRequest
 
@@ -47,21 +48,46 @@ func _adapt_layout() -> void:
 	var vp := get_viewport_rect().size
 	var h := vp.y
 	var w := vp.x
-	var card_w := clampf(minf(400.0, w - 32.0), 300.0, 400.0)
+	var card_w := clampf(minf(420.0, w - 48.0), 300.0, 420.0)
 	content.custom_minimum_size = Vector2(card_w, 0)
+	content.add_theme_constant_override("separation", 8 if h < 820.0 else 12)
 
-	logo_panel.get_parent().visible = h >= 720.0
-	desc.visible = h >= 780.0
-	features.visible = h >= 700.0
-	tagline.visible = h >= 640.0
-	var show_extra := h >= 600.0 and login_section.visible
+	# Compactar para que quepa en PC/móvil sin cortar el footer
+	logo_panel.get_parent().visible = h >= 760.0
+	desc.visible = h >= 900.0
+	features.visible = h >= 820.0
+	tagline.visible = h >= 700.0
+	var show_extra := h >= 640.0 and login_section.visible
 	social_sep.visible = show_extra
 	social_row.visible = show_extra
-	create_outline.visible = show_extra
+	create_outline.visible = show_extra and h >= 700.0
 	inline_footer.visible = true
 
-	var title_size := 26 if h < 700.0 else 30
+	var title_size := 26 if h < 720.0 else 30
 	app_title.text = "[center][font_size=%d][color=#1a56db][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]" % title_size
+
+	# Textos con acentos (en script, no en .tscn, para evitar corrupcion de encoding)
+	card_title.text = "¡Bienvenido a GuayGo!" if login_section.visible else card_title.text
+	if login_section.visible:
+		card_subtitle.text = "Inicia sesión para continuar"
+		btn_login.text = "Iniciar sesión"
+		forgot_btn.text = "¿Olvidaste tu contraseña?"
+		var pass_label = login_section.get_node_or_null("Pass/Label")
+		if pass_label:
+			pass_label.text = "Contraseña"
+	if features:
+		var cm = features.get_node_or_null("ChipMissions/Label")
+		var cl = features.get_node_or_null("ChipLeagues/Label")
+		var ce = features.get_node_or_null("ChipEvents/Label")
+		if cm:
+			cm.text = "🎯  Misiones"
+		if cl:
+			cl.text = "🏆  Ligas"
+		if ce:
+			ce.text = "📅  Eventos"
+	var footer_label = inline_footer.get_node_or_null("FooterLabel")
+	if footer_label:
+		footer_label.text = "💛  Hecho para unir personas  ·  +2.5K personas ya están dentro"
 
 
 func _apply_tabs(is_login: bool) -> void:
