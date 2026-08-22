@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://dlbdp0guedoci"]
+[gd_scene format=3 uid="uid://dlbdp0guedoci"]
 
 [ext_resource type="Script" uid="uid://c48xajy7ory6t" path="res://gd/Login.gd" id="1_a4fkl"]
 
@@ -191,7 +191,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_logo")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
-text = "GðŸ“"
+text = "G"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -235,7 +235,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
 theme_override_font_sizes/font_size = 12
-text = "ðŸŽ¯  Misiones"
+text = "Misiones"
 
 [node name="ChipLeagues" type="PanelContainer" parent="Scroll/Margin/Content/Brand/Features"]
 layout_mode = 2
@@ -245,7 +245,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
 theme_override_font_sizes/font_size = 12
-text = "ðŸ†  Ligas"
+text = "Ligas"
 
 [node name="ChipEvents" type="PanelContainer" parent="Scroll/Margin/Content/Brand/Features"]
 layout_mode = 2
@@ -255,7 +255,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
 theme_override_font_sizes/font_size = 12
-text = "ðŸ“…  Eventos"
+text = "Eventos"
 
 [node name="TabSwitcher" type="PanelContainer" parent="Scroll/Margin/Content"]
 unique_name_in_owner = true
@@ -272,7 +272,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
-text = "Iniciar sesiÃ³n"
+text = "Iniciar sesion"
 
 [node name="BtnRegister" type="Button" parent="Scroll/Margin/Content/TabSwitcher/TabHBox"]
 unique_name_in_owner = true
@@ -299,7 +299,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.058824, 0.152941, 0.419608, 1)
 theme_override_font_sizes/font_size = 20
-text = "Â¡Bienvenido a GuayGo!"
+text = "Bienvenido a GuayGo!"
 autowrap_mode = 3
 
 [node name="Sub" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/Welcome"]
@@ -307,7 +307,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
 theme_override_font_sizes/font_size = 13
-text = "Inicia sesiÃ³n para continuar"
+text = "Inicia sesion para continuar"
 autowrap_mode = 3
 
 [node name="LoginSection" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
@@ -333,7 +333,7 @@ theme_override_colors/font_placeholder_color = Color(0.584314, 0.639216, 0.72156
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
-placeholder_text = "Correo electrÃ³nico o usuario"
+placeholder_text = "Correo electrónico o usuario"
 
 [node name="Pass" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection"]
 layout_mode = 2
@@ -343,7 +343,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
 theme_override_font_sizes/font_size = 13
-text = "ContraseÃ±a"
+text = "Contrasena"
 
 [node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection/Pass"]
 custom_minimum_size = Vector2(0, 44)
@@ -353,7 +353,7 @@ theme_override_colors/font_placeholder_color = Color(0.584314, 0.639216, 0.72156
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
-placeholder_text = "ContraseÃ±a"
+placeholder_text = "Contraseña"
 secret = true
 
 [node name="ForgotRow" type="HBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
@@ -365,7 +365,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
 theme_override_font_sizes/font_size = 12
-text = "Â¿Olvidaste tu contraseÃ±a?"
+text = "Olvidaste tu contrasena?"
 underline = 2
 
 [node name="RegisterSection" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
@@ -401,7 +401,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
 theme_override_font_sizes/font_size = 13
-text = "Correo electrÃ³nico"
+text = "Correo electronico"
 
 [node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/Email"]
 custom_minimum_size = Vector2(0, 44)
@@ -420,7 +420,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
 theme_override_font_sizes/font_size = 13
-text = "ContraseÃ±a"
+text = "Contrasena"
 
 [node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/Pass"]
 custom_minimum_size = Vector2(0, 44)
@@ -429,7 +429,7 @@ theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
-placeholder_text = "MÃ­nimo 6 caracteres"
+placeholder_text = "Mínimo 6 caracteres"
 secret = true
 
 [node name="SubmitBtn" type="Button" parent="Scroll/Margin/Content/FormCard/FormVBox"]
@@ -441,14 +441,14 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn")
-text = "Entrar a GuayGo  â†’"
+text = "Entrar a GuayGo"
 
 [node name="SocialSep" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.584314, 0.639216, 0.721569, 1)
 theme_override_font_sizes/font_size = 12
-text = "o continÃºa con"
+text = "o continua con"
 horizontal_alignment = 1
 
 [node name="SocialRow" type="HBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
@@ -497,7 +497,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_footer")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
-text = "ðŸ’›  Hecho para unir personas  Â·  +2.5K personas ya estÃ¡n dentro"
+text = "Hecho para unir personas | +2.5K personas ya estan dentro"
 horizontal_alignment = 1
 autowrap_mode = 3
 
