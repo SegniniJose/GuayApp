@@ -73,15 +73,20 @@ func _ensure_login_extras() -> void:
 	card_title.text = "¡Bienvenido a GuayGo!"
 	card_subtitle.text = "Inicia sesión para continuar"
 	tagline.text = "Conecta. Une. Vive experiencias."
-	app_title.text = "[center][font_size=32][color=#0066ff][b]GuayGo[/b][/color][/font_size][/center]"
-	footer.text = "Hecho para unir personas  ·  +2.5K personas ya están dentro"
+	# Branding mockup: Guay (azul) + Go (amarillo)
+	app_title.text = "[center][font_size=36][color=#0066ff][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]"
+	footer.text = "💛 Hecho para unir personas   +2.5K personas ya están dentro"
+	tagline.text = "Conecta. Une. Vive experiencias."
+	var logo_label = logo_panel.get_node_or_null("LogoLabel")
+	if logo_label:
+		logo_label.text = "📍"
 
 	var chip_m = get_node(ROOT + "/Brand/Features/ChipMissions/Label")
 	var chip_l = get_node(ROOT + "/Brand/Features/ChipLeagues/Label")
 	var chip_r = get_node(ROOT + "/Brand/Features/ChipRanking/Label")
-	chip_m.text = "Misiones"
-	chip_l.text = "Ligas"
-	chip_r.text = "Eventos"
+	chip_m.text = "🎯  Misiones"
+	chip_l.text = "🏆  Ligas"
+	chip_r.text = "📅  Eventos"
 
 	if form_card.get_node_or_null("FormVBox/ForgotRow") == null:
 		var forgot_row := HBoxContainer.new()

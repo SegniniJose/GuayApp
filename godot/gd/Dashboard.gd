@@ -30,27 +30,33 @@ func _apply_dashboard_styles() -> void:
 	GuayTheme.apply_panel(profile_card, GuayTheme.panel_surface())
 	GuayTheme.apply_panel(private_card, GuayTheme.panel_surface())
 	GuayTheme.apply_panel(welcome_panel, GuayTheme.panel_hero())
-	GuayTheme.apply_label(username_label, GuayTheme.FONT_HEADING, GuayTheme.COLOR_TEXT, true)
-	GuayTheme.apply_button_primary(create_btn)
+	GuayTheme.apply_label(username_label, GuayTheme.FONT_HEADING, GuayTheme.COLOR_PRIMARY, true)
+	# Botón amarillo como mockup "Empezar misión"
+	var gold_btn := GuayTheme.make_flat(GuayTheme.COLOR_ACCENT_GOLD, 18, 8)
+	create_btn.add_theme_stylebox_override("normal", gold_btn)
+	create_btn.add_theme_stylebox_override("hover", GuayTheme.make_flat(Color("ffb300"), 18, 8))
+	create_btn.add_theme_color_override("font_color", GuayTheme.COLOR_TEXT)
 	create_btn.add_theme_font_size_override("font_size", GuayTheme.FONT_BODY)
-	create_btn.text = "Empezar misión / Unirme a liga →"
+	create_btn.text = "Empezar misión  →"
 	avatar.custom_minimum_size = Vector2(72, 72)
 
-	# Hero copy como en mockup Inicio
+	# Hero: MISIÓN RECOMENDADA (mockup Inicio)
 	var welcome_title = welcome_panel.get_node_or_null("Margin/TextContent/Title")
 	var welcome_desc = welcome_panel.get_node_or_null("Margin/TextContent/Desc")
 	if welcome_title:
 		welcome_title.text = "¡Completa tu primera misión y gana puntos!"
 		GuayTheme.apply_label(welcome_title, GuayTheme.FONT_HEADING, Color.WHITE, true)
 	if welcome_desc:
-		welcome_desc.text = "Haz una foto, valida con tu liga y sube en el ranking."
-		GuayTheme.apply_label(welcome_desc, GuayTheme.FONT_LABEL, Color(1, 1, 1, 0.9))
+		welcome_desc.text = "📷  Haz una foto de una taza de café   ·   +10 pts"
+		GuayTheme.apply_label(welcome_desc, GuayTheme.FONT_LABEL, Color(1, 1, 1, 0.92))
 
 	var private_title = private_card.get_node_or_null("HBox/TextContent/Title")
 	var private_sub = private_card.get_node_or_null("HBox/TextContent/Subtitle")
 	if private_title:
+		private_title.text = "Perfil privado"
 		GuayTheme.apply_label(private_title, GuayTheme.FONT_BODY, GuayTheme.COLOR_TEXT, true)
 	if private_sub:
+		private_sub.text = "Solo tus amigos pueden ver tu galería"
 		GuayTheme.apply_label(private_sub, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
 
 	var how = league_container.get_node_or_null("HowItWorksPanel")
@@ -58,7 +64,7 @@ func _apply_dashboard_styles() -> void:
 		GuayTheme.apply_panel(how, GuayTheme.panel_surface())
 		var how_header = how.get_node_or_null("Margin/Rows/Header")
 		if how_header:
-			how_header.text = "1️⃣ Únete a una liga\n2️⃣ Completa misiones con fotos\n3️⃣ La comunidad valida (2 votos)\n4️⃣ Sube en el ranking"
+			how_header.text = "Únete a una liga\nCompleta misiones con fotos\nLa comunidad valida (2 votos)\nSube en el ranking"
 			GuayTheme.apply_label(how_header, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_SECONDARY)
 
 

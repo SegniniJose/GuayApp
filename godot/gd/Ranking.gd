@@ -35,15 +35,28 @@ func _apply_ranking_styles() -> void:
 	for lbl in [first_place_score, second_place_score, third_place_score]:
 		if lbl:
 			GuayTheme.apply_label(lbl, GuayTheme.FONT_LABEL, GuayTheme.COLOR_PRIMARY, true)
-	# Título dinámico si no existe en la escena
+	# Título + subtítulo estilo mockup Ranking Semanal
 	if get_node_or_null("TitleBanner") == null and get_child_count() > 0:
+		var wrap := VBoxContainer.new()
+		wrap.name = "TitleBanner"
+		wrap.add_theme_constant_override("separation", 4)
 		var banner := Label.new()
-		banner.name = "TitleBanner"
 		banner.text = "Ranking Semanal"
 		banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		GuayTheme.apply_label(banner, GuayTheme.FONT_TITLE, GuayTheme.COLOR_TEXT, true)
-		add_child(banner)
-		move_child(banner, 0)
+		GuayTheme.apply_label(banner, GuayTheme.FONT_TITLE, GuayTheme.COLOR_PRIMARY_DARK, true)
+		var sub := Label.new()
+		sub.text = "Top jugadores de la liga"
+		sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		GuayTheme.apply_label(sub, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_MUTED)
+		var pill := Label.new()
+		pill.text = "  ⏱  La semana termina en 4 días  "
+		pill.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		GuayTheme.apply_label(pill, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_PRIMARY)
+		wrap.add_child(banner)
+		wrap.add_child(sub)
+		wrap.add_child(pill)
+		add_child(wrap)
+		move_child(wrap, 0)
 
 
 func refresh_league_members():
