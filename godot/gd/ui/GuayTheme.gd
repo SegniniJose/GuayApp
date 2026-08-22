@@ -1,7 +1,7 @@
 extends RefCounted
 class_name GuayTheme
 
-# Paleta GuayGo (mockups: azul + amarillo)
+# Paleta GuayGo (mockups azul + amarillo)
 const COLOR_PRIMARY := Color("0066ff")
 const COLOR_PRIMARY_DARK := Color("0052cc")
 const COLOR_PRIMARY_LIGHT := Color("e8f1ff")
@@ -49,25 +49,31 @@ static func panel_surface() -> StyleBoxFlat:
 
 
 static func panel_primary() -> StyleBoxFlat:
-	return make_flat(COLOR_PRIMARY, 16, 8)
+	return make_flat(COLOR_PRIMARY, 18, 10)
 
 
 static func panel_primary_hover() -> StyleBoxFlat:
-	return make_flat(COLOR_PRIMARY_DARK, 16, 10)
+	return make_flat(COLOR_PRIMARY_DARK, 18, 10)
 
 
 static func panel_stat_gold() -> StyleBoxFlat:
-	var s := make_flat(Color("fffbeb"), 14, 6, Color("fde68a"), 1)
-	return s
+	return make_flat(Color("fffbeb"), 14, 6, Color("fde68a"), 1)
+
+
+static func panel_stat_blue() -> StyleBoxFlat:
+	return make_flat(COLOR_PRIMARY_LIGHT, 14, 6, Color("bfdbfe"), 1)
 
 
 static func panel_stat_violet() -> StyleBoxFlat:
-	var s := make_flat(Color("f5f3ff"), 14, 6, Color("ddd6fe"), 1)
-	return s
+	return make_flat(Color("f5f3ff"), 14, 6, Color("ddd6fe"), 1)
 
 
 static func panel_welcome() -> StyleBoxFlat:
-	var s := make_flat(COLOR_PRIMARY_LIGHT, 18, 8, COLOR_PRIMARY, 2)
+	return make_flat(COLOR_PRIMARY, 20, 12)
+
+
+static func panel_hero() -> StyleBoxFlat:
+	var s := make_flat(COLOR_PRIMARY, 22, 14)
 	return s
 
 
@@ -81,20 +87,20 @@ static func panel_nav() -> StyleBoxFlat:
 
 
 static func input_normal() -> StyleBoxFlat:
-	var s := make_flat(COLOR_SURFACE, 12, 0, COLOR_BORDER, 1)
+	var s := make_flat(COLOR_SURFACE, 14, 0, COLOR_BORDER, 1)
 	s.content_margin_left = 14.0
-	s.content_margin_top = 12.0
+	s.content_margin_top = 14.0
 	s.content_margin_right = 14.0
-	s.content_margin_bottom = 12.0
+	s.content_margin_bottom = 14.0
 	return s
 
 
 static func input_focus() -> StyleBoxFlat:
-	var s := make_flat(COLOR_SURFACE, 12, 0, COLOR_PRIMARY, 2)
+	var s := make_flat(COLOR_SURFACE, 14, 0, COLOR_PRIMARY, 2)
 	s.content_margin_left = 14.0
-	s.content_margin_top = 12.0
+	s.content_margin_top = 14.0
 	s.content_margin_right = 14.0
-	s.content_margin_bottom = 12.0
+	s.content_margin_bottom = 14.0
 	return s
 
 
@@ -104,15 +110,15 @@ static func header_bar() -> StyleBoxFlat:
 
 static func login_card() -> StyleBoxFlat:
 	var s := make_flat(COLOR_SURFACE, 24, 20, COLOR_BORDER, 1)
-	s.content_margin_left = 28.0
-	s.content_margin_top = 28.0
-	s.content_margin_right = 28.0
-	s.content_margin_bottom = 28.0
+	s.content_margin_left = 24.0
+	s.content_margin_top = 24.0
+	s.content_margin_right = 24.0
+	s.content_margin_bottom = 24.0
 	return s
 
 
 static func tab_bar_bg() -> StyleBoxFlat:
-	return make_flat(Color("e8ecf4"), 14, 0)
+	return make_flat(Color("eef2f7"), 14, 0)
 
 
 static func tab_active() -> StyleBoxFlat:
@@ -130,7 +136,15 @@ static func logo_box() -> StyleBoxFlat:
 
 
 static func feature_chip() -> StyleBoxFlat:
-	return make_flat(COLOR_PRIMARY_LIGHT, 20, 0, COLOR_PRIMARY, 1)
+	return make_flat(COLOR_SURFACE, 16, 8, COLOR_BORDER, 1)
+
+
+static func outline_button() -> StyleBoxFlat:
+	return make_flat(COLOR_SURFACE, 16, 0, COLOR_PRIMARY, 2)
+
+
+static func gold_pill() -> StyleBoxFlat:
+	return make_flat(COLOR_ACCENT_GOLD, 20, 0)
 
 
 static func apply_tab(btn: Button, active: bool) -> void:
@@ -167,10 +181,22 @@ static func apply_label(node: Label, size: int = FONT_BODY, color: Color = COLOR
 static func apply_button_primary(btn: Button) -> void:
 	btn.add_theme_font_size_override("font_size", FONT_BODY)
 	btn.add_theme_color_override("font_color", Color.WHITE)
+	btn.add_theme_color_override("font_hover_color", Color.WHITE)
+	btn.add_theme_color_override("font_pressed_color", Color.WHITE)
 	btn.add_theme_stylebox_override("normal", panel_primary())
 	btn.add_theme_stylebox_override("hover", panel_primary_hover())
 	btn.add_theme_stylebox_override("pressed", panel_primary_hover())
 	btn.add_theme_stylebox_override("focus", panel_primary())
+
+
+static func apply_button_outline(btn: Button) -> void:
+	btn.add_theme_font_size_override("font_size", FONT_BODY)
+	btn.add_theme_color_override("font_color", COLOR_PRIMARY)
+	btn.add_theme_color_override("font_hover_color", COLOR_PRIMARY_DARK)
+	btn.add_theme_stylebox_override("normal", outline_button())
+	btn.add_theme_stylebox_override("hover", outline_button())
+	btn.add_theme_stylebox_override("pressed", outline_button())
+	btn.add_theme_stylebox_override("focus", outline_button())
 
 
 static func apply_button_ghost(btn: Button, color: Color = COLOR_TEXT_SECONDARY) -> void:
@@ -198,7 +224,6 @@ static func apply_line_edit(le: LineEdit) -> void:
 	le.add_theme_stylebox_override("normal", input_normal())
 	le.add_theme_stylebox_override("focus", input_focus())
 	le.add_theme_stylebox_override("read_only", input_normal())
-
 
 
 static func apply_panel(container: PanelContainer, style: StyleBoxFlat) -> void:

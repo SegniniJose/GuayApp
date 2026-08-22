@@ -37,7 +37,14 @@ var active_tab: TabNames = TabNames.FRIENDS
 
 func _ready() -> void:
 	ACTIVE_TAB.bg_color = Color("ffffff")
-	INACTIVE_TAB.bg_color = Color("f1f8ff")
+	INACTIVE_TAB.bg_color = GuayTheme.COLOR_PRIMARY_LIGHT
+	if search_bar:
+		GuayTheme.apply_line_edit(search_bar)
+		search_bar.placeholder_text = "Buscar usuario o ID..."
+	for btn in [btn_friends, btn_requests, btn_invitations]:
+		if btn:
+			GuayTheme.apply_tab(btn, false)
+	GuayTheme.apply_tab(btn_friends, true)
 	clear_all_friends()
 	await load_friends()
 	clear_all_pending_outbound_invitations()
@@ -45,6 +52,7 @@ func _ready() -> void:
 	clear_all_pending_inbound_requests()
 	await load_pending_inbound_requests()
 	synch_visible_cards()
+	GuayTheme.fade_in(self)
 
 
 func _on_tab_friends_pressed():

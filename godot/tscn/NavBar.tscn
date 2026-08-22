@@ -7,50 +7,68 @@ bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 24
 corner_radius_top_right = 24
 border_width_top = 1
-border_color = Color(0.886275, 0.909804, 0.941176, 1)
+border_color = Color(0.898039, 0.905882, 0.921569, 1)
 shadow_color = Color(0, 0, 0, 0.08)
 shadow_size = 12
 shadow_offset = Vector2(0, -2)
 
-[node name="NavBar" type="PanelContainer" unique_id=2135823437]
+[node name="NavBar" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 76)
 theme_override_styles/panel = SubResource("StyleBoxFlat_nav")
 script = ExtResource("1_hxolp")
 
-[node name="Icons" type="HBoxContainer" parent="." unique_id=1235515317]
+[node name="Icons" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Home" type="Button" parent="Icons" unique_id=1701585835]
-custom_minimum_size = Vector2(48, 48)
+[node name="Home" type="Button" parent="Icons"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "🏠"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "🏠
+Inicio"
 flat = true
 
-[node name="List" type="Button" parent="Icons" unique_id=2043263086]
-custom_minimum_size = Vector2(48, 48)
+[node name="List" type="Button" parent="Icons"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "📊"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "🎯
+Misiones"
 flat = true
 
-[node name="Chat" type="Button" parent="Icons" unique_id=722909827]
-custom_minimum_size = Vector2(48, 48)
+[node name="Chat" type="Button" parent="Icons"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "💬"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "💬
+Social"
 flat = true
 
-[node name="Trophy" type="Button" parent="Icons" unique_id=1803189450]
-custom_minimum_size = Vector2(48, 48)
+[node name="Trophy" type="Button" parent="Icons"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "🏆"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "🏆
+Ranking"
+flat = true
+
+[node name="Profile" type="Button" parent="Icons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "👤
+Perfil"
 flat = true
 
 [connection signal="pressed" from="Icons/Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Icons/List" to="." method="_on_list_pressed"]
 [connection signal="pressed" from="Icons/Chat" to="." method="_on_chat_pressed"]
 [connection signal="pressed" from="Icons/Trophy" to="." method="_on_trophy_pressed"]
+[connection signal="pressed" from="Icons/Profile" to="." method="_on_profile_pressed"]

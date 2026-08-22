@@ -29,20 +29,45 @@ func _ready() -> void:
 func _apply_dashboard_styles() -> void:
 	GuayTheme.apply_panel(profile_card, GuayTheme.panel_surface())
 	GuayTheme.apply_panel(private_card, GuayTheme.panel_surface())
-	GuayTheme.apply_panel(welcome_panel, GuayTheme.panel_welcome())
+	GuayTheme.apply_panel(welcome_panel, GuayTheme.panel_hero())
 	GuayTheme.apply_label(username_label, GuayTheme.FONT_HEADING, GuayTheme.COLOR_TEXT, true)
 	GuayTheme.apply_button_primary(create_btn)
 	create_btn.add_theme_font_size_override("font_size", GuayTheme.FONT_BODY)
-	create_btn.text = "Buscar o crear liga →"
+	create_btn.text = "Empezar misión / Unirme a liga →"
 	avatar.custom_minimum_size = Vector2(72, 72)
+
+	# Hero copy como en mockup Inicio
+	var welcome_title = welcome_panel.get_node_or_null("Margin/TextContent/Title")
+	var welcome_desc = welcome_panel.get_node_or_null("Margin/TextContent/Desc")
+	if welcome_title:
+		welcome_title.text = "¡Completa tu primera misión y gana puntos!"
+		GuayTheme.apply_label(welcome_title, GuayTheme.FONT_HEADING, Color.WHITE, true)
+	if welcome_desc:
+		welcome_desc.text = "Haz una foto, valida con tu liga y sube en el ranking."
+		GuayTheme.apply_label(welcome_desc, GuayTheme.FONT_LABEL, Color(1, 1, 1, 0.9))
+
+	var private_title = private_card.get_node_or_null("HBox/TextContent/Title")
+	var private_sub = private_card.get_node_or_null("HBox/TextContent/Subtitle")
+	if private_title:
+		GuayTheme.apply_label(private_title, GuayTheme.FONT_BODY, GuayTheme.COLOR_TEXT, true)
+	if private_sub:
+		GuayTheme.apply_label(private_sub, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
+
+	var how = league_container.get_node_or_null("HowItWorksPanel")
+	if how:
+		GuayTheme.apply_panel(how, GuayTheme.panel_surface())
+		var how_header = how.get_node_or_null("Margin/Rows/Header")
+		if how_header:
+			how_header.text = "1️⃣ Únete a una liga\n2️⃣ Completa misiones con fotos\n3️⃣ La comunidad valida (2 votos)\n4️⃣ Sube en el ranking"
+			GuayTheme.apply_label(how_header, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_SECONDARY)
 
 
 func refresh_photos_label() -> void:
-	photos_label.text = GuayTheme.stat_bbcode(Globals.photo_count, "fotos", "#8b5cf6")
+	photos_label.text = GuayTheme.stat_bbcode(Globals.photo_count, "fotos", "#ffc107")
 
 
 func refresh_points_label() -> void:
-	points_label.text = GuayTheme.stat_bbcode(Globals.points, "puntos", "#f59e0b")
+	points_label.text = GuayTheme.stat_bbcode(Globals.points, "puntos", "#0066ff")
 
 
 func refresh_avatar() -> void:
@@ -91,4 +116,7 @@ func load_league_status() -> void:
 
 
 func _on_create_league_button_pressed() -> void:
+	if Globals.league_status.get("status", "") == "active" or Globals.league_id != "":
+		get_tree().change_scene_to_file("res://tscn/Missions.tscn")
+		return
 	get_tree().change_scene_to_file("res://tscn/Leagues.tscn")

@@ -19,13 +19,37 @@ extends Control
 @export var ranking_scene: PackedScene = preload("res://tscn/cards/RankingCard.tscn")
 
 func _ready() -> void:
+	_apply_ranking_styles()
 	await load_league_members()
+	GuayTheme.fade_in(self)
+
+
+func _apply_ranking_styles() -> void:
+	if three_place_ranking:
+		GuayTheme.apply_panel(three_place_ranking, GuayTheme.panel_surface())
+	if empty_ranking_card:
+		GuayTheme.apply_panel(empty_ranking_card, GuayTheme.panel_surface())
+	for lbl in [first_place_name, second_place_name, third_place_name]:
+		if lbl:
+			GuayTheme.apply_label(lbl, GuayTheme.FONT_BODY, GuayTheme.COLOR_TEXT, true)
+	for lbl in [first_place_score, second_place_score, third_place_score]:
+		if lbl:
+			GuayTheme.apply_label(lbl, GuayTheme.FONT_LABEL, GuayTheme.COLOR_PRIMARY, true)
+	# Título dinámico si no existe en la escena
+	if get_node_or_null("TitleBanner") == null and get_child_count() > 0:
+		var banner := Label.new()
+		banner.name = "TitleBanner"
+		banner.text = "Ranking Semanal"
+		banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		GuayTheme.apply_label(banner, GuayTheme.FONT_TITLE, GuayTheme.COLOR_TEXT, true)
+		add_child(banner)
+		move_child(banner, 0)
+
 
 func refresh_league_members():
 	for child in further_ranking_list.get_children():
 		child.free()
 
-	# 1. Check if we have enough members
 	if Globals.league_members.size() < 3:
 		three_place_ranking.visible = false
 		empty_ranking_card.visible = true
@@ -42,15 +66,15 @@ func refresh_league_members():
 	var third_place = sorted_members.pop_front()
 
 	first_place_name.text = first_place.username
-	first_place_score.text = str(first_place.points)
+	first_place_score.text = "%s pts" % str(first_place.points)
 	await first_place_avatar.set_url(first_place.avatar)
 	
 	second_place_name.text = second_place.username
-	second_place_score.text = str(second_place.points)
+	second_place_score.text = "%s pts" % str(second_place.points)
 	await second_place_avatar.set_url(second_place.avatar)
 	
 	third_place_name.text = third_place.username
-	third_place_score.text = str(third_place.points)
+	third_place_score.text = "%s pts" % str(third_place.points)
 	await third_place_avatar.set_url(third_place.avatar)
 
 	if sorted_members.size() > 0:

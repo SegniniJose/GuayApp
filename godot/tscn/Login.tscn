@@ -117,14 +117,14 @@ vertical_alignment = 1
 [node name="AppTitle" type="RichTextLabel" parent="Center/Content/Brand"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[center][font_size=36][color=#0f172a][b]Guay[/b][/color][color=#6366f1][b]Go[/b][/color][/font_size][/center]"
+text = "[center][font_size=34][color=#0066ff][b]GuayGo[/b][/color][/font_size][/center]"
 fit_content = true
 
 [node name="Tagline" type="Label" parent="Center/Content/Brand"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
 theme_override_font_sizes/font_size = 15
-text = "Tu liga, tus misiones, tu diversión."
+text = "Conecta. Une. Vive experiencias."
 horizontal_alignment = 1
 
 [node name="Features" type="HBoxContainer" parent="Center/Content/Brand"]

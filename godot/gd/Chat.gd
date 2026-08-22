@@ -8,7 +8,11 @@ extends Control
 
 func _ready() -> void:
 	clear_league_chat()
+	if line_edit:
+		GuayTheme.apply_line_edit(line_edit)
+		line_edit.placeholder_text = "Escribe un mensaje..."
 	await load_league_chat()
+	GuayTheme.fade_in(self)
 
 
 func _exit_tree():
