@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -103,8 +103,26 @@ body {
 	      projectId: "guay-app-social",
 	      appId: "1:369051773336:web:6702b8e19eda5094cae3ed"
 	    });
-	    window._guayIdToken = null;
-	    window._guayAuthErr = null;
+	    window._guayGoogleIdToken = null;
+	    window._guayGoogleError = null;
+	    window.signInWithGoogle = function() {
+	      window._guayGoogleIdToken = null;
+	      window._guayGoogleError = null;
+	      var provider = new firebase.auth.GoogleAuthProvider();
+	      provider.addScope('email');
+	      provider.addScope('profile');
+	      return firebase.auth().signInWithPopup(provider)
+	        .then(function(result) {
+	          return result.user.getIdToken().then(function(token) {
+	            window._guayGoogleIdToken = token;
+	            return token;
+	          });
+	        })
+	        .catch(function(err) {
+	          window._guayGoogleError = err.message || String(err);
+	          console.error("Firebase Google Auth Error:", err);
+	        });
+	    };
 	  } catch (e) { console.error("Firebase init", e); }
 	  function z(e){var k=e.key,c=e.code;return k==="+"||k==="-"||k==="="||k==="_"||k==="0"||c==="Equal"||c==="Minus"||c==="NumpadAdd"||c==="NumpadSubtract"||c==="Digit0"}
 	  window.addEventListener("keydown",function(e){if(!(e.ctrlKey||e.metaKey))return;if(e.key==="r"||e.key==="R"){e.stopImmediatePropagation();e.preventDefault();location.reload();return}if(z(e))e.stopImmediatePropagation()},true);

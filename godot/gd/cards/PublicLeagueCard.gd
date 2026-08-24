@@ -3,13 +3,17 @@ extends PanelContainer
 @onready var league_name: Label = %LeagueName
 @onready var member_count: Label = %MemberCount
 
-var public_league_id :String = ""
+var public_league_id: String = ""
+
 
 func set_public_league(public_league: Dictionary):
-	print("set_public_league ", public_league)
-	league_name.text = public_league.name
-	member_count.text = "%s/%s miembros" % [public_league.memberCount, 10]
-	public_league_id = public_league.id
+	league_name.text = str(public_league.get("name", "Liga"))
+	var count = public_league.get("memberCount", public_league.get("membersCount", 1))
+	if count == null:
+		count = 1
+	member_count.text = "%d/10 miembros" % int(count)
+	public_league_id = str(public_league.get("id", ""))
+
 
 func _on_join_button_pressed() -> void:
 	Globals.league_id = public_league_id

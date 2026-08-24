@@ -429,7 +429,7 @@ theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_gold_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gold_btn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gold_btn")
-text = "Empezar misión  →"
+text = "Empezar misión  >"
 
 [node name="ProgressCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
 layout_mode = 2
@@ -580,7 +580,7 @@ text = "Busca o crea tu propia liga"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
-text = "→"
+text = ">"
 
 [node name="BtnLeague" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague"]
 layout_mode = 1
@@ -638,7 +638,7 @@ text = "Haz fotos y gana puntos"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
-text = "→"
+text = ">"
 
 [node name="BtnMission" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission"]
 layout_mode = 1
@@ -696,7 +696,7 @@ text = "Obtén 2 votos positivos"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
-text = "→"
+text = ">"
 
 [node name="BtnValidate" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate"]
 layout_mode = 1
@@ -754,7 +754,7 @@ text = "Compite y gana recompensas"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
-text = "→"
+text = ">"
 
 [node name="BtnRanking" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking"]
 layout_mode = 1
@@ -802,7 +802,7 @@ text = "Gana +20 pts por cada amigo"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 15
-text = "→"
+text = ">"
 
 [node name="BtnInvite" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite"]
 layout_mode = 1
@@ -846,7 +846,7 @@ text = "Descubre a los mejores"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 15
-text = "→"
+text = ">"
 
 [node name="BtnRank" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank"]
 layout_mode = 1

@@ -30,10 +30,10 @@ func set_ranking(rank_number: int, ranking: Dictionary):
 	# Trend
 	if trend_label:
 		if rank_number % 2 == 0:
-			trend_label.text = "↑1"
+			trend_label.text = "+1"
 			trend_label.add_theme_color_override("font_color", GuayTheme.COLOR_SUCCESS)
 		else:
-			trend_label.text = "↓1"
+			trend_label.text = "-1"
 			trend_label.add_theme_color_override("font_color", GuayTheme.COLOR_DANGER)
 
 	# Highlight current user card
