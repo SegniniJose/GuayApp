@@ -5,55 +5,45 @@
 [ext_resource type="PackedScene" uid="uid://b8x3g7k1m4n6p" path="res://tscn/cards/ChatMessageCard.tscn" id="2_3pxon"]
 [ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="2_6o0tv"]
 
-[sub_resource type="Gradient" id="Gradient_nhsjg"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0es08"]
-gradient = SubResource("Gradient_nhsjg")
-fill_to = Vector2(1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl4hd"]
-bg_color = Color(0.92, 0.96, 1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0, 0, 0, 0.1)
-shadow_size = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.953, 0.965, 0.98, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
 bg_color = Color(1, 1, 1, 1)
 border_width_bottom = 1
-border_color = Color(0.901961, 0.901961, 0.901961, 1)
+border_color = Color(0.898, 0.918, 0.941, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avatar"]
-bg_color = Color(0.894118, 0.92549, 1, 1)
+bg_color = Color(0.816, 0.906, 1.0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input_area"]
-content_margin_left = 15.0
-content_margin_right = 15.0
-bg_color = Color(0.960784, 0.960784, 0.972549, 1)
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.961, 0.961, 0.973, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.878431, 0.878431, 0.901961, 1)
+border_color = Color(0.878, 0.878, 0.902, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_send_btn"]
-bg_color = Color(0.0588235, 0.45098, 0.941176, 1)
+bg_color = Color(0.0, 0.396, 1.0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+content_margin_left = 12.0
+content_margin_right = 12.0
 
 [node name="Chat" type="Control" unique_id=1853690489]
 layout_mode = 3
@@ -64,161 +54,138 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3pxon")
 
-[node name="Background" type="TextureRect" parent="." unique_id=1784019737]
+[node name="BackgroundPanel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_0es08")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=541835469]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gl4hd")
-
-[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-scroll_horizontal_enabled = false
-
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/Scroll"]
+[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign"]
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/CenterAlign"]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
-theme_override_constants/separation = 12
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="Layout" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer" unique_id=426009728]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/Layout" unique_id=570429073 instance=ExtResource("1_3urqq")]
+[node name="Header" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("1_3urqq")]
 layout_mode = 2
 
-[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/Layout" unique_id=225598613]
-visible = false
-custom_minimum_size = Vector2(0, 70)
+[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 
-[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader" unique_id=1397520000]
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 10
 
-[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=1399957441]
+[node name="AvatarPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
+theme_override_constants/margin_left = 12
 
-[node name="Avatar" type="Panel" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/Margin" unique_id=1736802933]
+[node name="AvatarIcon" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/AvatarPad"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_avatar")
 
-[node name="Char" type="Label" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/Margin/Avatar" unique_id=804789472]
+[node name="AvatarChar" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/AvatarPad/AvatarIcon"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.0588235, 0.45098, 0.941176, 1)
+theme_override_colors/font_color = Color(0.0, 0.396, 1.0, 1)
 text = "#"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextInfo" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=278719243]
+[node name="TextInfo" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+theme_override_constants/separation = 2
 
-[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/TextInfo" unique_id=224941285]
+[node name="ChatTitle" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/TextInfo"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
+theme_override_font_sizes/font_size = 16
 text = "Chat de Liga"
 
-[node name="Sub" type="Label" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox/TextInfo" unique_id=699108704]
+[node name="ChatSub" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/TextInfo"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.447059, 0.447059, 0.447059, 1)
+theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Conversa con tu equipo"
 
-[node name="CollageBtn" type="Button" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=44857167]
-layout_mode = 2
-size_flags_vertical = 4
-text = "Collage"
-
-[node name="Spacer" type="Control" parent="BackgroundPanel/MarginContainer/Layout/StickyHeader/HBox" unique_id=1439629831]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="ChatFeed" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/Layout" unique_id=161632394]
+[node name="ChatFeed" type="ScrollContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/Layout/ChatFeed" unique_id=1664354582]
+[node name="FeedMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ChatFeed"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
 
-[node name="Messages" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/ChatFeed/Margin" unique_id=1286571326]
+[node name="Messages" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ChatFeed/FeedMargin"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 14
 
-[node name="ChatMessageCard" parent="BackgroundPanel/MarginContainer/Layout/ChatFeed/Margin/Messages" unique_id=1518989688 groups=["league_chat"] instance=ExtResource("2_3pxon")]
+[node name="ChatMessageCard" parent="BackgroundPanel/CenterAlign/AppContainer/ChatFeed/FeedMargin/Messages" groups=["league_chat"] instance=ExtResource("2_3pxon")]
 layout_mode = 2
 
-[node name="InputBar" type="PanelContainer" parent="BackgroundPanel/MarginContainer/Layout" unique_id=1562837391]
-custom_minimum_size = Vector2(0, 80)
+[node name="InputBar" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 
-[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/Layout/InputBar" unique_id=1399232239]
+[node name="InputHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
-[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox" unique_id=699580160]
+[node name="InputMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 12
 
-[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox/Margin" unique_id=362059479]
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox/InputMargin"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_placeholder_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
+theme_override_colors/font_placeholder_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_input_area")
 placeholder_text = "Escribe un mensaje..."
 
-[node name="SendBtn" type="Button" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox" unique_id=854447887]
-custom_minimum_size = Vector2(45, 45)
+[node name="BtnMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox"]
+layout_mode = 2
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="SendBtn" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox/BtnMargin"]
+custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_send_btn")
 text = ">"
 
-[node name="Spacer" type="Control" parent="BackgroundPanel/MarginContainer/Layout/InputBar/HBox" unique_id=1715604390]
-custom_minimum_size = Vector2(10, 0)
+[node name="NavBar" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("2_6o0tv")]
 layout_mode = 2
-
-[node name="NavBar" parent="BackgroundPanel/MarginContainer/Layout" unique_id=2135823437 instance=ExtResource("2_6o0tv")]
-layout_mode = 2
-
-[connection signal="pressed" from="BackgroundPanel/MarginContainer/Layout/InputBar/HBox/SendBtn" to="." method="_on_send_btn_pressed"]
