@@ -53,37 +53,6 @@ func refresh_suggestions() -> void:
 	else:
 		friend_suggestion_count.text = ""
 
-	var invite_friend_bubble_containers = get_tree().get_nodes_in_group("invite_friend_bubble_container")
-	if invite_friend_bubble_containers.size() == 0:
-		return
-	var invite_friend_bubble_container = invite_friend_bubble_containers.front()
-
-	var background_panels = get_tree().get_nodes_in_group("background_panel")
-	if background_panels.size() == 0:
-		return
-	var background_panel = background_panels.front()
-
-	if background_panel and invite_friend_bubble_container:
-		var min_x = background_panel.global_position.x + 16
-		var min_y = background_panel.global_position.y + 120
-		for child in invite_friend_bubble_container.get_children():
-			child.free()
-		for users_suggestion in Globals.users_suggestions:
-			var new_invite_friend_bubble_card = invite_friend_bubble_card_scene.instantiate()
-			new_invite_friend_bubble_card.visible = false
-			invite_friend_bubble_container.add_child(new_invite_friend_bubble_card)
-			await new_invite_friend_bubble_card.set_users_suggestion(users_suggestion)
-
-			var card_size = new_invite_friend_bubble_card.size
-			var max_x = (min_x + background_panel.size.x) - card_size.x - 16
-			var max_y = (min_y + background_panel.size.y) - card_size.y - 100
-			max_x = max(min_x, max_x)
-			max_y = max(min_y, max_y)
-			var random_x = randf_range(min_x, max_x)
-			var random_y = randf_range(min_y, max_y)
-			new_invite_friend_bubble_card.global_position = Vector2(random_x, random_y)
-			new_invite_friend_bubble_card.visible = true
-
 
 func load_suggestions() -> void:
 	if Globals.user_id == "":

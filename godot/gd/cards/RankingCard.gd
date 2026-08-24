@@ -1,56 +1,53 @@
-extends MarginContainer
+extends PanelContainer
 
 @onready var you_tag: PanelContainer = %YouTag
 @onready var rank: Label = %RankLabel
 @onready var avatar: TextureRectUrl = %Avatar
 @onready var username: Label = %UsernameLabel
+@onready var level_label: Label = %LevelLabel
+@onready var trend_label: Label = %TrendLabel
 @onready var points: Label = %PointsLabel
-
-var _trend_label: Label
-var _level_label: Label
-var _card_panel: PanelContainer
-
-
-func _ready() -> void:
-	custom_minimum_size = Vector2(0, 68)
+@onready var progress_bar: ProgressBar = %ProgressBar
 
 
 func set_ranking(rank_number: int, ranking: Dictionary):
 	if you_tag:
 		you_tag.visible = false
 
-	var is_current_user = (ranking.get("id", "") == Globals.user_id)
+	var is_current_user := (ranking.get("id", "") == Globals.user_id)
+	var pts: int = ranking.get("points", 0)
+	var lvl: int = max(1, int(pts / 100) + 1)
+
 	rank.text = str(rank_number)
 	username.text = "Tú" if is_current_user else ranking.get("username", "Jugador")
-	points.text = "%s pts" % str(ranking.get("points", 0))
+	level_label.text = "Nivel %d" % lvl
+	points.text = "%d pts" % pts
 
-	GuayTheme.apply_label(username, GuayTheme.FONT_BODY, GuayTheme.COLOR_PRIMARY if is_current_user else GuayTheme.COLOR_TEXT, true)
-	GuayTheme.apply_label(points, GuayTheme.FONT_BODY, GuayTheme.COLOR_PRIMARY if is_current_user else GuayTheme.COLOR_TEXT, true)
-	GuayTheme.apply_label(rank, GuayTheme.FONT_BODY, GuayTheme.COLOR_PRIMARY if is_current_user else GuayTheme.COLOR_TEXT_MUTED, true)
+	var pct := int(pts % 100)
+	if progress_bar:
+		progress_bar.value = pct
 
-	# Subtitle Level
-	if get_node_or_null("HBoxContainer/NameAndTag/LevelLabel") == null:
-		_level_label = Label.new()
-		_level_label.name = "LevelLabel"
-		var lvl = max(1, int(ranking.get("points", 0) / 100) + 1)
-		_level_label.text = "Nivel %d" % lvl
-		GuayTheme.apply_label(_level_label, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_TEXT_MUTED)
-		var name_col = get_node_or_null("HBoxContainer/NameAndTag")
-		if name_col:
-			name_col.add_child(_level_label)
-
-	# Trend indicator
-	if get_node_or_null("HBoxContainer/TrendLabel") == null:
-		_trend_label = Label.new()
-		_trend_label.name = "TrendLabel"
+	# Trend
+	if trend_label:
 		if rank_number % 2 == 0:
-			_trend_label.text = "↑1"
-			GuayTheme.apply_label(_trend_label, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_SUCCESS, true)
+			trend_label.text = "↑1"
+			trend_label.add_theme_color_override("font_color", GuayTheme.COLOR_SUCCESS)
 		else:
-			_trend_label.text = "↓1"
-			GuayTheme.apply_label(_trend_label, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_DANGER, true)
-		var hbox = get_node_or_null("HBoxContainer")
-		if hbox:
-			hbox.add_child(_trend_label)
+			trend_label.text = "↓1"
+			trend_label.add_theme_color_override("font_color", GuayTheme.COLOR_DANGER)
+
+	# Highlight current user card
+	if is_current_user:
+		var highlight := StyleBoxFlat.new()
+		highlight.bg_color = Color("eff6ff")
+		highlight.set_corner_radius_all(16)
+		highlight.border_color = Color("93c5fd")
+		highlight.set_border_width_all(1)
+		highlight.shadow_color = Color(0, 0.4, 1.0, 0.1)
+		highlight.shadow_size = 6
+		add_theme_stylebox_override("panel", highlight)
+		username.add_theme_color_override("font_color", GuayTheme.COLOR_PRIMARY)
+		points.add_theme_color_override("font_color", GuayTheme.COLOR_PRIMARY)
+		rank.add_theme_color_override("font_color", GuayTheme.COLOR_PRIMARY)
 
 	await avatar.set_url(ranking.get("avatar", ""))

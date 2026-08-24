@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func set_users_suggestion(users_suggestion: Dictionary) -> void:
 	friend_id = users_suggestion.id
-	friend_name.text = "[b]%s[/b]\n[font_size=11][color=#6366f1]Toca para invitar[/color][/font_size]" % users_suggestion.username
+	friend_name.text = "%s\nToca para invitar" % users_suggestion.username
 	await avatar.set_url(users_suggestion.avatar)
 
 
