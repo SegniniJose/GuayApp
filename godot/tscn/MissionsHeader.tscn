@@ -28,8 +28,8 @@ corner_radius_bottom_left = 12
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn"]
 
 [node name="MissionsHeader" type="PanelContainer" unique_id=794015085]
-offset_right = 500.0
-offset_bottom = 120.0
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 script = ExtResource("1_0n80l")
 

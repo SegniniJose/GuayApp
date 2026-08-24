@@ -3,30 +3,77 @@
 [ext_resource type="Script" uid="uid://bh1f61xussqlr" path="res://gd/cards/MissionCard.gd" id="1_d1v7x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_item"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.972549, 0.972549, 0.980392, 1)
+content_margin_left = 14.0
+content_margin_top = 12.0
+content_margin_right = 14.0
+content_margin_bottom = 12.0
+bg_color = Color(0.98, 0.988, 1.0, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.901961, 0.901961, 0.921569, 1)
+border_color = Color(0.898, 0.918, 0.941, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icon_wrap"]
+bg_color = Color(0.92, 0.95, 1.0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="MissionCard" type="PanelContainer" unique_id=139098042]
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_item")
 script = ExtResource("1_d1v7x")
 
-[node name="Label" type="Label" parent="." unique_id=1832060375]
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconBox" type="PanelContainer" parent="HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_icon_wrap")
+
+[node name="IconLabel" type="Label" parent="HBox/IconBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.2, 0.25, 1)
-text = "📸 Tomar una foto de taza (22 pts)"
+theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
+theme_override_font_sizes/font_size = 13
+text = "MIS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextCol" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="HBox/TextCol"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
+theme_override_font_sizes/font_size = 14
+text = "Toma una foto"
+
+[node name="PtsLabel" type="Label" parent="HBox/TextCol"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
+theme_override_font_sizes/font_size = 12
+text = "10.0 pts"
+
+[node name="ArrowLabel" type="Label" parent="HBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.65, 0.7, 0.78, 1)
+theme_override_font_sizes/font_size = 16
+text = ">"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

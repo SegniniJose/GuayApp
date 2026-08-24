@@ -5,43 +5,38 @@
 [ext_resource type="PackedScene" uid="uid://b8x3j1k8y2m1p" path="res://tscn/MissionsHeader.tscn" id="2_e88ww"]
 [ext_resource type="PackedScene" uid="uid://c7lrteo8lqgy2" path="res://tscn/NavBar.tscn" id="2_ocg36"]
 
-[sub_resource type="Gradient" id="Gradient_g6kbk"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0.91, 0.93, 1, 1, 0.95, 0.91, 1, 1, 1, 0.91, 0.95, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7hr55"]
-gradient = SubResource("Gradient_g6kbk")
-fill_to = Vector2(1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26hdg"]
-bg_color = Color(0.92, 0.96, 1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0, 0, 0, 0.1)
-shadow_size = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.953, 0.965, 0.98, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-shadow_color = Color(0, 0, 0, 0.05)
-shadow_size = 10
-shadow_offset = Vector2(0, 4)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_badge"]
-content_margin_left = 12.0
-content_margin_right = 12.0
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.898, 0.918, 0.941, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 8
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_badge"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(1.0, 0.627, 0.0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Missions" type="Control" unique_id=27899686]
 layout_mode = 3
@@ -52,97 +47,88 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e88ww")
 
-[node name="Background" type="TextureRect" parent="." unique_id=2019860017]
+[node name="BG" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_7hr55")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=593539842]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_26hdg")
-
-[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel"]
+[node name="Scroll" type="ScrollContainer" parent="BG"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/Scroll"]
+[node name="CenterAlign" type="CenterContainer" parent="BG/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign"]
+[node name="AppContainer" type="VBoxContainer" parent="BG/Scroll/CenterAlign"]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer" unique_id=2121987139]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/VBoxContainer" unique_id=570429073 instance=ExtResource("1_tkmh2")]
+[node name="Header" parent="BG/Scroll/CenterAlign/AppContainer" unique_id=570429073 instance=ExtResource("1_tkmh2")]
 layout_mode = 2
 
-[node name="MissionsHeader" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/VBoxContainer" unique_id=794015085 instance=ExtResource("2_e88ww")]
+[node name="ContentPadding" type="MarginContainer" parent="BG/Scroll/CenterAlign/AppContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="Content" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="MissionsHeader" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content" unique_id=794015085 instance=ExtResource("2_e88ww")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MainCard" type="PanelContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=1224567052]
-custom_minimum_size = Vector2(360, 0)
+[node name="MainCard" type="PanelContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content" unique_id=1224567052]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard" unique_id=976948102]
+[node name="VBox" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard" unique_id=976948102]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
-[node name="Header" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox" unique_id=710049259]
+[node name="HeaderRow" type="HBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox" unique_id=710049259]
 layout_mode = 2
 
-[node name="TitleGroup" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox/Header" unique_id=1618661685]
+[node name="TitleGroup" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow" unique_id=1618661685]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = -2
+theme_override_constants/separation = 2
 
-[node name="Title" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox/Header/TitleGroup" unique_id=281243525]
+[node name="Title" type="Label" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow/TitleGroup" unique_id=281243525]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.05, 0.05, 0.05, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
+theme_override_font_sizes/font_size = 22
 text = "Misiones"
 
-[node name="Subtitle" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox/Header/TitleGroup" unique_id=1881784672]
+[node name="Subtitle" type="Label" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow/TitleGroup" unique_id=1881784672]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.4, 0.5, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
+theme_override_font_sizes/font_size = 12
 text = "Completa retos y gana puntos."
 
-[node name="Badge" type="Label" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox/Header" unique_id=998026492]
+[node name="Badge" type="Label" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow" unique_id=998026492]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_badge")
-text = "40 disponibles"
+text = "Disponibles"
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox" unique_id=1219591361]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MissionList" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBoxContainer/MainCard/VBox/ScrollContainer" unique_id=988599061 groups=["missions"]]
+[node name="MissionList" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox" unique_id=988599061 groups=["missions"]]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 10
 
-[node name="NavBar" parent="BackgroundPanel/MarginContainer/VBoxContainer" unique_id=2135823437 instance=ExtResource("2_ocg36")]
+[node name="NavBar" parent="BG/Scroll/CenterAlign/AppContainer" unique_id=2135823437 instance=ExtResource("2_ocg36")]
 layout_mode = 2
