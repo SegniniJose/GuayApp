@@ -35,35 +35,19 @@ func _apply_ranking_styles() -> void:
 	for lbl in [first_place_score, second_place_score, third_place_score]:
 		if lbl:
 			GuayTheme.apply_label(lbl, GuayTheme.FONT_LABEL, GuayTheme.COLOR_PRIMARY, true)
-	# Título + subtítulo estilo mockup Ranking Semanal
-	if get_node_or_null("TitleBanner") == null and get_child_count() > 0:
-		var wrap := VBoxContainer.new()
-		wrap.name = "TitleBanner"
-		wrap.add_theme_constant_override("separation", 4)
-		var banner := Label.new()
-		banner.text = "Ranking Semanal"
-		banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		GuayTheme.apply_label(banner, GuayTheme.FONT_TITLE, GuayTheme.COLOR_PRIMARY_DARK, true)
-		var sub := Label.new()
-		sub.text = "Top jugadores de la liga"
-		sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		GuayTheme.apply_label(sub, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_MUTED)
-		var pill := Label.new()
-		pill.text = "  ⏱  La semana termina en 4 días  "
-		pill.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		GuayTheme.apply_label(pill, GuayTheme.FONT_CAPTION, GuayTheme.COLOR_PRIMARY)
-		wrap.add_child(banner)
-		wrap.add_child(sub)
-		wrap.add_child(pill)
-		add_child(wrap)
-		move_child(wrap, 0)
 
 
 func refresh_league_members():
 	for child in further_ranking_list.get_children():
 		child.free()
 
-	if Globals.league_members.size() < 3:
+	var members_list = Globals.league_members.duplicate()
+	if members_list.is_empty():
+		# Add current user if available
+		if Globals.user_id != "":
+			members_list.append({"id": Globals.user_id, "username": Globals.username if Globals.username != "" else "Tú", "points": Globals.points, "avatar": Globals.avatar})
+
+	if members_list.size() < 1:
 		three_place_ranking.visible = false
 		empty_ranking_card.visible = true
 		return
@@ -71,33 +55,32 @@ func refresh_league_members():
 	three_place_ranking.visible = true
 	empty_ranking_card.visible = false
 	
-	var sorted_members = Globals.league_members.duplicate()
-	sorted_members.sort_custom(func(a, b): return a.points > b.points)
+	var sorted_members = members_list.duplicate()
+	sorted_members.sort_custom(func(a, b): return a.get("points", 0) > b.get("points", 0))
 	
-	var first_place = sorted_members.pop_front()
-	var second_place = sorted_members.pop_front()
-	var third_place = sorted_members.pop_front()
+	var first_place = sorted_members.pop_front() if sorted_members.size() > 0 else {"username": "Klk", "points": 520, "avatar": ""}
+	var second_place = sorted_members.pop_front() if sorted_members.size() > 0 else {"username": "María", "points": 470, "avatar": ""}
+	var third_place = sorted_members.pop_front() if sorted_members.size() > 0 else {"username": "Alex", "points": 430, "avatar": ""}
 
-	first_place_name.text = first_place.username
-	first_place_score.text = "%s pts" % str(first_place.points)
-	await first_place_avatar.set_url(first_place.avatar)
+	first_place_name.text = first_place.get("username", "")
+	first_place_score.text = "%s pts" % str(first_place.get("points", 0))
+	await first_place_avatar.set_url(first_place.get("avatar", ""))
 	
-	second_place_name.text = second_place.username
-	second_place_score.text = "%s pts" % str(second_place.points)
-	await second_place_avatar.set_url(second_place.avatar)
+	second_place_name.text = second_place.get("username", "")
+	second_place_score.text = "%s pts" % str(second_place.get("points", 0))
+	await second_place_avatar.set_url(second_place.get("avatar", ""))
 	
-	third_place_name.text = third_place.username
-	third_place_score.text = "%s pts" % str(third_place.points)
-	await third_place_avatar.set_url(third_place.avatar)
+	third_place_name.text = third_place.get("username", "")
+	third_place_score.text = "%s pts" % str(third_place.get("points", 0))
+	await third_place_avatar.set_url(third_place.get("avatar", ""))
 
 	if sorted_members.size() > 0:
 		empty_ranking_card.visible = false
 		further_ranking_list.visible = true
 	else:
-		empty_ranking_card.visible = true
 		further_ranking_list.visible = false
 
-	var rank_number:int = 4
+	var rank_number: int = 4
 	for member in sorted_members:
 		var new_ranking = ranking_scene.instantiate()
 		further_ranking_list.add_child(new_ranking)

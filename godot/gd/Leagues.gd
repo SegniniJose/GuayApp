@@ -32,9 +32,26 @@ var active_tab: TabNames = TabNames.FOR_DAYS
 
 
 func _ready() -> void:
+	_apply_leagues_styles()
 	await load_public_leagues()
 	_on_publicas_pressed()
 	_on_dias_pressed()
+	GuayTheme.fade_in(self)
+
+
+func _apply_leagues_styles() -> void:
+	for le in [league_name, code_input]:
+		if le:
+			GuayTheme.apply_line_edit(le)
+	for btn in [publicas_button, codigo_button, crear_button]:
+		if btn:
+			GuayTheme.apply_tab(btn, false)
+	var submit_btn = get_node_or_null("%Crear/MarginContainer/VBox/SubmitButton")
+	if submit_btn:
+		GuayTheme.apply_button_primary(submit_btn)
+	var join_btn = get_node_or_null("%Codigo/MarginContainer/VBox/JoinButton")
+	if join_btn:
+		GuayTheme.apply_button_primary(join_btn)
 
 func refresh_public_leagues() -> void:
 	for child in public_leagues.get_children():

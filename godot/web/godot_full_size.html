@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>$GODOT_PROJECT_NAME</title>
 		<style>
 html, body, #canvas {
@@ -12,10 +12,10 @@ html, body, #canvas {
 }
 
 body {
-	color: #0f172a;
-	background-color: #f7f9fc;
+	color: white;
+	background-color: black;
 	overflow: hidden;
-	touch-action: pan-x pan-y pinch-zoom;
+	touch-action: none;
 }
 
 #canvas {
@@ -91,27 +91,7 @@ body {
 }
 		</style>
 		$GODOT_HEAD_INCLUDE
-	<style>html,body,#canvas{width:100%!important;height:100%!important;background:#f7f9fc!important}#canvas{position:fixed!important;inset:0!important}</style>
-	<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-	<script>
-	(function(){
-	  try {
-	    firebase.initializeApp({
-	      apiKey: "AIzaSyCjnYHIOjkr7dYen4emHjhsLz0mlUyQ1J0",
-	      authDomain: "guay-app-social.firebaseapp.com",
-	      projectId: "guay-app-social",
-	      appId: "1:369051773336:web:6702b8e19eda5094cae3ed"
-	    });
-	    window._guayIdToken = null;
-	    window._guayAuthErr = null;
-	  } catch (e) { console.error("Firebase init", e); }
-	  function z(e){var k=e.key,c=e.code;return k==="+"||k==="-"||k==="="||k==="_"||k==="0"||c==="Equal"||c==="Minus"||c==="NumpadAdd"||c==="NumpadSubtract"||c==="Digit0"}
-	  window.addEventListener("keydown",function(e){if(!(e.ctrlKey||e.metaKey))return;if(e.key==="r"||e.key==="R"){e.stopImmediatePropagation();e.preventDefault();location.reload();return}if(z(e))e.stopImmediatePropagation()},true);
-	  window.addEventListener("wheel",function(e){if(e.ctrlKey||e.metaKey)e.stopImmediatePropagation()},{capture:true,passive:true});
-	})();
-	</script>
-</head>
+	</head>
 	<body>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
@@ -235,6 +215,3 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
-
-
-

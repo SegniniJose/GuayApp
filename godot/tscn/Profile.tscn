@@ -92,9 +92,11 @@ corner_radius_bottom_left = 24
 
 [node name="Profile" type="Control" unique_id=464617615]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1024.0
-offset_bottom = 1024.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_mnno5")
 
 [node name="Background" type="TextureRect" parent="." unique_id=361434021]

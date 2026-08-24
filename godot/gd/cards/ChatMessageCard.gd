@@ -15,26 +15,35 @@ class_name ChatMessageCard
 
 
 func set_chat_message(chat_message: Dictionary):
-	print("set_chat_message ", chat_message)
+	var is_me = false
+	var sender_avatar = ""
+	var content = chat_message.get("content", "")
+	var ts = chat_message.get("timestamp", chat_message.get("CreatedAt", ""))
+	var username = chat_message.get("username", "")
+
 	if chat_message.has("leagueId"):
-		if chat_message.userId == Globals.user_id:
-			right_container.visible = false
-			await left_avatar.set_url(chat_message.avatar)
-			left_message.text = chat_message.content
-			left_timestamp.text = Globals.timestamp_to_string(chat_message.timestamp)
-		else:
-			left_container.visible = false
-			await right_avatar.set_url(chat_message.avatar)
-			right_message.text = chat_message.content
-			right_timestamp.text = Globals.timestamp_to_string(chat_message.timestamp)
+		is_me = (str(chat_message.get("userId", "")) == str(Globals.user_id))
+		sender_avatar = chat_message.get("avatar", "")
 	else:
-		if chat_message.senderId == Globals.user_id:
-			right_container.visible = false
-			await left_avatar.set_url(chat_message.senderAvatar)
-			left_message.text = chat_message.content
-			left_timestamp.text = Globals.timestamp_to_string(chat_message.timestamp)
+		is_me = (str(chat_message.get("senderId", "")) == str(Globals.user_id))
+		sender_avatar = chat_message.get("senderAvatar", "")
+
+	var time_str = Globals.timestamp_to_string(ts) if ts != "" else ""
+
+	if is_me:
+		left_container.visible = false
+		right_container.visible = true
+		right_message.text = content
+		right_timestamp.text = time_str
+		if right_avatar:
+			await right_avatar.set_url(Globals.avatar)
+	else:
+		right_container.visible = false
+		left_container.visible = true
+		if username != "":
+			left_message.text = "[b]%s[/b]\n%s" % [username, content]
 		else:
-			left_container.visible = false
-			await right_avatar.set_url(chat_message.senderAvatar)
-			right_message.text = chat_message.content
-			right_timestamp.text = Globals.timestamp_to_string(chat_message.timestamp)
+			left_message.text = content
+		left_timestamp.text = time_str
+		if left_avatar:
+			await left_avatar.set_url(sender_avatar)

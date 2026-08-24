@@ -2,65 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c48xajy7ory6t" path="res://gd/Login.gd" id="1_a4fkl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(0.968627, 0.976471, 0.988235, 1)
+[sub_resource type="Gradient" id="Gradient_bg"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(0.945098, 0.960784, 0.976471, 1, 0.929412, 0.94902, 0.992157, 1, 0.878431, 0.905882, 0.972549, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_logo"]
-bg_color = Color(0.101961, 0.337255, 0.858824, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_color = Color(0.101961, 0.337255, 0.858824, 0.35)
-shadow_size = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chip"]
-content_margin_left = 12.0
-content_margin_top = 8.0
-content_margin_right = 12.0
-content_margin_bottom = 8.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886275, 0.909804, 0.941176, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.06)
-shadow_size = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tabs"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.933333, 0.94902, 0.968627, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
-content_margin_left = 22.0
-content_margin_top = 20.0
-content_margin_right = 22.0
-content_margin_bottom = 20.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886275, 0.909804, 0.941176, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-shadow_color = Color(0, 0, 0, 0.08)
-shadow_size = 16
-shadow_offset = Vector2(0, 4)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_bg")
+fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
 content_margin_left = 14.0
@@ -73,62 +21,26 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.886275, 0.909804, 0.941176, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
-content_margin_left = 16.0
-content_margin_top = 14.0
-content_margin_right = 16.0
-content_margin_bottom = 14.0
-bg_color = Color(0.101961, 0.337255, 0.858824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_outline"]
-content_margin_left = 16.0
-content_margin_top = 12.0
-content_margin_right = 16.0
-content_margin_bottom = 12.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.101961, 0.337255, 0.858824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_footer"]
-content_margin_left = 16.0
-content_margin_top = 14.0
-content_margin_right = 16.0
-content_margin_bottom = 14.0
-bg_color = Color(0.101961, 0.337255, 0.858824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_social"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chip"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.933333, 0.94902, 1, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.886275, 0.909804, 0.941176, 1)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
-shadow_color = Color(0, 0, 0, 0.06)
-shadow_size = 4
+border_color = Color(0.388235, 0.4, 0.945098, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Login" type="Control"]
 layout_mode = 3
@@ -139,377 +51,288 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a4fkl")
 
-[node name="Bg" type="Panel" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+texture = SubResource("GradientTexture2D_bg")
 
-[node name="Scroll" type="ScrollContainer" parent="."]
+[node name="DecoTop" type="ColorRect" parent="."]
+modulate = Color(0.388235, 0.4, 0.945098, 0.14)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_top = -0.08
+anchor_right = 1.15
+anchor_bottom = 0.28
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DecoBottom" type="ColorRect" parent="."]
+modulate = Color(0.960784, 0.619608, 0.043137, 0.1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.2
+anchor_top = 0.72
+anchor_right = 0.35
+anchor_bottom = 1.08
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-horizontal_scroll_mode = 0
 
-[node name="Margin" type="MarginContainer" parent="Scroll"]
+[node name="Content" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/separation = 20
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(360, 0)
+[node name="Brand" type="VBoxContainer" parent="Center/Content"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 12
+theme_override_constants/separation = 10
 
-[node name="Brand" type="VBoxContainer" parent="Scroll/Margin/Content"]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="LogoWrap" type="CenterContainer" parent="Scroll/Margin/Content/Brand"]
+[node name="LogoWrap" type="CenterContainer" parent="Center/Content/Brand"]
 layout_mode = 2
 
-[node name="LogoPanel" type="PanelContainer" parent="Scroll/Margin/Content/Brand/LogoWrap"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+[node name="LogoPanel" type="PanelContainer" parent="Center/Content/Brand/LogoWrap"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_logo")
 
-[node name="LogoLabel" type="Label" parent="Scroll/Margin/Content/Brand/LogoWrap/LogoPanel"]
+[node name="LogoLabel" type="Label" parent="Center/Content/Brand/LogoWrap/LogoPanel"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 42
 text = "G"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AppTitle" type="RichTextLabel" parent="Scroll/Margin/Content/Brand"]
-unique_name_in_owner = true
+[node name="AppTitle" type="RichTextLabel" parent="Center/Content/Brand"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[center][font_size=30][color=#1a56db][b]Guay[/b][/color][color=#ffc107][b]Go[/b][/color][/font_size][/center]"
+text = "[center][font_size=34][color=#0066ff][b]GuayGo[/b][/color][/font_size][/center]"
 fit_content = true
-scroll_active = false
 
-[node name="Tagline" type="Label" parent="Scroll/Margin/Content/Brand"]
-unique_name_in_owner = true
+[node name="Tagline" type="Label" parent="Center/Content/Brand"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
 theme_override_font_sizes/font_size = 15
 text = "Conecta. Une. Vive experiencias."
 horizontal_alignment = 1
-autowrap_mode = 3
 
-[node name="Desc" type="Label" parent="Scroll/Margin/Content/Brand"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 12
-text = "Completa misiones, participa en ligas, descubre eventos y gana recompensas."
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="Features" type="HBoxContainer" parent="Scroll/Margin/Content/Brand"]
-unique_name_in_owner = true
+[node name="Features" type="HBoxContainer" parent="Center/Content/Brand"]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ChipMissions" type="PanelContainer" parent="Scroll/Margin/Content/Brand/Features"]
+[node name="ChipMissions" type="PanelContainer" parent="Center/Content/Brand/Features"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/Brand/Features/ChipMissions"]
+[node name="Label" type="Label" parent="Center/Content/Brand/Features/ChipMissions"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
+theme_override_colors/font_color = Color(0.309804, 0.27451, 0.898039, 1)
 theme_override_font_sizes/font_size = 12
-text = "Misiones"
+text = "📸 Misiones"
 
-[node name="ChipLeagues" type="PanelContainer" parent="Scroll/Margin/Content/Brand/Features"]
+[node name="ChipLeagues" type="PanelContainer" parent="Center/Content/Brand/Features"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/Brand/Features/ChipLeagues"]
+[node name="Label" type="Label" parent="Center/Content/Brand/Features/ChipLeagues"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
+theme_override_colors/font_color = Color(0.309804, 0.27451, 0.898039, 1)
 theme_override_font_sizes/font_size = 12
-text = "Ligas"
+text = "🏆 Ligas"
 
-[node name="ChipEvents" type="PanelContainer" parent="Scroll/Margin/Content/Brand/Features"]
+[node name="ChipRanking" type="PanelContainer" parent="Center/Content/Brand/Features"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/Brand/Features/ChipEvents"]
+[node name="Label" type="Label" parent="Center/Content/Brand/Features/ChipRanking"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
+theme_override_colors/font_color = Color(0.309804, 0.27451, 0.898039, 1)
 theme_override_font_sizes/font_size = 12
-text = "Eventos"
+text = "⭐ Ranking"
 
-[node name="TabSwitcher" type="PanelContainer" parent="Scroll/Margin/Content"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
+[node name="TabSwitcher" type="PanelContainer" parent="Center/Content"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tabs")
 
-[node name="TabHBox" type="HBoxContainer" parent="Scroll/Margin/Content/TabSwitcher"]
+[node name="TabHBox" type="HBoxContainer" parent="Center/Content/TabSwitcher"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="BtnLogin" type="Button" parent="Scroll/Margin/Content/TabSwitcher/TabHBox"]
-unique_name_in_owner = true
+[node name="BtnLogin" type="Button" parent="Center/Content/TabSwitcher/TabHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-flat = true
-text = "Iniciar sesion"
+text = "Iniciar sesión"
 
-[node name="BtnRegister" type="Button" parent="Scroll/Margin/Content/TabSwitcher/TabHBox"]
-unique_name_in_owner = true
+[node name="BtnRegister" type="Button" parent="Center/Content/TabSwitcher/TabHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-flat = true
 text = "Crear cuenta"
 
-[node name="FormCard" type="PanelContainer" parent="Scroll/Margin/Content"]
-unique_name_in_owner = true
+[node name="FormCard" type="PanelContainer" parent="Center/Content"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="FormVBox" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard"]
+[node name="FormVBox" type="VBoxContainer" parent="Center/Content/FormCard"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 20
 
-[node name="Welcome" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="Title" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/Welcome"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.058824, 0.152941, 0.419608, 1)
-theme_override_font_sizes/font_size = 20
-text = "Bienvenido a GuayGo!"
-autowrap_mode = 3
-
-[node name="Sub" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/Welcome"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 13
-text = "Inicia sesion para continuar"
-autowrap_mode = 3
-
-[node name="LoginSection" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="User" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection"]
+[node name="Welcome" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection/User"]
+[node name="Title" type="Label" parent="Center/Content/FormCard/FormVBox/Welcome"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
+theme_override_font_sizes/font_size = 22
+text = "Bienvenido de nuevo"
+
+[node name="Sub" type="Label" parent="Center/Content/FormCard/FormVBox/Welcome"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
+theme_override_font_sizes/font_size = 14
+text = "Ingresa tus datos para continuar"
+
+[node name="LoginSection" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="User" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox/LoginSection"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="Center/Content/FormCard/FormVBox/LoginSection/User"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
+theme_override_font_sizes/font_size = 14
 text = "Usuario o correo"
 
-[node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection/User"]
-custom_minimum_size = Vector2(0, 44)
+[node name="LineEdit" type="LineEdit" parent="Center/Content/FormCard/FormVBox/LoginSection/User"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_colors/font_placeholder_color = Color(0.584314, 0.639216, 0.721569, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.454902, 0.545098, 1)
+theme_override_colors/caret_color = Color(0.388235, 0.4, 0.945098, 1)
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
-placeholder_text = "Correo electrónico o usuario"
+placeholder_text = "tu usuario o correo"
 
-[node name="Pass" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection"]
+[node name="Pass" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox/LoginSection"]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection/Pass"]
+[node name="Label" type="Label" parent="Center/Content/FormCard/FormVBox/LoginSection/Pass"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 13
-text = "Contrasena"
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
+theme_override_font_sizes/font_size = 14
+text = "Contraseña"
 
-[node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/LoginSection/Pass"]
-custom_minimum_size = Vector2(0, 44)
+[node name="LineEdit" type="LineEdit" parent="Center/Content/FormCard/FormVBox/LoginSection/Pass"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_colors/font_placeholder_color = Color(0.584314, 0.639216, 0.721569, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.454902, 0.545098, 1)
+theme_override_colors/caret_color = Color(0.388235, 0.4, 0.945098, 1)
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
-placeholder_text = "Contraseña"
+placeholder_text = "••••••••"
 secret = true
 
-[node name="ForgotRow" type="HBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
+[node name="RegisterSection" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox"]
 layout_mode = 2
-alignment = 2
+theme_override_constants/separation = 16
 
-[node name="ForgotBtn" type="LinkButton" parent="Scroll/Margin/Content/FormCard/FormVBox/ForgotRow"]
-unique_name_in_owner = true
+[node name="User" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox/RegisterSection"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
-theme_override_font_sizes/font_size = 12
-text = "Olvidaste tu contrasena?"
-underline = 2
+theme_override_constants/separation = 6
 
-[node name="RegisterSection" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-unique_name_in_owner = true
-visible = false
+[node name="Label" type="Label" parent="Center/Content/FormCard/FormVBox/RegisterSection/User"]
 layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="User" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="Label" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/User"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
+theme_override_font_sizes/font_size = 14
 text = "Nombre de usuario"
 
-[node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/User"]
-custom_minimum_size = Vector2(0, 44)
+[node name="LineEdit" type="LineEdit" parent="Center/Content/FormCard/FormVBox/RegisterSection/User"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.454902, 0.545098, 1)
+theme_override_colors/caret_color = Color(0.388235, 0.4, 0.945098, 1)
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
 placeholder_text = "Elige tu alias"
 
-[node name="Email" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection"]
+[node name="Email" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox/RegisterSection"]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/Email"]
+[node name="Label" type="Label" parent="Center/Content/FormCard/FormVBox/RegisterSection/Email"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 13
-text = "Correo electronico"
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
+theme_override_font_sizes/font_size = 14
+text = "Correo electrónico"
 
-[node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/Email"]
-custom_minimum_size = Vector2(0, 44)
+[node name="LineEdit" type="LineEdit" parent="Center/Content/FormCard/FormVBox/RegisterSection/Email"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.454902, 0.545098, 1)
+theme_override_colors/caret_color = Color(0.388235, 0.4, 0.945098, 1)
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
 placeholder_text = "tu@email.com"
 
-[node name="Pass" type="VBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection"]
+[node name="Pass" type="VBoxContainer" parent="Center/Content/FormCard/FormVBox/RegisterSection"]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/Pass"]
+[node name="Label" type="Label" parent="Center/Content/FormCard/FormVBox/RegisterSection/Pass"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
-theme_override_font_sizes/font_size = 13
-text = "Contrasena"
+theme_override_colors/font_color = Color(0.278431, 0.333333, 0.411765, 1)
+theme_override_font_sizes/font_size = 14
+text = "Contraseña"
 
-[node name="LineEdit" type="LineEdit" parent="Scroll/Margin/Content/FormCard/FormVBox/RegisterSection/Pass"]
-custom_minimum_size = Vector2(0, 44)
+[node name="LineEdit" type="LineEdit" parent="Center/Content/FormCard/FormVBox/RegisterSection/Pass"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.454902, 0.545098, 1)
+theme_override_colors/caret_color = Color(0.388235, 0.4, 0.945098, 1)
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input")
 placeholder_text = "Mínimo 6 caracteres"
 secret = true
 
-[node name="SubmitBtn" type="Button" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 48)
+[node name="SubmitBtn" type="Button" parent="Center/Content/FormCard/FormVBox"]
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn")
-text = "Entrar a GuayGo"
+text = "Entrar a GuayGo  →"
 
-[node name="SocialSep" type="Label" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-unique_name_in_owner = true
+[node name="Footer" type="Label" parent="Center/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.584314, 0.639216, 0.721569, 1)
+theme_override_colors/font_color = Color(0.392157, 0.454902, 0.545098, 1)
 theme_override_font_sizes/font_size = 12
-text = "o continua con"
+text = "Al continuar aceptas las reglas de tu liga"
 horizontal_alignment = 1
-
-[node name="SocialRow" type="HBoxContainer" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 14
-alignment = 1
-
-[node name="BtnGoogle" type="Button" parent="Scroll/Margin/Content/FormCard/FormVBox/SocialRow"]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_social")
-text = "G"
-
-[node name="BtnApple" type="Button" parent="Scroll/Margin/Content/FormCard/FormVBox/SocialRow"]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_social")
-text = "A"
-
-[node name="BtnFacebook" type="Button" parent="Scroll/Margin/Content/FormCard/FormVBox/SocialRow"]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.058824, 0.090196, 0.164706, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_social")
-text = "f"
-
-[node name="CreateOutline" type="Button" parent="Scroll/Margin/Content/FormCard/FormVBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.101961, 0.337255, 0.858824, 1)
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxFlat_outline")
-theme_override_styles/hover = SubResource("StyleBoxFlat_outline")
-text = "Crear cuenta"
-
-[node name="InlineFooter" type="PanelContainer" parent="Scroll/Margin/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_footer")
-
-[node name="FooterLabel" type="Label" parent="Scroll/Margin/Content/InlineFooter"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 12
-text = "Hecho para unir personas | +2.5K personas ya estan dentro"
-horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="LoginRequest" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="Scroll/Margin/Content/TabSwitcher/TabHBox/BtnLogin" to="." method="_on_tab_login_pressed"]
-[connection signal="pressed" from="Scroll/Margin/Content/TabSwitcher/TabHBox/BtnRegister" to="." method="_on_tab_register_pressed"]
-[connection signal="pressed" from="Scroll/Margin/Content/FormCard/FormVBox/ForgotRow/ForgotBtn" to="." method="_on_forgot_pressed"]
-[connection signal="pressed" from="Scroll/Margin/Content/FormCard/FormVBox/SubmitBtn" to="." method="_on_submit_pressed"]
-[connection signal="pressed" from="Scroll/Margin/Content/FormCard/FormVBox/SocialRow/BtnGoogle" to="." method="_on_social_pressed" binds= ["Google"]]
-[connection signal="pressed" from="Scroll/Margin/Content/FormCard/FormVBox/SocialRow/BtnApple" to="." method="_on_social_pressed" binds= ["Apple"]]
-[connection signal="pressed" from="Scroll/Margin/Content/FormCard/FormVBox/SocialRow/BtnFacebook" to="." method="_on_social_pressed" binds= ["Facebook"]]
-[connection signal="pressed" from="Scroll/Margin/Content/FormCard/FormVBox/CreateOutline" to="." method="_on_tab_register_pressed"]
+[connection signal="pressed" from="Center/Content/TabSwitcher/TabHBox/BtnLogin" to="." method="_on_tab_login_pressed"]
+[connection signal="pressed" from="Center/Content/TabSwitcher/TabHBox/BtnRegister" to="." method="_on_tab_register_pressed"]
+[connection signal="pressed" from="Center/Content/FormCard/FormVBox/SubmitBtn" to="." method="_on_submit_pressed"]
 [connection signal="request_completed" from="LoginRequest" to="." method="_on_login_request_completed"]
-

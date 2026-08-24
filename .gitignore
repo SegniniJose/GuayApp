@@ -32,3 +32,16 @@ _fix_web/
 _ios_out/
 _live_index.html
 
+
+screenshots/
+_shot_web/
+_shot2/
+_final/
+_fix_web2/
+ci-*/
+ci-*
+reference_designs/
+*.py
+package.json
+package-lock.json
+

@@ -1,23 +1,21 @@
 extends RefCounted
 class_name GuayTheme
 
-# Paleta GuayGo (referencia mockups)
-const COLOR_PRIMARY := Color("1a56db")
-const COLOR_PRIMARY_DARK := Color("0f3ea8")
-const COLOR_PRIMARY_LIGHT := Color("ebf5ff")
-const COLOR_BG := Color("f5f7fb")
+# Paleta GuayGo (mockups azul + amarillo)
+const COLOR_PRIMARY := Color("0066ff")
+const COLOR_PRIMARY_DARK := Color("0052cc")
+const COLOR_PRIMARY_LIGHT := Color("e8f1ff")
+const COLOR_BG := Color("f7f9fc")
 const COLOR_SURFACE := Color("ffffff")
 const COLOR_TEXT := Color("0f172a")
-const COLOR_TEXT_SECONDARY := Color("64748b")
-const COLOR_TEXT_MUTED := Color("94a3b8")
-const COLOR_BORDER := Color("e2e8f0")
+const COLOR_TEXT_SECONDARY := Color("475569")
+const COLOR_TEXT_MUTED := Color("8e8e93")
+const COLOR_BORDER := Color("e5e7eb")
 const COLOR_ACCENT_GOLD := Color("ffc107")
-const COLOR_ACCENT_ORANGE := Color("f59e0b")
 const COLOR_ACCENT_VIOLET := Color("8b5cf6")
 const COLOR_SUCCESS := Color("10b981")
 const COLOR_DANGER := Color("ef4444")
 const COLOR_HEADER_BG := Color("ffffff")
-const COLOR_FOOTER_BLUE := Color("1a56db")
 
 const FONT_TITLE := 28
 const FONT_HEADING := 22
@@ -146,7 +144,58 @@ static func outline_button() -> StyleBoxFlat:
 
 
 static func gold_pill() -> StyleBoxFlat:
-	return make_flat(COLOR_ACCENT_GOLD, 20, 0)
+	var s := make_flat(COLOR_ACCENT_GOLD, 20, 0)
+	s.content_margin_left = 12.0
+	s.content_margin_top = 4.0
+	s.content_margin_right = 12.0
+	s.content_margin_bottom = 4.0
+	return s
+
+
+static func blue_pill() -> StyleBoxFlat:
+	var s := make_flat(COLOR_PRIMARY_LIGHT, 20, 0, Color("bfdbfe"), 1)
+	s.content_margin_left = 12.0
+	s.content_margin_top = 4.0
+	s.content_margin_right = 12.0
+	s.content_margin_bottom = 4.0
+	return s
+
+
+static func podium_gold() -> StyleBoxFlat:
+	var s := make_flat(Color("fef3c7"), 24, 12, Color("fcd34d"), 2)
+	return s
+
+
+static func podium_silver() -> StyleBoxFlat:
+	var s := make_flat(Color("e8f1ff"), 20, 10, Color("bfdbfe"), 1)
+	return s
+
+
+static func podium_bronze() -> StyleBoxFlat:
+	var s := make_flat(Color("ffedd5"), 20, 10, Color("fed7aa"), 1)
+	return s
+
+
+static func card_highlight() -> StyleBoxFlat:
+	var s := make_flat(Color("eff6ff"), 20, 10, Color("93c5fd"), 2)
+	s.content_margin_left = 16.0
+	s.content_margin_top = 12.0
+	s.content_margin_right = 16.0
+	s.content_margin_bottom = 12.0
+	return s
+
+
+static func apply_button_gold(btn: Button) -> void:
+	btn.add_theme_font_size_override("font_size", FONT_BODY)
+	btn.add_theme_color_override("font_color", Color("78350f"))
+	btn.add_theme_color_override("font_hover_color", Color("451a03"))
+	btn.add_theme_color_override("font_pressed_color", Color("451a03"))
+	var s := make_flat(COLOR_ACCENT_GOLD, 18, 10)
+	var sh := make_flat(Color("f59e0b"), 18, 10)
+	btn.add_theme_stylebox_override("normal", s)
+	btn.add_theme_stylebox_override("hover", sh)
+	btn.add_theme_stylebox_override("pressed", sh)
+	btn.add_theme_stylebox_override("focus", s)
 
 
 static func apply_tab(btn: Button, active: bool) -> void:

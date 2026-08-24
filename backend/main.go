@@ -102,6 +102,7 @@ func main() {
 
 	r.POST("/api/auth/register", handleRegister)
 	r.POST("/api/auth/login", handleLogin)
+	r.POST("/api/auth/firebase", handleFirebaseAuth)
 
 	r.GET("/api/users/:userId/profile", handleGetProfile)
 	r.GET("/api/users/:userId/photo-count", handleGetPhotoCount)

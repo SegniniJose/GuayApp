@@ -1,9 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"crypto/rand"
+	"encoding/json"
 	"fmt"
+	"io"
 	"math/big"
+	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -111,6 +117,121 @@ func handleLogin(c *gin.Context) {
 		return
 	}
 
+	c.JSON(200, user)
+}
+
+// Login / registro vía Firebase Auth (correo o Google). Verifica idToken y sincroniza User local.
+func handleFirebaseAuth(c *gin.Context) {
+	var req struct {
+		IdToken  string `json:"idToken"`
+		Username string `json:"username"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil || strings.TrimSpace(req.IdToken) == "" {
+		c.JSON(400, gin.H{"error": "Token de Firebase requerido"})
+		return
+	}
+
+	apiKey := os.Getenv("FIREBASE_API_KEY")
+	if apiKey == "" {
+		apiKey = "AIzaSyCjnYHIOjkr7dYen4emHjhsLz0mlUyQ1J0"
+	}
+
+	payload, _ := json.Marshal(map[string]interface{}{
+		"idToken": req.IdToken,
+	})
+	resp, err := http.Post(
+		"https://identitytoolkit.googleapis.com/v1/accounts:lookup?key="+apiKey,
+		"application/json",
+		bytes.NewReader(payload),
+	)
+	if err != nil {
+		c.JSON(502, gin.H{"error": "No se pudo verificar Firebase"})
+		return
+	}
+	defer resp.Body.Close()
+	body, _ := io.ReadAll(resp.Body)
+	if resp.StatusCode != 200 {
+		c.JSON(401, gin.H{"error": "Token de Firebase inválido"})
+		return
+	}
+
+	var lookup struct {
+		Users []struct {
+			LocalID       string `json:"localId"`
+			Email         string `json:"email"`
+			DisplayName   string `json:"displayName"`
+			PhotoURL      string `json:"photoUrl"`
+			EmailVerified bool   `json:"emailVerified"`
+		} `json:"users"`
+	}
+	if err := json.Unmarshal(body, &lookup); err != nil || len(lookup.Users) == 0 {
+		c.JSON(401, gin.H{"error": "Token de Firebase inválido"})
+		return
+	}
+	fb := lookup.Users[0]
+	email := strings.TrimSpace(strings.ToLower(fb.Email))
+	if email == "" {
+		c.JSON(400, gin.H{"error": "La cuenta de Firebase no tiene correo"})
+		return
+	}
+
+	username := strings.TrimSpace(req.Username)
+	if username == "" {
+		username = strings.TrimSpace(fb.DisplayName)
+	}
+	if username == "" {
+		username = strings.Split(email, "@")[0]
+	}
+	// Sanitizar username único
+	username = strings.Map(func(r rune) rune {
+		if (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_' || r == '-' {
+			return r
+		}
+		return '_'
+	}, username)
+	if len(username) < 3 {
+		username = "user_" + fb.LocalID[:8]
+	}
+
+	var user User
+	if err := DB.Where("email = ?", email).First(&user).Error; err == nil {
+		c.JSON(200, user)
+		return
+	}
+
+	// Evitar colisión de username
+	base := username
+	for i := 0; i < 20; i++ {
+		candidate := base
+		if i > 0 {
+			candidate = fmt.Sprintf("%s%d", base, i)
+		}
+		var existing User
+		if err := DB.Where("username = ?", candidate).First(&existing).Error; err != nil {
+			username = candidate
+			break
+		}
+	}
+
+	randomPass := generateID() + generateID()
+	hashed, _ := bcrypt.GenerateFromPassword([]byte(randomPass), bcrypt.DefaultCost)
+	avatar := fb.PhotoURL
+	if avatar == "" {
+		avatar = "https://api.dicebear.com/7.x/adventurer/svg?seed=" + username
+	}
+	user = User{
+		ID:        generateID(),
+		Username:  username,
+		Email:     email,
+		Password:  string(hashed),
+		Avatar:    avatar,
+		Points:    0,
+		IsPrivate: true,
+	}
+	if err := DB.Create(&user).Error; err != nil {
+		c.JSON(500, gin.H{"error": "No se pudo crear el usuario"})
+		return
+	}
 	c.JSON(200, user)
 }
 

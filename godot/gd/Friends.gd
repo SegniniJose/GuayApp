@@ -41,12 +41,6 @@ func _ready() -> void:
 	if search_bar:
 		GuayTheme.apply_line_edit(search_bar)
 		search_bar.placeholder_text = "Buscar usuario o ID..."
-	if btn_friends:
-		btn_friends.text = "👤  Amigos"
-	if btn_requests:
-		btn_requests.text = "➕  Solicitudes"
-	if btn_invitations:
-		btn_invitations.text = "✈️  Enviadas"
 	for btn in [btn_friends, btn_requests, btn_invitations]:
 		if btn:
 			GuayTheme.apply_tab(btn, false)

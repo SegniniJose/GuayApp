@@ -12,6 +12,11 @@ var sender_id: String = ""
 var reference_id: String = ""
 
 
+func _ready() -> void:
+	GuayTheme.apply_panel(self, GuayTheme.panel_surface())
+	custom_minimum_size = Vector2(0, 72)
+
+
 func set_notification(notification_elt: Dictionary):
 	print("set_notification ", notification_elt)
 	notification_type = notification_elt.type
