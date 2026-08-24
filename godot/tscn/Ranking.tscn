@@ -158,38 +158,43 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_ih70h")
 
-[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1562560030]
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=593539842]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_a6mmv")
-
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=1099183960]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Background" type="Panel" parent="BackgroundPanel/MarginContainer" unique_id=582911751]
-layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=2011922445]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Header" parent="BackgroundPanel/MarginContainer/VBox" unique_id=570429073 instance=ExtResource("1_a6mmv")]
-layout_mode = 2
-
-[node name="Content" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox" unique_id=438131637]
+[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 30
+scroll_horizontal_enabled = false
+
+[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer" unique_id=2011922445]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/VBox" unique_id=570429073 instance=ExtResource("1_a6mmv")]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/VBox" unique_id=438131637]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
 
 [node name="Header" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/Content" unique_id=1226700465]
 layout_mode = 2

@@ -4,24 +4,14 @@ class_name Profile
 @onready var avatar: TextureRectUrl = %Avatar
 @onready var username: Label = %Username
 @onready var points: Label = %Points
+@onready var photos: Label = %Photos
 @onready var status: Label = %Status
+@onready var action_buttons: HBoxContainer = %ActionButtons
+
 
 func _ready() -> void:
-	_apply_profile_styles()
 	load_profile()
 	GuayTheme.fade_in(self)
-
-
-func _apply_profile_styles() -> void:
-	var stats_card = get_node_or_null("BackgroundPanel/MarginContainer/VBox/StatsCard")
-	if stats_card:
-		GuayTheme.apply_panel(stats_card, GuayTheme.panel_surface())
-	var add_btn = get_node_or_null("BackgroundPanel/MarginContainer/VBox/Buttons/AddFriendButton")
-	if add_btn:
-		GuayTheme.apply_button_primary(add_btn)
-	var msg_btn = get_node_or_null("BackgroundPanel/MarginContainer/VBox/Buttons/MessageButton")
-	if msg_btn:
-		GuayTheme.apply_button_outline(msg_btn)
 
 
 func load_profile():
@@ -33,18 +23,20 @@ func load_profile():
 
 
 func refresh_profile():
-	username.text = Globals.profile.get("username", "Jugador")
-	GuayTheme.apply_label(username, GuayTheme.FONT_HEADING, GuayTheme.COLOR_TEXT, true)
-	points.text = "%s pts" % str(Globals.profile.get("points", 0))
-	GuayTheme.apply_label(points, GuayTheme.FONT_BODY, GuayTheme.COLOR_PRIMARY, true)
+	var is_me = (Globals.profile_friend_id == "" or Globals.profile_friend_id == Globals.user_id)
+	if action_buttons:
+		action_buttons.visible = not is_me
+
+	username.text = str(Globals.profile.get("username", Globals.username if Globals.username != "" else "Jugador"))
+	points.text = str(Globals.profile.get("points", Globals.points))
+	photos.text = str(Globals.profile.get("photoCount", Globals.photo_count))
 
 	if Globals.profile.get("isPrivate", false):
-		status.text = "🔒 Perfil privado"
+		status.text = "Perfil privado"
 	else:
-		status.text = "🌐 Perfil público"
-	GuayTheme.apply_label(status, GuayTheme.FONT_LABEL, GuayTheme.COLOR_TEXT_SECONDARY)
+		status.text = "Perfil público"
 
-	await avatar.set_url(Globals.profile.get("avatar", ""))
+	await avatar.set_url(Globals.profile.get("avatar", Globals.avatar))
 
 
 func _on_add_friend_button_pressed() -> void:

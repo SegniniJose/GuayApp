@@ -91,38 +91,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vjp04")
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=1778388226]
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel" unique_id=1176035714]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Background" type="Panel" parent="BackgroundPanel/MarginContainer" unique_id=2050023635]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_Bg")
-
-[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=225553352]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Header" parent="BackgroundPanel/MarginContainer/VBox" unique_id=570429073 instance=ExtResource("1_ke7jy")]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/VBox" unique_id=1176035714]
-layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="Margin" type="MarginContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer" unique_id=1807059985]
+[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+size_flags_vertical = 3
 
-[node name="Content" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/VBox/ScrollContainer/Margin" unique_id=1762980978]
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer" unique_id=225553352]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/VBox" unique_id=570429073 instance=ExtResource("1_ke7jy")]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/VBox" unique_id=1807059985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/VBox/Margin" unique_id=1762980978]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 15

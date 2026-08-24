@@ -82,21 +82,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gl4hd")
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=58685139]
+[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
 
-[node name="Layout" type="VBoxContainer" parent="BackgroundPanel/MarginContainer" unique_id=426009728]
+[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/Scroll"]
 layout_mode = 2
-theme_override_constants/separation = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Header" parent="BackgroundPanel/MarginContainer/Layout" unique_id=570429073 instance=ExtResource("1_3urqq")]
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Layout" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer" unique_id=426009728]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/Layout" unique_id=570429073 instance=ExtResource("1_3urqq")]
 layout_mode = 2
 
-[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/MarginContainer/Layout" unique_id=225598613]
+[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/Layout" unique_id=225598613]
 visible = false
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
