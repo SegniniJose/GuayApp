@@ -71,50 +71,56 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BG"]
+[node name="CenterAlign" type="CenterContainer" parent="BG"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AppContainer" type="VBoxContainer" parent="BG/CenterAlign"]
+custom_minimum_size = Vector2(430, 920)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BG/CenterAlign/AppContainer" instance=ExtResource("2_nrvwh")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/CenterAlign/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="CenterAlign" type="CenterContainer" parent="BG/ScrollContainer"]
+[node name="ContentPadding" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign"]
-custom_minimum_size = Vector2(440, 0)
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BG/ScrollContainer/CenterAlign/AppContainer" instance=ExtResource("2_nrvwh")]
-layout_mode = 2
-
-[node name="ContentPadding" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer"]
-layout_mode = 2
 theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
-[node name="Content" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding"]
+[node name="Content" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 14
 
-[node name="StatsCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="StatsCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="Pad" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard"]
+[node name="Pad" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Row" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad"]
+[node name="Row" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Avatar" type="TextureRect" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row" unique_id=1418858348]
+[node name="Avatar" type="TextureRect" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row" unique_id=1418858348]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
@@ -123,73 +129,73 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_j0qkr")
 
-[node name="RightCol" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row"]
+[node name="RightCol" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
 
-[node name="Username" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol" unique_id=988469596]
+[node name="Username" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol" unique_id=988469596]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 20
 text = "Jugador"
 
-[node name="Status" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol" unique_id=1626297316]
+[node name="Status" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol" unique_id=1626297316]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Perfil privado"
 
-[node name="StatsHBox" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol"]
+[node name="StatsHBox" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PCol" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox"]
+[node name="PCol" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox"]
 layout_mode = 2
 
-[node name="Points" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/PCol" unique_id=121404112]
+[node name="Points" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/PCol" unique_id=121404112]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 22
 text = "0"
 
-[node name="PointsSub" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/PCol"]
+[node name="PointsSub" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/PCol"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 text = "Puntos"
 
-[node name="Div" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox"]
+[node name="Div" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox"]
 custom_minimum_size = Vector2(1, 30)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_divider")
 
-[node name="FCol" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox"]
+[node name="FCol" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox"]
 layout_mode = 2
 
-[node name="Photos" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/FCol" unique_id=1382449174]
+[node name="Photos" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/FCol" unique_id=1382449174]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1.0, 0.627, 0.0, 1)
 theme_override_font_sizes/font_size = 22
 text = "0"
 
-[node name="PhotosSub" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/FCol"]
+[node name="PhotosSub" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/StatsCard/Pad/Row/RightCol/StatsHBox/FCol"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 text = "Fotos subidas"
 
-[node name="ActionButtons" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="ActionButtons" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="AddFriendButton" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionButtons"]
+[node name="AddFriendButton" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionButtons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -198,7 +204,7 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_blue")
 text = "Agregar amigo"
 
-[node name="MessageButton" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionButtons"]
+[node name="MessageButton" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionButtons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -207,33 +213,33 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_outline")
 text = "Mensaje"
 
-[node name="GalleryTitle" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="GalleryTitle" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 15
 text = "Galería de misiones"
 
-[node name="GalleryCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="GalleryCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="PadG" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/GalleryCard"]
+[node name="PadG" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/GalleryCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 24
 
-[node name="EmptyLabel" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/GalleryCard/PadG"]
+[node name="EmptyLabel" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/GalleryCard/PadG"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.65, 0.72, 1)
 theme_override_font_sizes/font_size = 13
 text = "No hay fotos validadas aún"
 horizontal_alignment = 1
 
-[node name="NavBar" parent="BG/ScrollContainer/CenterAlign/AppContainer" instance=ExtResource("4_3c35t")]
+[node name="NavBar" parent="BG/CenterAlign/AppContainer" instance=ExtResource("4_3c35t")]
 layout_mode = 2
 
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionButtons/AddFriendButton" to="." method="_on_add_friend_button_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionButtons/MessageButton" to="." method="_on_message_button_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionButtons/AddFriendButton" to="." method="_on_add_friend_button_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionButtons/MessageButton" to="." method="_on_message_button_pressed"]

@@ -59,49 +59,55 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel"]
+[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/CenterAlign"]
+custom_minimum_size = Vector2(430, 920)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("1_xa56e")]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/Scroll"]
+[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign"]
-custom_minimum_size = Vector2(440, 0)
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer" instance=ExtResource("1_xa56e")]
-layout_mode = 2
-
-[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer"]
-layout_mode = 2
 theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
-[node name="ContentVBox" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad"]
+[node name="ContentVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 14
 
-[node name="PageHeader" type="HBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox"]
+[node name="PageHeader" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
 layout_mode = 2
 
-[node name="TitleVBox" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/PageHeader"]
+[node name="TitleVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/PageHeader"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 2
 
-[node name="Title" type="Label" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/PageHeader/TitleVBox"]
+[node name="Title" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/PageHeader/TitleVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 22
 text = "Notificaciones"
 
-[node name="Subtitle" type="RichTextLabel" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/PageHeader/TitleVBox"]
+[node name="Subtitle" type="RichTextLabel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/PageHeader/TitleVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
@@ -109,7 +115,7 @@ theme_override_colors/default_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/normal_font_size = 13
 text = "Sin notificaciones"
 
-[node name="MarkAllBtn" type="Button" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/PageHeader" groups=["notifications"]]
+[node name="MarkAllBtn" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/PageHeader" groups=["notifications"]]
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
 size_flags_vertical = 4
@@ -118,58 +124,58 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_MarkReadBtn")
 text = "Marcar todas"
 
-[node name="ItemsVBox" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox"]
+[node name="ItemsVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
 
-[node name="FriendRequestCard" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox" instance=ExtResource("3_f16mf")]
+[node name="FriendRequestCard" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox" instance=ExtResource("3_f16mf")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="ValidationCard" type="PanelContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox"]
+[node name="ValidationCard" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_AmberCard")
 
-[node name="ValMargin" type="MarginContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard"]
+[node name="ValMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_right = 14
 
-[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin"]
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="CircleIcon" type="ColorRect" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox"]
+[node name="CircleIcon" type="ColorRect" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(1, 0.93, 0.8, 1)
 
-[node name="Text" type="VBoxContainer" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox"]
+[node name="Text" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 theme_override_constants/separation = 2
 
-[node name="Main" type="Label" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox/Text"]
+[node name="Main" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox/Text"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.15, 0, 1)
 theme_override_font_sizes/font_size = 15
 text = "Fotos por validar"
 
-[node name="Sub" type="Label" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox/Text"]
+[node name="Sub" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox/Text"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.3, 0.1, 1)
 theme_override_font_sizes/font_size = 12
 text = "Revisa las fotos de tus companeros"
 
-[node name="IrBtn" type="Button" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox"]
+[node name="IrBtn" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ItemsVBox/ValidationCard/ValMargin/HBox"]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 size_flags_vertical = 4
@@ -178,10 +184,10 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_AmberCircle")
 text = "Ir"
 
-[node name="NavBar" parent="BackgroundPanel/Scroll/CenterAlign/AppContainer" instance=ExtResource("2_x7ii1")]
+[node name="NavBar" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("2_x7ii1")]
 layout_mode = 2
 
 [node name="HttpRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="BackgroundPanel/Scroll/CenterAlign/AppContainer/ContentPad/ContentVBox/PageHeader/MarkAllBtn" to="." method="_on_mark_all_btn_pressed"]
+[connection signal="pressed" from="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/PageHeader/MarkAllBtn" to="." method="_on_mark_all_btn_pressed"]

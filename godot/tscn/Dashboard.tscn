@@ -187,52 +187,58 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BG"]
+[node name="CenterAlign" type="CenterContainer" parent="BG"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AppContainer" type="VBoxContainer" parent="BG/CenterAlign"]
+custom_minimum_size = Vector2(430, 920)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BG/CenterAlign/AppContainer" unique_id=570429073 instance=ExtResource("2_cbmtx")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/CenterAlign/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="CenterAlign" type="CenterContainer" parent="BG/ScrollContainer"]
+[node name="ContentPadding" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign"]
-custom_minimum_size = Vector2(440, 0)
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BG/ScrollContainer/CenterAlign/AppContainer" unique_id=570429073 instance=ExtResource("2_cbmtx")]
-layout_mode = 2
-
-[node name="ContentPadding" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer"]
-layout_mode = 2
 theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
-[node name="Content" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding"]
+[node name="Content" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 14
 
-[node name="ProfileCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content" unique_id=769414836]
+[node name="ProfileCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content" unique_id=769414836]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 mouse_filter = 1
 
-[node name="PadM" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard"]
+[node name="PadM" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Row" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM"]
+[node name="Row" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Avatar" type="TextureRect" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row" unique_id=274691914]
+[node name="Avatar" type="TextureRect" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row" unique_id=274691914]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(68, 68)
 layout_mode = 2
@@ -241,102 +247,102 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("2_xorw6")
 
-[node name="Info" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row"]
+[node name="Info" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="Username" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info" unique_id=1863966112]
+[node name="Username" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info" unique_id=1863966112]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 20
 text = "Jugador"
 
-[node name="LevelBadge" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info"]
+[node name="LevelBadge" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_level_badge")
 
-[node name="LevelLabel" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/LevelBadge"]
+[node name="LevelLabel" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/LevelBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 12
 text = "★ Nivel 1"
 
-[node name="StatsRow" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info"]
+[node name="StatsRow" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="PointsCol" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow"]
+[node name="PointsCol" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PointsNum" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PointsCol" unique_id=1491919949]
+[node name="PointsNum" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PointsCol" unique_id=1491919949]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1.0, 0.627, 0.0, 1)
 theme_override_font_sizes/font_size = 24
 text = "0"
 
-[node name="PointsLabel" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PointsCol"]
+[node name="PointsLabel" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PointsCol"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "puntos"
 
-[node name="Divider" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow"]
+[node name="Divider" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow"]
 custom_minimum_size = Vector2(1, 36)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_divider")
 
-[node name="PhotosCol" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow"]
+[node name="PhotosCol" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PhotosNum" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PhotosCol" unique_id=246689031]
+[node name="PhotosNum" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PhotosCol" unique_id=246689031]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.545, 0.361, 0.965, 1)
 theme_override_font_sizes/font_size = 24
 text = "0"
 
-[node name="PhotosLabel" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PhotosCol"]
+[node name="PhotosLabel" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row/Info/StatsRow/PhotosCol"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "fotos"
 
-[node name="CardArrow" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProfileCard/PadM/Row"]
+[node name="CardArrow" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProfileCard/PadM/Row"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.7, 0.75, 0.82, 1)
 theme_override_font_sizes/font_size = 20
 text = "›"
 
-[node name="PrivateCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content" unique_id=2077059991]
+[node name="PrivateCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content" unique_id=2077059991]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="PadP" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard"]
+[node name="PadP" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 14
 
-[node name="Row" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP"]
+[node name="Row" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP"]
 layout_mode = 2
 
-[node name="IconBox" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row"]
+[node name="IconBox" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_icon_blue")
 
-[node name="Icon" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row/IconBox"]
+[node name="Icon" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row/IconBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 18
@@ -344,83 +350,83 @@ text = "🔒"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row"]
+[node name="Spacer" type="Control" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="TextGroup" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row"]
+[node name="TextGroup" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 2
 
-[node name="Title" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row/TextGroup"]
+[node name="Title" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row/TextGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 14
 text = "Perfil privado"
 
-[node name="Sub" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row/TextGroup"]
+[node name="Sub" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row/TextGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 text = "Solo tus amigos pueden ver tu galería"
 
-[node name="CheckButton" type="CheckButton" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PrivateCard/PadP/Row" unique_id=1425293245]
+[node name="CheckButton" type="CheckButton" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PrivateCard/PadP/Row" unique_id=1425293245]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="HeroCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content" unique_id=951732747]
+[node name="HeroCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content" unique_id=951732747]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hero")
 
-[node name="PadH" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard"]
+[node name="PadH" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 18
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 16
 
-[node name="HeroText" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH"]
+[node name="HeroText" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="MissionBadge" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
+[node name="MissionBadge" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mission_badge")
 
-[node name="BadgeLabel" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText/MissionBadge"]
+[node name="BadgeLabel" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText/MissionBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.29, 0.15, 0.0, 1)
 theme_override_font_sizes/font_size = 11
 text = "MISIÓN RECOMENDADA"
 
-[node name="HeroTitle" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
+[node name="HeroTitle" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 17
 autowrap_mode = 3
 text = "¡Completa tu primera misión y gana puntos!"
 
-[node name="HeroDesc" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
+[node name="HeroDesc" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.92, 1.0, 1)
 theme_override_font_sizes/font_size = 12
 text = "Haz una foto de una taza de café"
 
-[node name="PtsBadge" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
+[node name="PtsBadge" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pts_badge")
 
-[node name="PtsLabel" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText/PtsBadge"]
+[node name="PtsLabel" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText/PtsBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 text = "+10 pts"
 
-[node name="StartBtn" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText" unique_id=216037960]
+[node name="StartBtn" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText" unique_id=216037960]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -431,48 +437,48 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_gold_btn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gold_btn")
 text = "Empezar misión  >"
 
-[node name="ProgressCard" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="ProgressCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="PadPr" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard"]
+[node name="PadPr" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 14
 
-[node name="ProgVBox" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr"]
+[node name="ProgVBox" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ProgHead" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox"]
+[node name="ProgHead" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox"]
 layout_mode = 2
 
-[node name="ProgTitle" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgHead"]
+[node name="ProgTitle" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgHead"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 15
 text = "Tu progreso"
 
-[node name="ProgArrow" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgHead"]
+[node name="ProgArrow" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgHead"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.65, 1)
 theme_override_font_sizes/font_size = 18
 text = "›"
 
-[node name="ProgBody" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox"]
+[node name="ProgBody" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="LevelCircle" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody"]
+[node name="LevelCircle" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_gold_btn")
 
-[node name="LevelNum" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/LevelCircle"]
+[node name="LevelNum" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/LevelCircle"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.15, 0.0, 1)
 theme_override_font_sizes/font_size = 16
@@ -480,82 +486,82 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgMid" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody"]
+[node name="ProgMid" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="ProgDesc" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid"]
+[node name="ProgDesc" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 text = "Sigue completando misiones para subir de nivel."
 
-[node name="ProgDots" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid"]
+[node name="ProgDots" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="D1" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
+[node name="D1" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress_dot_fill")
 
-[node name="D2" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
+[node name="D2" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress_dot_empty")
 
-[node name="D3" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
+[node name="D3" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress_dot_empty")
 
-[node name="D4" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
+[node name="D4" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress_dot_empty")
 
-[node name="D5" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
+[node name="D5" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid/ProgDots"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress_dot_empty")
 
-[node name="ProgPct" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid"]
+[node name="ProgPct" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ProgressCard/PadPr/ProgVBox/ProgBody/ProgMid"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 11
 text = "0%"
 
-[node name="ActionsGrid" type="GridContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="ActionsGrid" type="GridContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="ActionLeague" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid"]
+[node name="ActionLeague" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_action")
 
-[node name="PadA1" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague"]
+[node name="PadA1" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VB" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1"]
+[node name="VB" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="IconWrap" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
+[node name="IconWrap" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_icon_blue")
 
-[node name="Ic" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB/IconWrap"]
+[node name="Ic" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB/IconWrap"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 14
@@ -563,26 +569,26 @@ text = "LIG"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
+[node name="T" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Únete a una liga"
 
-[node name="S" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
+[node name="S" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 3
 text = "Busca o crea tu propia liga"
 
-[node name="ArrowLeague" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
+[node name="ArrowLeague" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/PadA1/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
 text = ">"
 
-[node name="BtnLeague" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague"]
+[node name="BtnLeague" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -591,29 +597,29 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="ActionMission" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid"]
+[node name="ActionMission" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_action")
 
-[node name="PadA2" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission"]
+[node name="PadA2" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VB" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2"]
+[node name="VB" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="IconWrap" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
+[node name="IconWrap" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_icon_green")
 
-[node name="Ic" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB/IconWrap"]
+[node name="Ic" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB/IconWrap"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.063, 0.725, 0.506, 1)
 theme_override_font_sizes/font_size = 14
@@ -621,26 +627,26 @@ text = "FOT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
+[node name="T" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Completa misiones"
 
-[node name="S" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
+[node name="S" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 3
 text = "Haz fotos y gana puntos"
 
-[node name="ArrowMission" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
+[node name="ArrowMission" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/PadA2/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
 text = ">"
 
-[node name="BtnMission" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission"]
+[node name="BtnMission" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -649,29 +655,29 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="ActionValidate" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid"]
+[node name="ActionValidate" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_action")
 
-[node name="PadA3" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate"]
+[node name="PadA3" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VB" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3"]
+[node name="VB" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="IconWrap" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
+[node name="IconWrap" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_icon_purple")
 
-[node name="Ic" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB/IconWrap"]
+[node name="Ic" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB/IconWrap"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.545, 0.361, 0.965, 1)
 theme_override_font_sizes/font_size = 14
@@ -679,26 +685,26 @@ text = "VAL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
+[node name="T" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "La comunidad valida"
 
-[node name="S" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
+[node name="S" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 3
 text = "Obtén 2 votos positivos"
 
-[node name="ArrowValidate" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
+[node name="ArrowValidate" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/PadA3/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
 text = ">"
 
-[node name="BtnValidate" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate"]
+[node name="BtnValidate" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -707,29 +713,29 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="ActionRanking" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid"]
+[node name="ActionRanking" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_action")
 
-[node name="PadA4" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking"]
+[node name="PadA4" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VB" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4"]
+[node name="VB" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="IconWrap" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
+[node name="IconWrap" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_icon_gold")
 
-[node name="Ic" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB/IconWrap"]
+[node name="Ic" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB/IconWrap"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1.0, 0.627, 0.0, 1)
 theme_override_font_sizes/font_size = 14
@@ -737,26 +743,26 @@ text = "TOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
+[node name="T" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Sube en el ranking"
 
-[node name="S" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
+[node name="S" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 3
 text = "Compite y gana recompensas"
 
-[node name="ArrowRanking" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
+[node name="ArrowRanking" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/PadA4/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 16
 text = ">"
 
-[node name="BtnRanking" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking"]
+[node name="BtnRanking" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -765,46 +771,46 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="PromoRow" type="HBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="PromoRow" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PromoInvite" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow"]
+[node name="PromoInvite" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_promo_invite")
 
-[node name="PadPi" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite"]
+[node name="PadPi" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VB" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi"]
+[node name="VB" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi"]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="T" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi/VB"]
+[node name="T" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Invita a tus amigos"
 
-[node name="S" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi/VB"]
+[node name="S" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 3
 text = "Gana +20 pts por cada amigo"
 
-[node name="Arr" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi/VB"]
+[node name="Arr" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite/PadPi/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 15
 text = ">"
 
-[node name="BtnInvite" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite"]
+[node name="BtnInvite" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -813,42 +819,42 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="PromoRank" type="PanelContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow"]
+[node name="PromoRank" type="PanelContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_promo_rank")
 
-[node name="PadPr" type="MarginContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank"]
+[node name="PadPr" type="MarginContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VB" type="VBoxContainer" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr"]
+[node name="VB" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr"]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="T" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr/VB"]
+[node name="T" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Ranking semanal"
 
-[node name="S" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr/VB"]
+[node name="S" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 3
 text = "Descubre a los mejores"
 
-[node name="Arr" type="Label" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr/VB"]
+[node name="Arr" type="Label" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank/PadPr/VB"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
 theme_override_font_sizes/font_size = 15
 text = ">"
 
-[node name="BtnRank" type="Button" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank"]
+[node name="BtnRank" type="Button" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -857,20 +863,20 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="BottomSpace" type="Control" parent="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content"]
+[node name="BottomSpace" type="Control" parent="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="NavBar" parent="BG/ScrollContainer/CenterAlign/AppContainer" unique_id=2135823437 instance=ExtResource("4_kvein")]
+[node name="NavBar" parent="BG/CenterAlign/AppContainer" unique_id=2135823437 instance=ExtResource("4_kvein")]
 layout_mode = 2
 
 [node name="HttpRequest" type="HTTPRequest" parent="." unique_id=2073902784]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/HeroCard/PadH/HeroText/StartBtn" to="." method="_on_create_league_button_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionLeague/BtnLeague" to="." method="_on_btn_league_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionMission/BtnMission" to="." method="_on_btn_mission_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionValidate/BtnValidate" to="." method="_on_btn_validate_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/ActionsGrid/ActionRanking/BtnRanking" to="." method="_on_btn_ranking_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoInvite/BtnInvite" to="." method="_on_btn_invite_pressed"]
-[connection signal="pressed" from="BG/ScrollContainer/CenterAlign/AppContainer/ContentPadding/Content/PromoRow/PromoRank/BtnRank" to="." method="_on_btn_ranking_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/HeroCard/PadH/HeroText/StartBtn" to="." method="_on_create_league_button_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionLeague/BtnLeague" to="." method="_on_btn_league_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionMission/BtnMission" to="." method="_on_btn_mission_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionValidate/BtnValidate" to="." method="_on_btn_validate_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/ActionsGrid/ActionRanking/BtnRanking" to="." method="_on_btn_ranking_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoInvite/BtnInvite" to="." method="_on_btn_invite_pressed"]
+[connection signal="pressed" from="BG/CenterAlign/AppContainer/ScrollContainer/ContentPadding/Content/PromoRow/PromoRank/BtnRank" to="." method="_on_btn_ranking_pressed"]

@@ -56,67 +56,73 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="Scroll" type="ScrollContainer" parent="BG"]
+[node name="CenterAlign" type="CenterContainer" parent="BG"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AppContainer" type="VBoxContainer" parent="BG/CenterAlign"]
+custom_minimum_size = Vector2(430, 920)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BG/CenterAlign/AppContainer" instance=ExtResource("1_tkmh2")]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="BG/CenterAlign/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="CenterAlign" type="CenterContainer" parent="BG/Scroll"]
+[node name="ContentPadding" type="MarginContainer" parent="BG/CenterAlign/AppContainer/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BG/Scroll/CenterAlign"]
-custom_minimum_size = Vector2(440, 0)
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BG/Scroll/CenterAlign/AppContainer" unique_id=570429073 instance=ExtResource("1_tkmh2")]
-layout_mode = 2
-
-[node name="ContentPadding" type="MarginContainer" parent="BG/Scroll/CenterAlign/AppContainer"]
-layout_mode = 2
 theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
-[node name="Content" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding"]
+[node name="Content" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 14
 
-[node name="MissionsHeader" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content" unique_id=794015085 instance=ExtResource("2_e88ww")]
+[node name="MissionsHeader" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content" unique_id=794015085 instance=ExtResource("2_e88ww")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MainCard" type="PanelContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content" unique_id=1224567052]
+[node name="MainCard" type="PanelContainer" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content" unique_id=1224567052]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="VBox" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard" unique_id=976948102]
+[node name="VBox" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard" unique_id=976948102]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="HeaderRow" type="HBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox" unique_id=710049259]
+[node name="HeaderRow" type="HBoxContainer" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard/VBox" unique_id=710049259]
 layout_mode = 2
 
-[node name="TitleGroup" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow" unique_id=1618661685]
+[node name="TitleGroup" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard/VBox/HeaderRow" unique_id=1618661685]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 2
 
-[node name="Title" type="Label" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow/TitleGroup" unique_id=281243525]
+[node name="Title" type="Label" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard/VBox/HeaderRow/TitleGroup" unique_id=281243525]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 22
 text = "Misiones"
 
-[node name="Subtitle" type="Label" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow/TitleGroup" unique_id=1881784672]
+[node name="Subtitle" type="Label" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard/VBox/HeaderRow/TitleGroup" unique_id=1881784672]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Completa retos y gana puntos."
 
-[node name="Badge" type="Label" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox/HeaderRow" unique_id=998026492]
+[node name="Badge" type="Label" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard/VBox/HeaderRow" unique_id=998026492]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -125,10 +131,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_badge")
 text = "Disponibles"
 vertical_alignment = 1
 
-[node name="MissionList" type="VBoxContainer" parent="BG/Scroll/CenterAlign/AppContainer/ContentPadding/Content/MainCard/VBox" unique_id=988599061 groups=["missions"]]
+[node name="MissionList" type="VBoxContainer" parent="BG/CenterAlign/AppContainer/Scroll/ContentPadding/Content/MainCard/VBox" unique_id=988599061 groups=["missions"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="NavBar" parent="BG/Scroll/CenterAlign/AppContainer" unique_id=2135823437 instance=ExtResource("2_ocg36")]
+[node name="NavBar" parent="BG/CenterAlign/AppContainer" instance=ExtResource("2_ocg36")]
 layout_mode = 2

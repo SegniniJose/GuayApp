@@ -136,7 +136,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="AppContainer" type="MarginContainer" parent="Background/Scroll/CenterAlign"]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(430, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 28

@@ -88,40 +88,46 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel"]
+[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/CenterAlign"]
+custom_minimum_size = Vector2(430, 920)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Header" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("1_ke7jy")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel/ScrollContainer"]
+[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign"]
-custom_minimum_size = Vector2(440, 0)
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer" instance=ExtResource("1_ke7jy")]
-layout_mode = 2
-
-[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer"]
-layout_mode = 2
 theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
-[node name="Content" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad"]
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 12
 
-[node name="SearchHBox" type="HBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content"]
+[node name="SearchHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="SearchBar" type="LineEdit" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/SearchHBox"]
+[node name="SearchBar" type="LineEdit" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/SearchHBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
@@ -131,22 +137,22 @@ theme_override_colors/font_placeholder_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_Search")
 placeholder_text = "Buscar por nombre o ID..."
 
-[node name="SearchBtn" type="Button" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/SearchHBox"]
+[node name="SearchBtn" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/SearchHBox"]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_search_btn")
 text = "IR"
 
-[node name="SearchResultsCard" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content" instance=ExtResource("3_o642h")]
+[node name="SearchResultsCard" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content" instance=ExtResource("3_o642h")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TabsHBox" type="HBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content"]
+[node name="TabsHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="TabAmigos" type="Button" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox"]
+[node name="TabAmigos" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -155,7 +161,7 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_tab_active")
 text = "Amigos"
 
-[node name="TabSolicitudes" type="Button" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox"]
+[node name="TabSolicitudes" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -164,7 +170,7 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_tab_idle")
 text = "Solicitudes"
 
-[node name="SolicitudesCount" type="RichTextLabel" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox/TabSolicitudes"]
+[node name="SolicitudesCount" type="RichTextLabel" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox/TabSolicitudes"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -178,7 +184,7 @@ theme_override_font_sizes/normal_font_size = 12
 text = "0"
 horizontal_alignment = 2
 
-[node name="TabEnviadas" type="Button" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox"]
+[node name="TabEnviadas" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -187,130 +193,130 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_tab_idle")
 text = "Enviadas"
 
-[node name="FriendCard" type="PanelContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content" groups=["cards", "friends"]]
+[node name="FriendCard" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content" groups=["cards", "friends"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
 
-[node name="FriendMargin" type="MarginContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/FriendCard"]
+[node name="FriendMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/FriendCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_right = 14
 
-[node name="FriendHBox" type="HBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/FriendCard/FriendMargin"]
+[node name="FriendHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/FriendCard/FriendMargin"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Avatar" type="ColorRect" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox"]
+[node name="Avatar" type="ColorRect" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox"]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0.808, 0.902, 1.0, 1)
 
-[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox"]
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 theme_override_constants/separation = 2
 
-[node name="Name" type="Label" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox/LabelVBox"]
+[node name="Name" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox/LabelVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 15
 text = "Amigo"
 
-[node name="Points" type="Label" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox/LabelVBox"]
+[node name="Points" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/FriendCard/FriendMargin/FriendHBox/LabelVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1.0, 0.627, 0.0, 1)
 theme_override_font_sizes/font_size = 12
 text = "0 pts"
 
-[node name="RequestsCard" type="PanelContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content" groups=["cards", "pending_inbound_requests"]]
+[node name="RequestsCard" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content" groups=["cards", "pending_inbound_requests"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
 
-[node name="ReqMargin" type="MarginContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/RequestsCard"]
+[node name="ReqMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/RequestsCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_right = 14
 
-[node name="ReqHBox" type="HBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/RequestsCard/ReqMargin"]
+[node name="ReqHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/RequestsCard/ReqMargin"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Avatar" type="ColorRect" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox"]
+[node name="Avatar" type="ColorRect" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox"]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0.808, 0.902, 1.0, 1)
 
-[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox"]
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 theme_override_constants/separation = 2
 
-[node name="Name" type="Label" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox/LabelVBox"]
+[node name="Name" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox/LabelVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 15
 text = "Solicitud"
 
-[node name="Status" type="Label" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox/LabelVBox"]
+[node name="Status" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/RequestsCard/ReqMargin/ReqHBox/LabelVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Pendiente"
 
-[node name="InvitationsCard" type="PanelContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content" groups=["cards", "pending_outbound_invitations"]]
+[node name="InvitationsCard" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content" groups=["cards", "pending_outbound_invitations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
 
-[node name="InvMargin" type="MarginContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/InvitationsCard"]
+[node name="InvMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/InvitationsCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_right = 14
 
-[node name="InvHBox" type="HBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/InvitationsCard/InvMargin"]
+[node name="InvHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/InvitationsCard/InvMargin"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Avatar" type="ColorRect" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox"]
+[node name="Avatar" type="ColorRect" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox"]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0.808, 0.902, 1.0, 1)
 
-[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox"]
+[node name="LabelVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 theme_override_constants/separation = 2
 
-[node name="Name" type="Label" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox/LabelVBox"]
+[node name="Name" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox/LabelVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 15
 text = "Invitacion"
 
-[node name="Invitation" type="Label" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox/LabelVBox"]
+[node name="Invitation" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/InvitationsCard/InvMargin/InvHBox/LabelVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Quiere ser tu amigo"
 
-[node name="NavBar" parent="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer" instance=ExtResource("2_utib6")]
+[node name="NavBar" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("2_utib6")]
 layout_mode = 2
 
 [node name="HttpRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/SearchHBox/SearchBtn" to="." method="_on_search_btn_pressed"]
-[connection signal="pressed" from="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox/TabAmigos" to="." method="_on_tab_friends_pressed"]
-[connection signal="pressed" from="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox/TabSolicitudes" to="." method="_on_tab_requests_pressed"]
-[connection signal="pressed" from="BackgroundPanel/ScrollContainer/CenterAlign/AppContainer/ContentPad/Content/TabsHBox/TabEnviadas" to="." method="_on_tab_invitations_pressed"]
+[connection signal="pressed" from="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/SearchHBox/SearchBtn" to="." method="_on_search_btn_pressed"]
+[connection signal="pressed" from="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox/TabAmigos" to="." method="_on_tab_friends_pressed"]
+[connection signal="pressed" from="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox/TabSolicitudes" to="." method="_on_tab_requests_pressed"]
+[connection signal="pressed" from="BackgroundPanel/CenterAlign/AppContainer/ScrollContainer/ContentPad/Content/TabsHBox/TabEnviadas" to="." method="_on_tab_invitations_pressed"]
