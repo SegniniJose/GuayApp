@@ -1,4 +1,4 @@
-extends Node
+extends Control
 class_name Leagues
 
 @onready var publicas: PanelContainer = %Publicas

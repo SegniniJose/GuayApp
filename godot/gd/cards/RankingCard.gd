@@ -14,7 +14,7 @@ func set_ranking(rank_number: int, ranking: Dictionary):
 	if you_tag:
 		you_tag.visible = false
 
-	var is_current_user := (ranking.get("id", "") == Globals.user_id)
+	var is_current_user: bool = (ranking.get("id", "") == Globals.user_id)
 	var pts: int = ranking.get("points", 0)
 	var lvl: int = max(1, int(pts / 100) + 1)
 
