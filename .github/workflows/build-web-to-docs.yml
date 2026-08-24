@@ -22,25 +22,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-
-      - name: Install npm dependencies
-        run: npm ci
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-
-      - name: Install GDScript Formatter
-        run: pip3 install "gdtoolkit==4.*"
-
-      # - name: Run Source Formatter Check
-      #   run: |
-      #     chmod +x ./ci/check-format-source.sh
-      #     ./ci/check-format-source.sh
+      # npm/formatting tools not needed for Godot export — skipped
 
 
       - name: Download Godot 4.6
