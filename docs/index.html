@@ -93,7 +93,27 @@ body {
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
-	<style>html,body,#canvas{width:100%!important;height:100%!important;background:#f7f9fc!important}#canvas{position:fixed!important;inset:0!important}</style><script>(function(){function z(e){var k=e.key,c=e.code;return k==="+"||k==="-"||k==="="||k==="_"||k==="0"||c==="Equal"||c==="Minus"||c==="NumpadAdd"||c==="NumpadSubtract"||c==="Digit0"}window.addEventListener("keydown",function(e){if(!(e.ctrlKey||e.metaKey))return;if(e.key==="r"||e.key==="R"){e.stopImmediatePropagation();e.preventDefault();location.reload();return}if(z(e))e.stopImmediatePropagation()},true);window.addEventListener("wheel",function(e){if(e.ctrlKey||e.metaKey)e.stopImmediatePropagation()},{capture:true,passive:true})})();</script></head>
+	<style>html,body,#canvas{width:100%!important;height:100%!important;background:#f7f9fc!important}#canvas{position:fixed!important;inset:0!important}</style>
+	<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+	<script>
+	(function(){
+	  try {
+	    firebase.initializeApp({
+	      apiKey: "AIzaSyCjnYHIOjkr7dYen4emHjhsLz0mlUyQ1J0",
+	      authDomain: "guay-app-social.firebaseapp.com",
+	      projectId: "guay-app-social",
+	      appId: "1:369051773336:web:6702b8e19eda5094cae3ed"
+	    });
+	    window._guayIdToken = null;
+	    window._guayAuthErr = null;
+	  } catch (e) { console.error("Firebase init", e); }
+	  function z(e){var k=e.key,c=e.code;return k==="+"||k==="-"||k==="="||k==="_"||k==="0"||c==="Equal"||c==="Minus"||c==="NumpadAdd"||c==="NumpadSubtract"||c==="Digit0"}
+	  window.addEventListener("keydown",function(e){if(!(e.ctrlKey||e.metaKey))return;if(e.key==="r"||e.key==="R"){e.stopImmediatePropagation();e.preventDefault();location.reload();return}if(z(e))e.stopImmediatePropagation()},true);
+	  window.addEventListener("wheel",function(e){if(e.ctrlKey||e.metaKey)e.stopImmediatePropagation()},{capture:true,passive:true});
+	})();
+	</script>
+</head>
 	<body>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
@@ -111,7 +131,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":975468,"index.wasm":37686550},"focusCanvas":false,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":985532,"index.wasm":37686550},"focusCanvas":false,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
