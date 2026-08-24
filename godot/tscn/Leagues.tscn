@@ -123,27 +123,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/CenterAlign"]
-custom_minimum_size = Vector2(430, 920)
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Header" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("1_7hr55")]
+[node name="Header" parent="BackgroundPanel/AppContainer" instance=ExtResource("1_7hr55")]
 layout_mode = 2
 
-[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll"]
+[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -152,41 +146,41 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad"]
+[node name="VBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
 
-[node name="Title" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox"]
+[node name="Title" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 24
 text = "Ligas"
 
-[node name="Description" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox"]
+[node name="Description" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 13
 text = "Únete a un grupo o crea el tuyo propio para competir."
 autowrap_mode = 2
 
-[node name="TabContainer" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox"]
+[node name="TabContainer" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox"]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tabs")
 
-[node name="TabPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/TabContainer"]
+[node name="TabPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Tabs" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad"]
+[node name="Tabs" type="HBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="PublicasButton" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs"]
+[node name="PublicasButton" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -196,7 +190,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tab_active")
 text = "Públicas"
 flat = false
 
-[node name="CodigoButton" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs"]
+[node name="CodigoButton" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -205,7 +199,7 @@ theme_override_font_sizes/font_size = 13
 text = "Código"
 flat = true
 
-[node name="CrearButton" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs"]
+[node name="CrearButton" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -214,77 +208,77 @@ theme_override_font_sizes/font_size = 13
 text = "Crear"
 flat = true
 
-[node name="Publicas" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox"]
+[node name="Publicas" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="PublicasPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas"]
+[node name="PublicasPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="PublicasVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad"]
+[node name="PublicasVBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="PublicHeader" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox"]
+[node name="PublicHeader" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TitleLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox/PublicHeader"]
+[node name="TitleLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox/PublicHeader"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 18
 text = "Ligas Públicas"
 
-[node name="SubtitleLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox/PublicHeader"]
+[node name="SubtitleLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox/PublicHeader"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Únete a una liga abierta y empieza a jugar."
 
-[node name="PublicLeaguesList" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox"]
+[node name="PublicLeaguesList" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PublicLeagueCard" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox/PublicLeaguesList" instance=ExtResource("3_045oy")]
+[node name="PublicLeagueCard" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Publicas/PublicasPad/PublicasVBox/PublicLeaguesList" instance=ExtResource("3_045oy")]
 layout_mode = 2
 
-[node name="Codigo" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox"]
+[node name="Codigo" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="CodigoPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Codigo"]
+[node name="CodigoPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Codigo"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="CodigoVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad"]
+[node name="CodigoVBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad"]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="CodigoTitle" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
+[node name="CodigoTitle" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 20
 text = "Unirse con Código"
 
-[node name="CodigoSub" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
+[node name="CodigoSub" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 13
 text = "Ingresa el código que te compartió tu amigo."
 autowrap_mode = 3
 
-[node name="CodeInput" type="LineEdit" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
+[node name="CodeInput" type="LineEdit" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
@@ -294,53 +288,53 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "Código (ej. ABC123)"
 alignment = 1
 
-[node name="JoinButton" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
+[node name="JoinButton" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Codigo/CodigoPad/CodigoVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_blue")
 text = "Unirse"
 
-[node name="Crear" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox"]
+[node name="Crear" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="CrearPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear"]
+[node name="CrearPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Content" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad"]
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad"]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="CrearTitle" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="CrearTitle" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 20
 text = "Crear Nueva Liga"
 
-[node name="CrearSub" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="CrearSub" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 13
 text = "Tú serás el administrador de esta liga."
 
-[node name="NameSection" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="NameSection" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="NameLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/NameSection"]
+[node name="NameLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/NameSection"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Nombre de la Liga"
 
-[node name="LeagueName" type="LineEdit" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/NameSection"]
+[node name="LeagueName" type="LineEdit" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/NameSection"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
@@ -349,21 +343,21 @@ theme_override_font_sizes/font_placeholder_color = Color(0.65, 0.7, 0.75, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "Ej. Los Invencibles"
 
-[node name="TypeSection" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="TypeSection" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TypeLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection"]
+[node name="TypeLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Tipo de Liga"
 
-[node name="Btns" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection"]
+[node name="Btns" type="HBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Dias" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection/Btns"]
+[node name="Dias" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection/Btns"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -372,7 +366,7 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_blue")
 text = "Por dias"
 
-[node name="Express" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection/Btns"]
+[node name="Express" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/TypeSection/Btns"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -381,18 +375,18 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_outline")
 text = "Express"
 
-[node name="DurationDaysSection" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="DurationDaysSection" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="DaysLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationDaysSection"]
+[node name="DaysLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationDaysSection"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Duracion"
 
-[node name="DaysDurationOptionButton" type="OptionButton" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationDaysSection"]
+[node name="DaysDurationOptionButton" type="OptionButton" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationDaysSection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_option")
@@ -413,19 +407,19 @@ popup/item_5/id = 6
 popup/item_6/text = "1 semana"
 popup/item_6/id = 7
 
-[node name="DurationExpressSection" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="DurationExpressSection" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ExpressDurLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
+[node name="ExpressDurLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Duracion Express"
 
-[node name="ExpressDurationOptionButton" type="OptionButton" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
+[node name="ExpressDurationOptionButton" type="OptionButton" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_option")
@@ -444,13 +438,13 @@ popup/item_4/id = 45
 popup/item_5/text = "1 hora"
 popup/item_5/id = 60
 
-[node name="ExpressLocalLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
+[node name="ExpressLocalLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 13
 text = "Local (opcional)"
 
-[node name="ExpressLocationOptionButton2" type="OptionButton" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
+[node name="ExpressLocationOptionButton2" type="OptionButton" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/DurationExpressSection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_option")
@@ -461,11 +455,11 @@ popup/item_0/id = 0
 popup/item_1/text = "LA CASA URBANA"
 popup/item_1/id = 1
 
-[node name="PrivateToggle" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="PrivateToggle" type="HBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PrivLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/PrivateToggle"]
+[node name="PrivLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/PrivateToggle"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
@@ -473,18 +467,18 @@ theme_override_font_sizes/font_size = 13
 text = "Liga Privada"
 vertical_alignment = 1
 
-[node name="PublicPrivateSwitch" type="CheckButton" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/PrivateToggle"]
+[node name="PublicPrivateSwitch" type="CheckButton" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content/PrivateToggle"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SubmitBtn" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
+[node name="SubmitBtn" type="Button" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/VBox/Crear/CrearPad/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_orange")
 text = "Crear Liga"
 
-[node name="NavBar" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("2_26hdg")]
+[node name="NavBar" parent="BackgroundPanel/AppContainer" instance=ExtResource("2_26hdg")]
 layout_mode = 2
 
 [connection signal="pressed" from="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/VBox/TabContainer/TabPad/Tabs/PublicasButton" to="." method="_on_publicas_pressed"]

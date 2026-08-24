@@ -139,27 +139,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/CenterAlign"]
-custom_minimum_size = Vector2(430, 920)
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Header" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("1_a6mmv")]
+[node name="Header" parent="BackgroundPanel/AppContainer" instance=ExtResource("1_a6mmv")]
 layout_mode = 2
 
-[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+[node name="Scroll" type="ScrollContainer" parent="BackgroundPanel/AppContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll"]
+[node name="ContentPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -168,42 +162,42 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="ContentVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad"]
+[node name="ContentVBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="PageTitle" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
+[node name="PageTitle" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 26
 text = "Ranking Semanal"
 horizontal_alignment = 1
 
-[node name="PageSub" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
+[node name="PageSub" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 14
 text = "Top jugadores de tu liga"
 horizontal_alignment = 1
 
-[node name="ThreePlaceRanking" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
+[node name="ThreePlaceRanking" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="PodiumHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking"]
+[node name="PodiumHBox" type="HBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="SecondPlaceCard" type="Control" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox"]
+[node name="SecondPlaceCard" type="Control" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox"]
 custom_minimum_size = Vector2(110, 160)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PodiumBlock" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard"]
+[node name="PodiumBlock" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard"]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 1
 anchors_preset = 12
@@ -214,11 +208,11 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_silver_pod")
 
-[node name="PodiumVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/PodiumBlock"]
+[node name="PodiumVBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/PodiumBlock"]
 layout_mode = 2
 alignment = 1
 
-[node name="SecondPlaceName" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/PodiumBlock/PodiumVBox"]
+[node name="SecondPlaceName" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/PodiumBlock/PodiumVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2, 0.27, 0.38, 1)
@@ -226,7 +220,7 @@ theme_override_font_sizes/font_size = 14
 text = "Jugador 2"
 horizontal_alignment = 1
 
-[node name="SecondPlaceScore" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/PodiumBlock/PodiumVBox"]
+[node name="SecondPlaceScore" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/PodiumBlock/PodiumVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45, 0.52, 0.61, 1)
@@ -234,7 +228,7 @@ theme_override_font_sizes/font_size = 12
 text = "0 pts"
 horizontal_alignment = 1
 
-[node name="AvatarRing" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard"]
+[node name="AvatarRing" type="Panel" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard"]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 1
 anchors_preset = 5
@@ -247,7 +241,7 @@ offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_silver_ring")
 
-[node name="SecondPlaceAvatar" type="TextureRect" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/AvatarRing"]
+[node name="SecondPlaceAvatar" type="TextureRect" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/AvatarRing"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 0
@@ -258,7 +252,7 @@ offset_bottom = 64.0
 expand_mode = 1
 script = ExtResource("3_stdc5")
 
-[node name="RankBadge" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard"]
+[node name="RankBadge" type="Panel" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard"]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 1
 anchors_preset = 5
@@ -271,7 +265,7 @@ offset_bottom = 121.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_silver_badge")
 
-[node name="RankLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/RankBadge"]
+[node name="RankLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/SecondPlaceCard/RankBadge"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -284,12 +278,12 @@ text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FirstPlaceCard" type="Control" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox"]
+[node name="FirstPlaceCard" type="Control" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox"]
 custom_minimum_size = Vector2(130, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PodiumBlock" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard"]
+[node name="PodiumBlock" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard"]
 custom_minimum_size = Vector2(0, 115)
 layout_mode = 1
 anchors_preset = 12
@@ -300,11 +294,11 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gold_pod")
 
-[node name="PodiumVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/PodiumBlock"]
+[node name="PodiumVBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/PodiumBlock"]
 layout_mode = 2
 alignment = 1
 
-[node name="FirstPlaceName" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/PodiumBlock/PodiumVBox"]
+[node name="FirstPlaceName" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/PodiumBlock/PodiumVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.27, 0.12, 0.02, 1)
@@ -312,7 +306,7 @@ theme_override_font_sizes/font_size = 16
 text = "Jugador 1"
 horizontal_alignment = 1
 
-[node name="FirstPlaceScore" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/PodiumBlock/PodiumVBox"]
+[node name="FirstPlaceScore" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/PodiumBlock/PodiumVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.68, 0.41, 0.12, 1)
@@ -320,7 +314,7 @@ theme_override_font_sizes/font_size = 14
 text = "0 pts"
 horizontal_alignment = 1
 
-[node name="AvatarRing" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard"]
+[node name="AvatarRing" type="Panel" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 5
@@ -333,7 +327,7 @@ offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gold_ring")
 
-[node name="FirstPlaceAvatar" type="TextureRect" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/AvatarRing"]
+[node name="FirstPlaceAvatar" type="TextureRect" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/AvatarRing"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
@@ -344,7 +338,7 @@ offset_bottom = 72.0
 expand_mode = 1
 script = ExtResource("3_stdc5")
 
-[node name="RankBadge" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard"]
+[node name="RankBadge" type="Panel" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 5
@@ -357,7 +351,7 @@ offset_bottom = 129.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gold_badge")
 
-[node name="RankLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/RankBadge"]
+[node name="RankLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/FirstPlaceCard/RankBadge"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -370,12 +364,12 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ThirdPlaceCard" type="Control" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox"]
+[node name="ThirdPlaceCard" type="Control" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox"]
 custom_minimum_size = Vector2(110, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PodiumBlock" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard"]
+[node name="PodiumBlock" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 1
 anchors_preset = 12
@@ -386,11 +380,11 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bronze_pod")
 
-[node name="PodiumVBox" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/PodiumBlock"]
+[node name="PodiumVBox" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/PodiumBlock"]
 layout_mode = 2
 alignment = 1
 
-[node name="ThirdPlaceName" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/PodiumBlock/PodiumVBox"]
+[node name="ThirdPlaceName" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/PodiumBlock/PodiumVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47, 0.24, 0.05, 1)
@@ -398,7 +392,7 @@ theme_override_font_sizes/font_size = 14
 text = "Jugador 3"
 horizontal_alignment = 1
 
-[node name="ThirdPlaceScore" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/PodiumBlock/PodiumVBox"]
+[node name="ThirdPlaceScore" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/PodiumBlock/PodiumVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.71, 0.42, 0.19, 1)
@@ -406,7 +400,7 @@ theme_override_font_sizes/font_size = 12
 text = "0 pts"
 horizontal_alignment = 1
 
-[node name="AvatarRing" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard"]
+[node name="AvatarRing" type="Panel" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard"]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 1
 anchors_preset = 5
@@ -419,7 +413,7 @@ offset_bottom = 104.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bronze_ring")
 
-[node name="ThirdPlaceAvatar" type="TextureRect" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/AvatarRing"]
+[node name="ThirdPlaceAvatar" type="TextureRect" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/AvatarRing"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 0
@@ -430,7 +424,7 @@ offset_bottom = 64.0
 expand_mode = 1
 script = ExtResource("3_stdc5")
 
-[node name="RankBadge" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard"]
+[node name="RankBadge" type="Panel" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 1
 anchors_preset = 5
@@ -443,7 +437,7 @@ offset_bottom = 124.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bronze_badge")
 
-[node name="RankLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/RankBadge"]
+[node name="RankLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/ThreePlaceRanking/PodiumHBox/ThirdPlaceCard/RankBadge"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -456,14 +450,14 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmptyRankingCard" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
+[node name="EmptyRankingCard" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="EmptyLabel" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/EmptyRankingCard"]
+[node name="EmptyLabel" type="Label" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/EmptyRankingCard"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_font_sizes/font_size = 14
@@ -471,18 +465,18 @@ text = "No hay mas miembros en la liga."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FurtherRankingCard" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox"]
+[node name="FurtherRankingCard" type="PanelContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="FurtherRankingList" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/FurtherRankingCard"]
+[node name="FurtherRankingList" type="VBoxContainer" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/FurtherRankingCard"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="RankingCard" parent="BackgroundPanel/CenterAlign/AppContainer/Scroll/ContentPad/ContentVBox/FurtherRankingCard/FurtherRankingList" instance=ExtResource("4_1p8ic")]
+[node name="RankingCard" parent="BackgroundPanel/AppContainer/Scroll/ContentPad/ContentVBox/FurtherRankingCard/FurtherRankingList" instance=ExtResource("4_1p8ic")]
 layout_mode = 2
 
-[node name="NavBar" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("2_n7nqu")]
+[node name="NavBar" parent="BackgroundPanel/AppContainer" instance=ExtResource("2_n7nqu")]
 layout_mode = 2

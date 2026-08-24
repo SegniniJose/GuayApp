@@ -12,4 +12,4 @@ func _apply() -> void:
 		return
 
 	win.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-	win.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	win.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH

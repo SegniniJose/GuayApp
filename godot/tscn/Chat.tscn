@@ -63,40 +63,34 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="CenterAlign" type="CenterContainer" parent="BackgroundPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel/CenterAlign"]
-custom_minimum_size = Vector2(430, 920)
+[node name="AppContainer" type="VBoxContainer" parent="BackgroundPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Header" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("1_3urqq")]
+[node name="Header" parent="BackgroundPanel/AppContainer" instance=ExtResource("1_3urqq")]
 layout_mode = 2
 
-[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+[node name="StickyHeader" type="PanelContainer" parent="BackgroundPanel/AppContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 
-[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader"]
+[node name="HBox" type="HBoxContainer" parent="BackgroundPanel/AppContainer/StickyHeader"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="AvatarPad" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox"]
+[node name="AvatarPad" type="MarginContainer" parent="BackgroundPanel/AppContainer/StickyHeader/HBox"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 
-[node name="AvatarIcon" type="Panel" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/AvatarPad"]
+[node name="AvatarIcon" type="Panel" parent="BackgroundPanel/AppContainer/StickyHeader/HBox/AvatarPad"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_avatar")
 
-[node name="AvatarChar" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/AvatarPad/AvatarIcon"]
+[node name="AvatarChar" type="Label" parent="BackgroundPanel/AppContainer/StickyHeader/HBox/AvatarPad/AvatarIcon"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,32 +102,32 @@ text = "#"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextInfo" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox"]
+[node name="TextInfo" type="VBoxContainer" parent="BackgroundPanel/AppContainer/StickyHeader/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 theme_override_constants/separation = 2
 
-[node name="ChatTitle" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/TextInfo"]
+[node name="ChatTitle" type="Label" parent="BackgroundPanel/AppContainer/StickyHeader/HBox/TextInfo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
 theme_override_font_sizes/font_size = 16
 text = "Chat de Liga"
 
-[node name="ChatSub" type="Label" parent="BackgroundPanel/CenterAlign/AppContainer/StickyHeader/HBox/TextInfo"]
+[node name="ChatSub" type="Label" parent="BackgroundPanel/AppContainer/StickyHeader/HBox/TextInfo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_font_sizes/font_size = 12
 text = "Conversa con tu equipo"
 
-[node name="ChatFeed" type="ScrollContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+[node name="ChatFeed" type="ScrollContainer" parent="BackgroundPanel/AppContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="FeedMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ChatFeed"]
+[node name="FeedMargin" type="MarginContainer" parent="BackgroundPanel/AppContainer/ChatFeed"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -142,25 +136,25 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 12
 
-[node name="Messages" type="VBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/ChatFeed/FeedMargin"]
+[node name="Messages" type="VBoxContainer" parent="BackgroundPanel/AppContainer/ChatFeed/FeedMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 14
 
-[node name="ChatMessageCard" parent="BackgroundPanel/CenterAlign/AppContainer/ChatFeed/FeedMargin/Messages" groups=["league_chat"] instance=ExtResource("2_3pxon")]
+[node name="ChatMessageCard" parent="BackgroundPanel/AppContainer/ChatFeed/FeedMargin/Messages" groups=["league_chat"] instance=ExtResource("2_3pxon")]
 layout_mode = 2
 
-[node name="InputBar" type="PanelContainer" parent="BackgroundPanel/CenterAlign/AppContainer"]
+[node name="InputBar" type="PanelContainer" parent="BackgroundPanel/AppContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 
-[node name="InputHBox" type="HBoxContainer" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar"]
+[node name="InputHBox" type="HBoxContainer" parent="BackgroundPanel/AppContainer/InputBar"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="InputMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox"]
+[node name="InputMargin" type="MarginContainer" parent="BackgroundPanel/AppContainer/InputBar/InputHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -168,7 +162,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 10
 
-[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox/InputMargin"]
+[node name="LineEdit" type="LineEdit" parent="BackgroundPanel/AppContainer/InputBar/InputHBox/InputMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.059, 0.090, 0.165, 1)
@@ -176,13 +170,13 @@ theme_override_colors/font_placeholder_color = Color(0.475, 0.557, 0.608, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_input_area")
 placeholder_text = "Escribe un mensaje..."
 
-[node name="BtnMargin" type="MarginContainer" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox"]
+[node name="BtnMargin" type="MarginContainer" parent="BackgroundPanel/AppContainer/InputBar/InputHBox"]
 layout_mode = 2
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SendBtn" type="Button" parent="BackgroundPanel/CenterAlign/AppContainer/InputBar/InputHBox/BtnMargin"]
+[node name="SendBtn" type="Button" parent="BackgroundPanel/AppContainer/InputBar/InputHBox/BtnMargin"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -190,5 +184,5 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_send_btn")
 text = ">"
 
-[node name="NavBar" parent="BackgroundPanel/CenterAlign/AppContainer" instance=ExtResource("2_6o0tv")]
+[node name="NavBar" parent="BackgroundPanel/AppContainer" instance=ExtResource("2_6o0tv")]
 layout_mode = 2

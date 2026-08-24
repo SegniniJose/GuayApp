@@ -32,7 +32,7 @@ window/size/window_width_override=440
 window/size/window_height_override=920
 window/size/resizable=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 window/dpi/allow_hidpi=true
 
