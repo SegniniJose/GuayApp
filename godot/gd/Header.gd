@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func _apply_header_styles() -> void:
 	GuayTheme.apply_link(amigos_btn)
-	amigos_btn.text = "👥  Amigos"
+	amigos_btn.text = "Amigos"
 	GuayTheme.apply_button_ghost(exit_btn, GuayTheme.COLOR_DANGER)
 	exit_btn.text = "Salir"
 	exit_btn.add_theme_font_size_override("font_size", GuayTheme.FONT_LABEL)

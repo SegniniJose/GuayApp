@@ -34,9 +34,7 @@ func _connect_buttons() -> void:
 
 
 func _connect_private_toggle() -> void:
-	var toggle: CheckButton = get_node_or_null(
-		"BG/ScrollContainer/Main/Padding/Content/PrivateCard/PadP/Row/CheckButton"
-	)
+	var toggle: CheckButton = get_node_or_null("%CheckButton")
 	if toggle:
 		toggle.button_pressed = Globals.isPrivate
 		if not toggle.toggled.is_connected(_on_private_toggled):

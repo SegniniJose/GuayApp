@@ -7,68 +7,96 @@ bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 24
 corner_radius_top_right = 24
 border_width_top = 1
-border_color = Color(0.898039, 0.905882, 0.921569, 1)
+border_color = Color(0.898, 0.918, 0.941, 1)
 shadow_color = Color(0, 0, 0, 0.08)
-shadow_size = 12
-shadow_offset = Vector2(0, -2)
+shadow_size = 10
+shadow_offset = Vector2(0, -3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_center_btn"]
+bg_color = Color(0.0, 0.4, 1.0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color(0.0, 0.4, 1.0, 0.4)
+shadow_size = 8
+shadow_offset = Vector2(0, 3)
 
 [node name="NavBar" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 76)
+custom_minimum_size = Vector2(0, 72)
 theme_override_styles/panel = SubResource("StyleBoxFlat_nav")
 script = ExtResource("1_hxolp")
 
-[node name="Icons" type="HBoxContainer" parent="."]
+[node name="Padding" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Icons" type="HBoxContainer" parent="Padding"]
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Home" type="Button" parent="Icons"]
-custom_minimum_size = Vector2(56, 56)
+[node name="Home" type="Button" parent="Padding/Icons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 52)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
-text = "🏠
-Inicio"
+theme_override_colors/font_color = Color(0.0, 0.4, 1.0, 1)
+theme_override_font_sizes/font_size = 13
+text = "Inicio"
 flat = true
 
-[node name="List" type="Button" parent="Icons"]
-custom_minimum_size = Vector2(56, 56)
+[node name="List" type="Button" parent="Padding/Icons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 52)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
-text = "🎯
-Misiones"
+theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
+theme_override_font_sizes/font_size = 13
+text = "Misiones"
 flat = true
 
-[node name="Chat" type="Button" parent="Icons"]
-custom_minimum_size = Vector2(56, 56)
+[node name="CreateWrap" type="CenterContainer" parent="Padding/Icons"]
+custom_minimum_size = Vector2(56, 52)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
-text = "💬
-Social"
-flat = true
 
-[node name="Trophy" type="Button" parent="Icons"]
-custom_minimum_size = Vector2(56, 56)
+[node name="CreateBtn" type="Button" parent="Padding/Icons/CreateWrap"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_center_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_center_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_center_btn")
+text = "+"
+
+[node name="Trophy" type="Button" parent="Padding/Icons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 52)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
-text = "🏆
-Ranking"
+theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
+theme_override_font_sizes/font_size = 13
+text = "Ranking"
 flat = true
 
-[node name="Profile" type="Button" parent="Icons"]
-custom_minimum_size = Vector2(56, 56)
+[node name="Profile" type="Button" parent="Padding/Icons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 52)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
-text = "👤
-Perfil"
+theme_override_colors/font_color = Color(0.475, 0.557, 0.608, 1)
+theme_override_font_sizes/font_size = 13
+text = "Perfil"
 flat = true
 
-[connection signal="pressed" from="Icons/Home" to="." method="_on_home_pressed"]
-[connection signal="pressed" from="Icons/List" to="." method="_on_list_pressed"]
-[connection signal="pressed" from="Icons/Chat" to="." method="_on_chat_pressed"]
-[connection signal="pressed" from="Icons/Trophy" to="." method="_on_trophy_pressed"]
-[connection signal="pressed" from="Icons/Profile" to="." method="_on_profile_pressed"]
+[connection signal="pressed" from="Padding/Icons/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Padding/Icons/List" to="." method="_on_list_pressed"]
+[connection signal="pressed" from="Padding/Icons/CreateWrap/CreateBtn" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Padding/Icons/Trophy" to="." method="_on_trophy_pressed"]
+[connection signal="pressed" from="Padding/Icons/Profile" to="." method="_on_profile_pressed"]
